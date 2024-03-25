@@ -1,0 +1,42 @@
+{% extends 'users/base.html' %}
+{% load static %}
+{% block body %}
+<div id="users-chnage">
+  <div class="w-[90%] m-auto">
+    <h1 class="m-4 text-center mytext2 text-3xl font-bold">Delete Account</h1>
+    <div class="card shadow-2xl p-6 grid justify-center">
+      <h4 class="font-bold mytext2 my-4">Are you sure to <span class="text-[red]">Delete</span> your account?</h4>
+      <button data-te-toggle="modal" data-te-target="#ConfirmPassword" data-te-ripple-init data-te-ripple-color="light" class="btn bg-[#570df8]">Yes</button>
+    </div>
+  </div>
+  <div data-te-modal-init class="fixed left-0 top-0 z-[1055] hidden h-full w-full overflow-y-auto overflow-x-hidden outline-none" id="ConfirmPassword" tabindex="-1" aria-labelledby="ConfirmPasswordTitle" aria-modal="true" role="dialog">
+    <div data-te-modal-dialog-ref class="m-4 pointer-events-none relative flex min-h-[calc(100%-1rem)] w-auto translate-y-[-50px] items-center opacity-0 transition-all duration-300 ease-in-out min-[576px]:mx-auto min-[576px]:mt-7 min-[576px]:min-h-[calc(100%-3.5rem)] min-[576px]:max-w-[500px]">
+      <div class="p-4 pointer-events-auto relative flex w-full flex-col rounded-md border-none bg-white bg-clip-padding text-current shadow-lg outline-none">
+        <div class="flex flex-shrink-0 items-center justify-between rounded-t-md">
+          <!-- Modal title -->
+          <h5 class="text-xl font-bold font-bold leading-normal text-neutral-800" id="exampleModalCenterTitle">Delete Account</h5>
+        </div>
+        <form method="post">
+          {% csrf_token %}
+          <div class="grid justify-center">
+            <h4 class="font-medium mytext2 my-4 text-center">
+              Please provide your account's password for confirmation to
+              <span class="text-[red]">Delete</span> account of
+              <span class="text-[#570df8]">"{{ request.user.username }}"</span>.
+            </h4>
+            <input type="password" required name="password" placeholder="Password" class="m-4 input input-bordered" 
+            hx-post="{% url 'password_check_for_account_deletion' %}" 
+            hx-target="#htmx_for_delete_account" 
+            hx-trigger="keypress delay:0.5s" />
+          </div>
+          <div id="htmx_for_delete_account">
+            <div class="flex flex-shrink-0 flex-wrap items-center justify-end rounded-b-md p-4">
+              <button type="submit" class="ml-2 btn bg-[red]" data-te-ripple-init data-te-ripple-color="light" disabled>Delete Account</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

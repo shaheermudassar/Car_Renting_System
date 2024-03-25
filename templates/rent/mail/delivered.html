@@ -1,0 +1,15 @@
+{% load static %}
+<div style="display: grid; border-radius: 10px; justify-content: center; margin: 2rem; background-image: linear- align-content: center; min-height: 80vh; width: 100% - 4rem;">
+  <div style="padding: 2rem; width: 100%; backdrop-filter: blur(16px); border-radius: 12px; background-image: linear-gradient(150deg, #c62e0d, #570df8);">
+    <h1 style="font-family: sans-serif; text-align: center; font-family: sans-serif; color: white;">Hey {{ rent.user.profile.first_name }}</h1><br />
+    <p style="font-family: sans-serif; text-align: center; color: white;">Your car {{ rent.car.name }} {{ rent.car.model }} was delivered to your door step.</p>
+    <div>
+      <h2 style="font-family: sans-serif; color: white;">Address:</h2>
+      <p style="font-family: sans-serif; text-align: center; color: white;">{{ rent.user.address.address }}, {{ rent.user.address.town_or_area }}, {{ rent.user.address.city }}, {{ rent.user.address.country }}</p>
+    </div>
+    <br />
+    <div style="width: 100%; display: grid; justify-content: center;">
+      <a style="text-decoration: none; border-radius: 6px; font-family: sans-serif; text-align: center; color: white; background-color: #570df8; padding-left: 1rem; padding-right: 1rem; padding-top: 0.5rem; padding-bottom: 0.5rem;" href="{% url 'dashboard' %}">View in Dashboard</a>
+    </div>
+  </div>
+</div>

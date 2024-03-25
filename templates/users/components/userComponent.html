@@ -1,0 +1,63 @@
+{% load static %}
+<div class="grid m-4 gap-4 grid-cols-1 lg:grid-cols-2">
+    <div class="card card-side glass bg-base-100 shadow-xl">
+      <figure><img class="img-3d h-[12rem] w-[9rem] lg:h-[18rem] lg:w-[12rem] object-cover" src="https://images.pexels.com/photos/164634/pexels-photo-164634.jpeg?cs=srgb&dl=pexels-pixabay-164634.jpg&fm=jpg" alt="Movie"/></figure>
+      <div class="card-body p-4 lg:p-8 ">
+        <h2 class="mytext2 card-title">Rents</h2>
+        <p>Monitor and control your rents.</p>
+        <div class="card-actions justify-end">
+          <a href="" hx-get="{% url "dashboard" %}" hx-push-url="{% url "dashboard" %}" hx-target="#users-change" class="btn btn-primary">Go</a>
+        </div>
+      </div>
+  </div>
+  <div class="card card-side glass bg-base-100 shadow-xl">
+      <figure><img class="img-3d h-[12rem] w-[9rem] lg:h-[18rem] lg:w-[12rem] object-cover" src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" /></figure>
+      <div class="card-body p-4 lg:p-8 ">
+        <h2 class="mytext2 card-title">Profile!</h2>
+        <p>Monitor and control your profile.</p>
+        <div class="card-actions justify-end">
+          <a href="" hx-get="{% url "profile" %}" hx-push-url="{% url "profile" %}" hx-target="#users-change" class="btn btn-primary">Go</a>
+        </div>
+      </div>
+  </div>
+  <div class="card card-side glass bg-base-100 shadow-xl">
+      <figure><img class="img-3d h-[12rem] w-[9rem] lg:h-[18rem] lg:w-[12rem] object-cover" src="https://www.livehome3d.com/assets/img/articles/design-house/how-to-design-a-house.jpg" /></figure>
+      <div class="card-body p-4 lg:p-8 ">
+        <h2 class="mytext2 card-title">Address</h2>
+        <p>View and control your address.</p>
+        <div class="card-actions justify-end">
+          <a href="" hx-get="{% url "address" %}" hx-push-url="{% url "address" %}" hx-target="#users-change" class="btn btn-primary">Go</a>
+        </div>
+      </div>
+  </div>
+  <div class="card card-side glass bg-base-100 shadow-xl">
+      <figure><img class="img-3d h-[12rem] w-[9rem] lg:h-[18rem] lg:w-[12rem] object-cover" src="https://thumbs.dreamstime.com/b/drivers-license-registration-application-webpage-concept-76827230.jpg" /></figure>
+      <div class="card-body p-4 lg:p-8 ">
+        <h2 class="mytext2 card-title">License</h2>
+        <p>Register and edit your License.</p>
+        <div class="card-actions justify-end">
+          <a href="" hx-get="{% url "license_info" %}" hx-push-url="{% url "license_info" %}" hx-target="#users-change" class="btn btn-primary">Go</a>
+        </div>
+      </div>
+  </div>
+  {% comment %} <div class="card card-side glass bg-base-100 shadow-xl">
+      <figure><img class="img-3d h-[12rem] w-[9rem] lg:h-[18rem] lg:w-[12rem] object-cover" src="https://daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg" alt="Movie"/></figure>
+      <div class="card-body p-4 lg:p-8 ">
+        <h2 class="mytext2 card-title">Change Password</h2>
+        <p>Change your password.</p>
+        <div class="card-actions justify-end">
+          <button class="btn btn-primary">Go</button>
+        </div>
+      </div>
+  </div> {% endcomment %}
+  <div class="card card-side glass bg-base-100 shadow-xl">
+      <figure><img class="img-3d h-[12rem] w-[9rem] lg:h-[18rem] lg:w-[12rem] object-cover" src="https://tricitypropertysearches.com/wp-content/uploads/2021/08/Solid-Wooden-Door-Design-2.jpg" alt="Movie"/></figure>
+      <div class="card-body p-4 lg:p-8 ">
+        <h2 class="mytext2 card-title">Logout</h2>
+        <p>Logout of your account.</p>
+        <div class="card-actions justify-end">
+          <a href="{% url "account_logout" %}" class="btn btn-primary">Go</a>
+        </div>
+      </div>
+  </div>
+</div>

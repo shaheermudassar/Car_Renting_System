@@ -1,0 +1,144 @@
+{% load static %}
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=devide-width, initial-scale=1.0" />
+    <script src="{% static 'js/htmx.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/daisyui.css' %}" type="text/css" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/twelements.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/flat-ui.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/owl-carousel.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/owl-theme.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/animations.css' %}" />
+    <link href='https://fonts.googleapis.com/css?family=DM Sans' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>
+        {% block title %}
+        Dashboard
+        {% endblock title %}
+    </title>
+</head>
+<body>
+<div id="loading-overlay" style="z-index: 9900;" class="fixed top-0 left-0 right-0 bottom-0 bg-black flex justify-center items-center hidden">
+    <h1 id="transition-text" style="font-weight: 900;" class="text-6xl lg:text-9xl mytext2 font-bold text-center text-white">DaisyRoom</h1>
+</div>
+<div id="full-change">
+    {% include "users/smallComponents/header.html" %}
+    {% block body %}
+    
+    {% endblock body %}
+    {% include "users/smallComponents/footer.html" %}
+</div>
+        
+</body>
+<script>
+    function scrollToTop(string) {
+        const transition_text = document.getElementById('transition-text');
+        transition_text.innerHTML = string;
+        window.scrollTo({top: 0, behavior: 'smooth'});
+        let afterSettleTimeout;
+        
+        // Define event handlers
+        const beforeRequestHandler = (event) => {
+            const loadingOverlay = document.getElementById('loading-overlay');
+            loadingOverlay.classList.remove('hidden'); // Show loading overlay
+            if (loadingOverlay.classList.contains('slide-right')) {
+                loadingOverlay.classList.remove('slide-right'); // Remove slide-right animation class if present
+            } // Remove previous animation class
+            loadingOverlay.classList.add('slide-in-bck-center'); // Show loading overlay
+        };
+      
+        const afterSettleHandler = (event) => {
+            clearTimeout(afterSettleTimeout); // Clear any existing timeout
+            const loadingOverlay = document.getElementById('loading-overlay');
+            afterSettleTimeout = setTimeout(() => {
+                if (loadingOverlay.classList.contains('slide-in-bck-center')) {
+                    loadingOverlay.classList.remove('slide-in-bck-center'); // Remove slide-right animation class if present
+                }
+                loadingOverlay.classList.add('slide-right'); // Apply slide-out animation class
+                afterSettleTimeout = setTimeout(() => {
+                    loadingOverlay.classList.add('hidden'); // Hide loading overlay after animation
+                }, 2000);
+                var existingScripts1 = document.querySelectorAll('script[src="/static/js/tw-elements.js"]');
+                existingScripts1.forEach(function(script) {
+                script.parentNode.removeChild(script);
+                console.log("removed tw")
+            });
+            
+            
+             // 2000 milliseconds = 2 seconds delay
+                 // Hide loading overlay after animation
+            }, 1500);
+        };
+      
+        // Attach event listeners
+        htmx.on('htmx:beforeRequest', beforeRequestHandler);
+        htmx.on('htmx:afterOnLoad', afterSettleHandler);
+        
+        window.addEventListener('popstate', () => {
+            const loadingOverlay = document.getElementById('loading-overlay');
+            loadingOverlay.classList.add('hidden');
+            var header = document.querySelector('header');
+    
+            // Set initial style based on the scroll position
+            if (window.scrollY > 10) {
+              header.classList.add('scrolled');
+            } else {
+              header.classList.remove('scrolled');
+            }
+    
+            window.addEventListener('scroll', function () {
+              if (window.scrollY > 10) {
+                header.classList.add('scrolled');
+              } else {
+                header.classList.remove('scrolled');
+              }
+            });
+        });
+        // Turn off event listeners after they have executed once
+        const turnOffListeners = () => {
+            htmx.off('htmx:beforeRequest', beforeRequestHandler);
+            htmx.off('htmx:afterOnLoad', afterSettleHandler);
+        };
+      
+        // Call turnOffListeners after scrollToTop function execution
+        setTimeout(turnOffListeners, 2000);
+      }
+    function addExtend() {
+        let afterSettleTimeout;
+        
+      
+        const afterSettleHandler = (event) => {
+            clearTimeout(afterSettleTimeout); // Clear any existing timeout
+            const loadingOverlay = document.getElementById('loading-overlay');
+            afterSettleTimeout = setTimeout(() => {
+                var script = document.createElement('script');
+                script.src = '/static/tw-elements.js';
+                document.head.appendChild(script);
+            
+            
+             // 2000 milliseconds = 2 seconds delay
+                 // Hide loading overlay after animation
+            }, 1500);
+        };
+        htmx.on('htmx:afterOnLoad', afterSettleHandler);
+        // Turn off event listeners after they have executed once
+        const turnOffListeners = () => {
+            htmx.off('htmx:afterOnLoad', afterSettleHandler);
+        };
+      
+        // Call turnOffListeners after scrollToTop function execution
+        setTimeout(turnOffListeners, 2000);
+      }
+</script>
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/tw-elements.js' %}"></script>
+<script async src="https://static.addtoany.com/menu/page.js"></script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="{% static 'js/owl-carousel.js' %}"></script>
+<script src="{% static 'js/script.js' %}"></script>
+</html>

@@ -1,0 +1,83 @@
+{% load static %}
+
+<!-- license loader -->
+<div id="licenseLoading" class="htmx-indicator">
+    <div class="loader"></div>
+    <p class="mytext2 text-center font-bold">Extracting data from image. <br> Please Wait...</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-5 items-start">
+    <div class="lg:sticky top-0 pt-4 hidden lg:block lg:w-full lg:sticky col-span-1 lg:col-span-1 bg-[#1c2434] h-[100vh]">
+        <ul>
+            <li class="m-4"><a href="" hx-get="{% url "dashboard" %}" hx-push-url="{% url "dashboard" %}" hx-target="#users-change"
+                    class="btn flex justify-start bg-[#1c2434] hover:bg-[#34415b] w-full"><i
+                        class="pr-8 fa-solid fa-boxes-stacked"></i> Rents</a></li>
+            <li class="m-4"><a href="" hx-get="{% url "full_home" %}" hx-push-url="{% url "home" %}" hx-target="#full-change" onclick="scrollToTop('DaisyRoom')"
+                    class="btn flex justify-start bg-[#1c2434] hover:bg-[#34415b] w-full"><i
+                        class="pr-8 fa-solid fa-house"></i> Home</a></li>
+            <li class="m-4"><a href="" hx-get="{% url "profile" %}" hx-push-url="{% url "profile" %}" hx-target="#users-change"
+                    class="btn flex justify-start bg-[#1c2434] hover:bg-[#34415b] w-full"><i
+                        class="pr-8 fa-solid fa-user"></i> Profile</a></li>
+            <li class="m-4"><a href="" hx-get="{% url "address" %}" hx-push-url="{% url "address" %}" hx-target="#users-change"
+                    class="btn flex justify-start bg-[#1c2434] hover:bg-[#34415b] w-full"><i
+                        class="pr-8 fa-solid fa-house-user"></i> Address</a></li>
+            <li class="m-4"><a href="" hx-get="{% url "license_info" %}" hx-push-url="{% url "license_info" %}" hx-target="#users-change" class="btn flex justify-start bg-[#1c2434] hover:bg-[#34415b] w-full"><i
+                        class="pr-8 fa-solid fa-address-card"></i> License Info</a></li>
+            <li class="m-4"><a href="{% url "account_logout" %}" class="btn flex justify-start bg-[#1c2434] hover:bg-[#34415b] w-full"><i
+                        class="pr-8 fa-solid fa-door-open"></i> Logout</a></li>
+        </ul>
+    </div>
+    <div class="col-span-1 lg:col-span-4 bg-no-repeat bg-center min-h-[100vh] bg-cover bg-[url('https://daisyui.com/images/stock/photo-1481026469463-66327c86e544.jpg')]">
+        <div class="flex z-50 sticky top-0 justify-between navbar bg-neutral-100 shadow-2xl">
+            <button id="sidenavButton" class="lg:hidden indicator btn btn-ghost btn-circle" type="button" data-te-offcanvas-toggle
+                data-te-target="#sidenav" aria-controls="sidenav" data-te-ripple-init data-te-ripple-color="light">
+                <i class="text-black h-5 w-5 fa-solid fa-bars"></i>
+            </button>
+            <div class="">
+                <a class="dashboard-logo-main ml-12 lg:ml-0 btn btn-ghost font-bold text-xl">DaisyRoom</a>
+            </div>
+            <div class="flex-none">
+                <div class="dropdown dropdown-end">
+                    <div tabindex="0" role="button" id="notification-icon" onclick="notification_badge()" class="p-2 btn btn-ghost btn-circle" hx-get="{% url "notifications" %}" hx-target="#notifications" hx-trigger="click">
+                        <div class="indicator">
+                            <i class="text-xl fa-regular fa-envelope text-[#34495e]"></i>
+                            {% if unseen %}
+                            <span class="badge badge-sm indicator-item" id="noti"></span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div tabindex="0" class="mt-3 z-[1] card card-compact max-h-[70vh] dropdown-content overflow-x w-80 lg:w-96 bg-base-100 shadow">
+                        <div class="card-body">
+                            <span class="font-bold text-lg">Notifications</span>
+                            <div id="notifications">
+                                <div class="grid justify-center my-16">
+                                    <span class="notification-loader"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="dropdown dropdown-end">
+                    <div tabindex="0" role="button" class="p-2 btn btn-ghost btn-circle avatar">
+                        <div class="rounded-full">
+                            {% if user_base.profile_pic %}
+                            <img alt="" src="{{user_base.profile_pic.url}}" />
+                            {% elif profile_pic %}
+                            <img alt="" src="{{profile_pic}}" />
+                            {% else %}
+                            <img alt="" src="{% static 'images/user.jpg' %}" />
+                            {% endif %}
+                        </div>
+                    </div>
+                    <ul tabindex="0"
+                        class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                        <li>
+                            <a href="" hx-get="{% url "profile" %}" hx-push-url="{% url "profile" %}" hx-target="#users-change" class="justify-between">
+                                Profile
+                            </a>
+                        </li>
+                        <li><a href="" hx-get="{% url "user" %}" hx-push-url="{% url "user" %}" hx-target="#users-change">Dashboard</a></li>
+                        <li><a href="{% url "account_logout" %}">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>

@@ -1,0 +1,46 @@
+{% load static %}
+<h1 class="m-4 text-center mytext2 text-3xl font-bold">
+    License Info
+</h1>
+  <div class="m-4 rounded-xl shadow-2xl glass">
+    <div class="p-4">
+      <div class="grid grid-cols-1 lg:grid-cols-2" id="license-form">
+        {% comment %} <form class="m-0" enctype="multipart/form-data" hx-indicator="#licenseLoading" hx-post="{% url "license_image_data_generator" %}" hx-trigger="change" hx-target="#license-form"> {% endcomment %}
+          {% csrf_token %}
+          <div class="input-div col-span-1">
+              {% comment %} <input class="my-4 relative m-0 block w-full min-w-0 flex-auto cursor-pointer rounded border border-solid 
+              border-neutral-300 bg-clip-padding px-3 py-[0.32rem] font-normal leading-[2.15] text-neutral-700 transition 
+              duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:cursor-pointer file:overflow-hidden 
+              file:rounded-none file:border-0 file:border-solid file:border-inherit file:bg-neutral-100 file:px-3 
+              file:py-[0.32rem] file:text-neutral-700 file:transition file:duration-150 file:ease-in-out 
+              file:[border-inline-end-width:1px] file:[margin-inline-end:0.75rem] hover:file:bg-neutral-200 
+              focus:border-primary focus:text-neutral-700 focus:shadow-te-primary focus:outline-none" 
+              type="file" accept="image/*" name="image"
+              id="imgInp" /> {% endcomment %}
+              <div class="license-image-div">
+                  <h3 class="text-center mytext2">Please add image of your driving license</h3>
+                  {% if license.license_pic %}
+                  <img id="blah" class="license-image" src="{{license.license_pic.url}}" alt="" />
+                  {% else %}
+                  <img id="blah" class="license-image" src="{% static 'images/driving-license.png' %}" alt="" />
+                  {% endif %}
+                  <p id="test"></p>
+                </div>
+              {% comment %} </form> {% endcomment %}
+            </div>
+            <div id="license-detail" class="grid content-center">
+              {% if license.license_name and license.expiry_date and license.valid %}
+              <input type="text" value="{{license.license_name}}" disabled class="m-4 input input-bordered w-[90%]" />
+              <input type="text" value="{{license.expiry_date}}" disabled class="m-4 input input-bordered w-[90%]" />
+              <p class="text-[limegreen] text-center">License is Accepted ✔</p>
+              {% else %}
+              <h3 class="text-center mytext2">Your info will be here</h3>
+              {% endif %}
+              </div>
+        </div>
+      </div>
+      <div class="divider mx-8">OR</div>
+      <div class="grid justify-center">
+        <a href="" hx-get="{% url "manual_license_set" %}" hx-target="#license-form" class="text-center mb-4">Set License Manually</a>
+      </div>
+  </div>

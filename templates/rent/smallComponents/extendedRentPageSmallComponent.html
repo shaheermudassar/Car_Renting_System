@@ -1,0 +1,35 @@
+{% load static %}
+{% load humanize %}
+<div class="slide-in-right"> 
+    <div class="m-4 rounded-xl shadow-2xl">
+      <div class="">
+          <div class="grid grid-cols-1 lg:grid-cols-2 my-12 lg:my-0" id="license-form">
+            <div class="rent-image-div">
+                <img class="rounded-t-xl h-full w-full object-cover rent-image lg:rounded-l-xl lg:rounded-r-none" src="{{car.image.url}}" alt="{{car.name}}">
+            </div>
+            <div class="p-8 grid justify-center contentm-4 -center">
+                <p class="mx-4 my-2 mt-0 font-bold">Car Name: <span class="ml-4 font-medium">{{car.name}} {{car.model}}</span></p>
+                <p class="mx-4 my-2 mb-4 font-bold">Rent time: <span class="ml-4 font-medium">{{number_of_period}} {{period}}</span></p>
+                <form class="m-0" action="{% url 'process_payment' %}" method="post">
+                  {% csrf_token %}
+                    <h1 class="mt-1 mb-4 mx-4 mytext2 font-bold text-xl">Total Extended Rent: <span class="ml-4 font-medium">Rs. {{total_rent|intcomma}}</span></h1>
+                    <div class="grid justify-center">
+                    <input type="hidden" name="car_id" value="{{car.id}}">
+                    <input type="hidden" name="total_rent" value="{{total_rent}}">
+                    <input type="hidden" name="original_rent_id" value="{{original_rent.rid}}">
+                    <input type="hidden" name="period" value="{{period}}">
+                    <input type="hidden" name="number_of_period" value="{{number_of_period}}">
+                    {% if total_rent < 9999999 %}
+                    <button class="btn bg-[#570df8] px-20 hover:bg-[black]" name="extend_rent" type="submit">Continue Payment<i class="ml-2 fa-solid fa-arrow-right"></i></button>
+                    {% else %}
+                    <button disabled class="btn bg-[#570df8] px-20 hover:bg-[black]" >Continue Payment<i class="ml-2 fa-solid fa-arrow-right"></i></button>
+                    <p class="text-center">This amount can't be paid online.</p>
+                    <p class="text-center">Please <a class="text-[#570df8]" href="{% url "contact" %}">Contact</a> us OR come to our Branch.</p>
+                    {% endif %}
+                  </div>
+                </form>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
