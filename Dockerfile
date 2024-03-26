@@ -8,7 +8,7 @@ ENV PYTHODONTWRITEBYTECODE 1
 WORKDIR /app
 
 # Copy the dependencies file to the working directory
-COPY . ./app
+COPY . .
 
 RUN apt-get update
 # Install any dependencies
