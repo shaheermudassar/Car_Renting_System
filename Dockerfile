@@ -17,6 +17,7 @@ COPY ./requirements.txt .
 
 RUN pip install -r requirements.txt
 
+CMD ["sh", "./start.sh"]
 # EXPOSE 8000
 
 # ENTRYPOINT [ "gunicorn", "Car_Renting_System.wsgi:application" ]
