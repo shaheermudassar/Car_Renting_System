@@ -72,74 +72,46 @@
     const transition_text = document.getElementById('transition-text');
     transition_text.innerHTML = string;
     window.scrollTo({top: 0, behavior: 'smooth'});
-    let afterSettleTimeout;
-    
+
     // Define event handlers
-    const beforeRequestHandler = (event) => {
+    const beforeRequestHandler = () => {
         const loadingOverlay = document.getElementById('loading-overlay');
         loadingOverlay.classList.remove('hidden'); // Show loading overlay
         if (loadingOverlay.classList.contains('slide-right')) {
             loadingOverlay.classList.remove('slide-right'); // Remove slide-right animation class if present
-        } // Remove previous animation class
-        loadingOverlay.classList.add('slide-in-bck-center'); // Show loading overlay
-    };
-  
-    const afterSettleHandler = (event) => {
-        clearTimeout(afterSettleTimeout); // Clear any existing timeout
-        const loadingOverlay = document.getElementById('loading-overlay');
-        afterSettleTimeout = setTimeout(() => {
-            if (loadingOverlay.classList.contains('slide-in-bck-center')) {
-                loadingOverlay.classList.remove('slide-in-bck-center'); // Remove slide-right animation class if present
-            }
-            loadingOverlay.classList.add('slide-right'); // Apply slide-out animation class
-            afterSettleTimeout = setTimeout(() => {
-                loadingOverlay.classList.add('hidden'); // Hide loading overlay after animation
-            }, 2000);
-            var existingScripts1 = document.querySelectorAll('script[src="/static/js/tw-elements.js"]');
-        existingScripts1.forEach(function(script) {
-        script.parentNode.removeChild(script);
-        console.log("removed tw")
-      });
-        
-         // 2000 milliseconds = 2 seconds delay
-             // Hide loading overlay after animation
-        }, 1500);
-    };
-  
-    // Attach event listeners
-    htmx.on('htmx:beforeRequest', beforeRequestHandler);
-    htmx.on('htmx:afterOnLoad', afterSettleHandler);
-    
-    window.addEventListener('popstate', () => {
-        const loadingOverlay = document.getElementById('loading-overlay');
-        loadingOverlay.classList.add('hidden');
-        var header = document.querySelector('header');
-
-        // Set initial style based on the scroll position
-        if (window.scrollY > 10) {
-          header.classList.add('scrolled');
-        } else {
-          header.classList.remove('scrolled');
         }
-
-        window.addEventListener('scroll', function () {
-          if (window.scrollY > 10) {
-            header.classList.add('scrolled');
-          } else {
-            header.classList.remove('scrolled');
-          }
-        });
-         // Hide loading overlay if navigating back
-    });
-    // Turn off event listeners after they have executed once
-    const turnOffListeners = () => {
-        htmx.off('htmx:beforeRequest', beforeRequestHandler);
-        htmx.off('htmx:afterOnLoad', afterSettleHandler);
+        loadingOverlay.classList.add('slide-in-bck-center'); // Show loading overlay
+        console.log("beforeRequestHandler executed");
     };
-  
-    // Call turnOffListeners after scrollToTop function execution
-    setTimeout(turnOffListeners, 2000);
-  }
+
+    const afterSettleHandler = () => {
+        const loadingOverlay = document.getElementById('loading-overlay');
+        if (loadingOverlay.classList.contains('slide-in-bck-center')) {
+            loadingOverlay.classList.remove('slide-in-bck-center'); // Remove slide-right animation class if present
+        }
+        loadingOverlay.classList.add('slide-right'); // Apply slide-out animation class
+
+        setTimeout(() => {
+            loadingOverlay.classList.add('hidden');
+            console.log("loadingOverlay hidden");
+        }, 2000);
+        setTimeout(() => {
+          document.removeEventListener('htmx:beforeRequest', beforeRequestHandler);
+          document.removeEventListener('htmx:afterRequest', afterSettleHandler);
+          console.log("Event listeners removed");
+      }, 2000);
+
+        console.log("afterSettleHandler executed");
+    };
+
+    // Attach event listeners
+    document.addEventListener('htmx:beforeRequest', beforeRequestHandler);
+    document.addEventListener('htmx:afterRequest', afterSettleHandler);
+
+    // Call turnOffListeners after a timeout
+    
+}
+
 </script>
 <script src="{% static 'js/jquery.js' %}"></script>
 <script async src="https://static.addtoany.com/menu/page.js"></script>

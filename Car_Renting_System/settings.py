@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
-
+import dj_database_url
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -58,6 +58,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -108,7 +109,7 @@ WSGI_APPLICATION = 'Car_Renting_System.wsgi.application'
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
+#         'NAME': BASE_DIR / 'db_new.sqlite3',
 #     }
 # }
 
@@ -124,7 +125,7 @@ WSGI_APPLICATION = 'Car_Renting_System.wsgi.application'
 
 #         'PASSWORD': 'hangon1@',
 
-#         'HOST': 'my-postgres',
+#         'HOST': 'localhost',
 
 #         'PORT': '5432',
 
@@ -133,24 +134,27 @@ WSGI_APPLICATION = 'Car_Renting_System.wsgi.application'
 # }
 
 DATABASES = {
-
-    'default': {
-
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-
-        'NAME': os.environ.get('SQL_NAME'),
-
-        'USER': os.environ.get('SQL_USER'),
-
-        'PASSWORD': os.environ.get('SQL_PASSWORD'),
-
-        'HOST': os.environ.get('HOST'),
-
-        'PORT': os.environ.get('PORT'),
-
-    }
-
+    'default': dj_database_url.parse("postgres://avnadmin:AVNS_aae2b_Q6skUVHWGBJo2@daisyroom-daisyroom.a.aivencloud.com:26643/defaultdb?sslmode=require") 
 }
+# DATABASES = {
+
+#     'default': {
+
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+
+#         'NAME': os.environ.get('SQL_NAME'),
+
+#         'USER': os.environ.get('SQL_USER'),
+
+#         'PASSWORD': os.environ.get('SQL_PASSWORD'),
+
+#         'HOST': os.environ.get('HOST'),
+
+#         'PORT': os.environ.get('PORT'),
+
+#     }
+
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -193,6 +197,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS=[
     os.path.join(BASE_DIR,'static')
 ]
+
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 MEDIA_URL = '/media/'
 
