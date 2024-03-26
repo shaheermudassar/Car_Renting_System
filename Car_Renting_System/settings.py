@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
-import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,8 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'django-insecure-%f3z_ue)bvn^40%2s$aklvq!gktn!6f(h-w311^jx$%s37j%x2'
-SECRET_KEY = os.environ.get("SECRET_KEY")
+SECRET_KEY = 'django-insecure-%f3z_ue)bvn^40%2s$aklvq!gktn!6f(h-w311^jx$%s37j%x2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -60,7 +58,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -127,7 +124,7 @@ WSGI_APPLICATION = 'Car_Renting_System.wsgi.application'
 
 #         'PASSWORD': 'hangon1@',
 
-#         'HOST': 'localhost',
+#         'HOST': 'my-postgres',
 
 #         'PORT': '5432',
 
@@ -137,29 +134,23 @@ WSGI_APPLICATION = 'Car_Renting_System.wsgi.application'
 
 DATABASES = {
 
-    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+    'default': {
+
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+
+        'NAME': os.environ.get('SQL_NAME'),
+
+        'USER': os.environ.get('SQL_USER'),
+
+        'PASSWORD': os.environ.get('SQL_PASSWORD'),
+
+        'HOST': os.environ.get('HOST'),
+
+        'PORT': os.environ.get('PORT'),
+
+    }
 
 }
-
-# DATABASES = {
-
-#     'default': {
-
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-
-#         'NAME': os.environ.get('SQL_NAME'),
-
-#         'USER': os.environ.get('SQL_USER'),
-
-#         'PASSWORD': os.environ.get('SQL_PASSWORD'),
-
-#         'HOST': os.environ.get('HOST'),
-
-#         'PORT': os.environ.get('PORT'),
-
-#     }
-
-# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -202,8 +193,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS=[
     os.path.join(BASE_DIR,'static')
 ]
-
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 MEDIA_URL = '/media/'
 

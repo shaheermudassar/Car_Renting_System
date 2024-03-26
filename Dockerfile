@@ -17,4 +17,6 @@ COPY ./requirements.txt .
 
 RUN pip install -r requirements.txt
 
-ENTRYPOINT [ "gunicorn", "Car_Renting_System.wsgi" ]
+EXPOSE 8000
+
+ENTRYPOINT [ "gunicorn", "Car_Renting_System.wsgi:application" ]
