@@ -1,0 +1,6 @@
+services:
+  web:
+    image:
+      url: docker.io/shaheermudassar/daisyroom:latest  # Assuming your image is public
+    ports:
+      - "8000:8000"
