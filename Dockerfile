@@ -26,6 +26,7 @@ EXPOSE 8000
 # CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
 # CMD python manage.py runserver 0.0.0.0:8000
 
-CMD gunicorn Car_Renting_System.wsgi:application
+# CMD gunicorn Car_Renting_System.wsgi:application
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "Car_Renting_System.wsgi:application"]
 
 # ENTRYPOINT [ "gunicorn", "Car_Renting_System.wsgi:application" ]
