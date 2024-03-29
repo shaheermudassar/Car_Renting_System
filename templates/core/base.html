@@ -129,6 +129,28 @@
 </body>
 <script>
   function scrollToTop(string) {
+window.addEventListener('popstate', () => {
+        const loadingOverlay = document.getElementById('loading-overlay');
+        loadingOverlay.classList.add('hidden');
+        var header = document.querySelector('header');
+
+        // Set initial style based on the scroll position
+        if (window.scrollY > 10) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+
+        window.addEventListener('scroll', function () {
+          if (window.scrollY > 10) {
+            header.classList.add('scrolled');
+          } else {
+            header.classList.remove('scrolled');
+          }
+        });
+         // Hide loading overlay if navigating back
+    });
+
     const transition_text = document.getElementById('transition-text');
     transition_text.innerHTML = string;
     window.scrollTo({top: 0, behavior: 'smooth'});
