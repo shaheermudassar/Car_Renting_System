@@ -3,6 +3,7 @@ from userauths.models import User
 from django.utils.html import mark_safe
 from django.core.validators import MaxValueValidator, MinValueValidator 
 from ckeditor_uploader.fields import RichTextUploadingField
+from cloudinary.models import CloudinaryField
 
 class Brand(models.Model):
     name = models.CharField(max_length=100, unique = True)
@@ -18,7 +19,7 @@ class Brand(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
-    logo = models.ImageField(upload_to='Categories/logo', null=True)
+    logo = CloudinaryField('image', public_id='Categories/logo', null=True)
     description = models.TextField()
     class Meta:
         verbose_name_plural = "Categories"
@@ -71,7 +72,9 @@ class Car(models.Model):
     
 class CarImages(models.Model):
     car = models.ForeignKey(Car, on_delete=models.CASCADE, related_name = 'images')
-    image = models.ImageField(upload_to='Car/All_Images/{{self.car.name}}_{{self.model}}_{{self.car.id}}', null=True)
+    def upload_to(instance):
+        return f'DaisyRoom/Car/All_Images/{instance.car.name}_{instance.car.model}_{instance.car.id}'
+    image = CloudinaryField('image', public_id=upload_to, null=True)
     added_at = models.DateTimeField(auto_now_add=True)
     class Meta:
         verbose_name_plural = "Car Images"

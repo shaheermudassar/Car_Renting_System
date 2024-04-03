@@ -1,5 +1,6 @@
 {% load static %}
 {% load humanize %}
+{% load cloudinary %}
 <div class="card bg-base-100 shadow-xl hover:shadow-2xl transition-all m-4">
     <div id="carouselExampleIndicators{{forloop.counter}}" class="relative" data-te-carousel-init data-te-ride="carousel">
       <!--Carousel indicators-->
@@ -25,13 +26,18 @@
         <div
           class="relative float-left -mr-[100%] w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
           data-te-carousel-item data-te-carousel-active>
-          <a href="" onclick="scrollToTop('{{car.name}}')" hx-get="{% url "car_detail" car.id %}" hx-push-url="{% url "car_detail" car.id %}" hx-target="#core-change"><img src="{{car.image.url}}" class="block w-full" alt="Wild Landscape" /></a>
+          <a href="" onclick="scrollToTop('{{car.name}}')" hx-get="{% url "car_detail" car.id %}" hx-push-url="{% url "car_detail" car.id %}" hx-target="#core-change">
+            <img src="{{car.image.url}}" class="block w-full" alt="Wild Landscape" />
+          </a>
         </div>
         {% for c in car.images.all %}
         <div
           class="relative float-left -mr-[100%] hidden w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
           data-te-carousel-item>
-          <a href="" onclick="scrollToTop('{{car.name}}')" hx-get="{% url "car_detail" car.id %}" hx-push-url="{% url "car_detail" car.id %}" hx-target="#core-change"><img src="{{c.image.url}}" class="block w-full" alt="Camera" /></a>
+          <a href="" onclick="scrollToTop('{{car.name}}')" hx-get="{% url "car_detail" car.id %}" hx-push-url="{% url "car_detail" car.id %}" hx-target="#core-change">
+            {% cloudinary c.image quality='auto' class='block w-full' %}
+            {% comment %} <img src="{{c.image.url}}" class="block w-full" alt="Camera" /> {% endcomment %}
+          </a>
         </div>
         {% endfor %}
         

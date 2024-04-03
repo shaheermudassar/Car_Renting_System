@@ -12,7 +12,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 def home(request):
     cars = Car.objects.filter(rented=False)[:8]
     brands = Brand.objects.all()[:10]
-    types = Category.objects.all()[:5]
+    types = Category.objects.all().order_by("id")[:5]
     htmx = False
     if request.htmx:
         htmx = True

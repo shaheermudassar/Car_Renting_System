@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 import dj_database_url
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -39,7 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'cloudinary_storage',
     'django.contrib.staticfiles',
+    'cloudinary',
     'widget_tweaks',
     'allauth',
     'allauth.account',
@@ -58,7 +61,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    "whitenoise.middleware.WhiteNoiseMiddleware",
+    # "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -133,8 +136,14 @@ WSGI_APPLICATION = 'Car_Renting_System.wsgi.application'
 
 # }
 
+# internal database
+# DATABASES = {
+#     'default': dj_database_url.parse("postgres://avnadmin:AVNS_aae2b_Q6skUVHWGBJo2@daisyroom-daisyroom.a.aivencloud.com:26643/defaultdb?sslmode=require") 
+# }
+
+# external database
 DATABASES = {
-    'default': dj_database_url.parse("postgres://daisyroom:ycpwnaJ0auuMwYhYohchY1GNA8igV8wg@dpg-co3foagl5elc73dcm990-a/daisyroom_18o3") 
+    'default': dj_database_url.parse("postgres://daisyroom:ycpwnaJ0auuMwYhYohchY1GNA8igV8wg@dpg-co3foagl5elc73dcm990-a.singapore-postgres.render.com/daisyroom_18o3") 
 }
 # DATABASES = {
 
@@ -198,11 +207,10 @@ STATICFILES_DIRS=[
     os.path.join(BASE_DIR,'static')
 ]
 
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+# STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+MEDIA_URL = '/DaisyRoom/'
 
-MEDIA_URL = '/media/'
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'DaisyRoom')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -211,7 +219,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'userauths.User'
 
-CKEDITOR_UPLOAD_PATH = 'uploads/contents/'
+CKEDITOR_UPLOAD_PATH = 'DaisyRoom/uploads/contents/'
 
 CKEDITOR_CONFIGS = {
     'default': {
@@ -277,3 +285,10 @@ JAZZMIN_SETTINGS = {
         }]
     },
 }
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dy74qr0ho',
+    'API_KEY': '181326364429617',
+    'API_SECRET': 'rSqFkGorD1jJld8vqgzc80aHLeg'
+}
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'

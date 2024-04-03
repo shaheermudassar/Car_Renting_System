@@ -104,6 +104,27 @@
   {% include 'core/smallComponents/footer.html' %}
 </div>
   <script>
+    function closeSideNavBrand() {
+      var button1 = document.getElementById('side-nav-brand')
+      var button2 = document.getElementById("closeMenuCore")
+      button1.click()
+      button2.click()
+    }
+    function closeSideNavType() {
+      var button1 = document.getElementById('side-nav-type')
+      var button2 = document.getElementById("closeMenuCore")
+      button1.click()
+      button2.click()
+    }
+
+    function closeMenuBrand() {
+      var button = document.getElementById('brand-main-menu')
+      button.click()
+    }
+    function closeMenuType() {
+      var button = document.getElementById('type-main-menu')
+      button.click()
+    }
     
   function removeFiles() {
     var existingScripts1 = document.querySelectorAll('script[src="/static/js/tw-elements.js"]');
@@ -176,7 +197,7 @@ window.addEventListener('popstate', () => {
         setTimeout(() => {
             loadingOverlay.classList.add('hidden');
             console.log("loadingOverlay hidden");
-        }, 2000);
+        }, 1000);
         setTimeout(() => {
           document.removeEventListener('htmx:beforeRequest', beforeRequestHandler);
           document.removeEventListener('htmx:afterRequest', afterSettleHandler);
