@@ -61,7 +61,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    # "whitenoise.middleware.WhiteNoiseMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -137,14 +137,14 @@ WSGI_APPLICATION = 'Car_Renting_System.wsgi.application'
 # }
 
 # internal database
-# DATABASES = {
-#     'default': dj_database_url.parse("postgres://avnadmin:AVNS_aae2b_Q6skUVHWGBJo2@daisyroom-daisyroom.a.aivencloud.com:26643/defaultdb?sslmode=require") 
-# }
+ DATABASES = {
+     'default': dj_database_url.parse("postgres://avnadmin:AVNS_aae2b_Q6skUVHWGBJo2@daisyroom-daisyroom.a.aivencloud.com:26643/defaultdb?sslmode=require") 
+ }
 
 # external database
-DATABASES = {
-    'default': dj_database_url.parse("postgres://daisyroom:ycpwnaJ0auuMwYhYohchY1GNA8igV8wg@dpg-co3foagl5elc73dcm990-a.singapore-postgres.render.com/daisyroom_18o3") 
-}
+# DATABASES = {
+#    'default': dj_database_url.parse("postgres://daisyroom:ycpwnaJ0auuMwYhYohchY1GNA8igV8wg@dpg-co3foagl5elc73dcm990-a.singapore-postgres.render.com/daisyroom_18o3") 
+# }
 # DATABASES = {
 
 #     'default': {
@@ -207,7 +207,7 @@ STATICFILES_DIRS=[
     os.path.join(BASE_DIR,'static')
 ]
 
-# STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 MEDIA_URL = '/DaisyRoom/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'DaisyRoom')
