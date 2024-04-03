@@ -11,9 +11,9 @@
             <li class="m-4"><a href="" hx-get="{% url "dashboard" %}" hx-push-url="{% url "dashboard" %}" hx-target="#users-change"
                     class="btn flex justify-start bg-[#1c2434] hover:bg-[#34415b] w-full"><i
                         class="pr-8 fa-solid fa-boxes-stacked"></i> Rents</a></li>
-            <li class="m-4"><a href="{% url "home" %}" class="btn flex justify-start bg-[#1c2434] hover:bg-[#34415b] w-full"><i
+            <li class="m-4"><a href="" hx-get="{% url "full_home" %}" hx-push-url="{% url "home" %}" hx-target="#users-change" class="btn flex justify-start bg-[#1c2434] hover:bg-[#34415b] w-full"><i
                         class="pr-8 fa-solid fa-house"></i> Home</a></li>
-            <li class="m-4"><a href="{% url "home" %}" class="btn flex justify-start bg-[#1c2434] hover:bg-[#34415b] w-full"><i
+            <li class="m-4"><a href="" hx-get="{% url "profile" %}" hx-push-url="{% url "profile" %}" hx-target="#users-change" class="btn flex justify-start bg-[#1c2434] hover:bg-[#34415b] w-full"><i
                         class="pr-8 fa-solid fa-user"></i> Profile</a></li>
             <li class="m-4"><a href="" hx-get="{% url "address" %}" hx-push-url="{% url "address" %}" hx-target="#users-change"
                     class="btn flex justify-start bg-[#1c2434] hover:bg-[#34415b] w-full"><i
