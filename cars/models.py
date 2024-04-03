@@ -74,7 +74,7 @@ class CarImages(models.Model):
     car = models.ForeignKey(Car, on_delete=models.CASCADE, related_name = 'images')
     #def upload_to(instance):
     #    return f'DaisyRoom/Car/All_Images/{instance.car.name}_{instance.car.model}_{instance.car.id}/'
-    image = CloudinaryField('image', public_id='Car/All_Images', null=True)
+    image = CloudinaryField('image', null=True)
     added_at = models.DateTimeField(auto_now_add=True)
     class Meta:
         verbose_name_plural = "Car Images"
