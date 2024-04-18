@@ -75,7 +75,7 @@ class Extended_Rent(models.Model):
                     subject = 'Your car rent was extended successfully.'
                     template_name = 'rent/mail/extended.html'  # Replace with the actual template name
                     rent = Rent.objects.get(rid = self.rent.rid)
-                    last_date = self.last_date()
+                    last_date = rent.last_date()
                     # Your context data
                     context = {
                         'rent': rent,
