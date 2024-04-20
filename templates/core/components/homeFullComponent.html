@@ -1,0 +1,27 @@
+{% load static %}
+{% load humanize %}
+<script>
+    
+      var header = document.querySelector('header');
+    
+      // Set initial style based on the scroll position
+      if (window.scrollY > 10) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    
+      window.addEventListener('scroll', function () {
+        if (window.scrollY > 10) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+      });
+
+  </script>
+{% include 'core/smallComponents/header.html' %}
+<div id="core-change">
+    {% include "core/components/homeComponent.html" %}
+  </div>
+{% include 'core/smallComponents/footer.html' %}

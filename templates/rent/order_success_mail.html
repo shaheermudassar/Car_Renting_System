@@ -1,0 +1,145 @@
+{% load static %}
+{% load humanize %}
+<meta name="viewport" content="width=devide-width, initial-scale=1.0" />
+{% if rent.delivery_method == "Pickup" %}
+<h1 style="text-align: center;">Please Pick Your Car From Our Garage.</h1>
+{% elif rent.delivery_method == "Home Delivery" %}
+<h1 style="text-align: center;">Your Car Will Be Delivered In Next 10 Hours.</h1>
+{% endif %}
+<h3>Rent will be over at {{last_date}}</h3>
+      <div class="shadow-xl" id="invoice">
+        <div class="detail-section hero" style="background-image: url({% static 'images/Detail-main.jpg' %});">
+          <div class="grid p-4 hero-content text-center text-neutral-content">
+            <div class="grid justify-center content-center">
+              <h1 class="m-4 detail-name font-bold mytext2 lg:text-5xl text-2xl text-[white]">DaisyRoom</h1>
+            </div>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 p-4" id="yo">
+          <div>
+            <h2 class="font-bold text-[16px] lg:text-xl mytext2 text-[#570df8]">Invoice</h2>
+            <p class="text-[9px] lg:text-[12px] mytext2 font-bold">
+              Invoice No: <span class="font-medium">{{ rent.id }}</span>
+            </p>
+            <p class="text-[9px] lg:text-[12px] mytext2 font-bold">
+              Date: <span class="font-medium">{{ rent.created_at|date:'M d, Y' }}</span>
+            </p>
+            <p class="text-[9px] lg:text-[12px] mytext2 font-bold">
+              Contact: <span class="font-medium">042-35314001</span>
+            </p>
+            <p class="text-[9px] lg:text-[12px] mytext2 font-bold">
+              Address: <span class="font-medium">45-A1, Link Road, Lahore.</span>
+            </p>
+          </div>
+          <div class="grid justify-end">
+            <h2 class="font-bold text-[16px] lg:text-xl mytext2 text-[#570df8]">{{ rent.user.profile.first_name }} {{ rent.user.profile.last_name }}</h2>
+            <p class="text-[9px] lg:text-[12px] mytext2 font-bold">
+              Email: <span class="font-medium">{{ rent.user.email }}</span>
+            </p>
+            <p class="text-[9px] lg:text-[12px] mytext2 font-bold">
+              Contact: <span class="font-medium">{{ rent.user.profile.contact }}</span>
+            </p>
+            <p class="text-[9px] lg:text-[12px] mytext2 font-bold">
+              Address: <span class="font-medium">{{ rent.user.address.address }}, {{ rent.user.address.town_or_area }}, {{ rent.user.address.city }}.</span>
+            </p>
+          </div>
+        </div>
+        <div class="grid grid-cols-3">
+          <div class="p-4">
+            <img class="rounded-xl w-full h-full object-cover img-3d" src="{{ rent.car.image.url }}" alt="" />
+          </div>
+          <div class="col-span-2 grid content-center">
+            <div class="grid grid-cols-2 justify-between m-1">
+              <h2 class="mytext2 text-[12px] lg:text-[14px] font-bold">Car Name:</h2>
+              <span class="mytext2 text-[12px] lg:text-[14px] font-medium">{{ rent.car.name }} ({{ rent.car.model }})</span>
+            </div>
+            <div class="grid grid-cols-2 justify-between m-1">
+              <h2 class="mytext2 text-[12px] lg:text-[14px] font-bold">Brand Name:</h2>
+              <span class="mytext2 text-[12px] lg:text-[14px] font-medium">{{ rent.car.brand.name }}</span>
+            </div>
+            <div class="grid grid-cols-2 justify-between m-1">
+              <h2 class="mytext2 text-[12px] lg:text-[14px] font-bold">Car Condition:</h2>
+              {% if rent.car.condition > 9 %}
+                <span class="mytext2 text-[12px] lg:text-[14px] font-medium">New</span>
+              {% else %}
+                <span class="mytext2 text-[12px] lg:text-[14px] font-medium">Used</span>
+              {% endif %}
+            </div>
+            <div class="grid grid-cols-2 justify-between m-1">
+              <h2 class="mytext2 text-[12px] lg:text-[14px] font-bold">Rent Duration:</h2>
+              {% if rent.number_of_period > 1 %}
+                <span class="mytext2 text-[12px] lg:text-[14px] font-medium">{{ rent.number_of_period }} {{ rent.period }}s</span>
+              {% else %}
+                <span class="mytext2 text-[12px] lg:text-[14px] font-medium">{{ rent.number_of_period }} {{ rent.period }}</span>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        <div class="absolute ml-[3rem] md:ml-[16rem] lg:ml-[20rem] top-[50%] z-50">
+          <img class="opacity-50 w-[200px] md:w-[250px] lg:w-[250px]" src="{% static 'images/paid.png' %}" alt="" />
+        </div>
+        <hr />
+        <div>
+          <table class="table w-full mb-20">
+            <!-- head -->
+            <thead>
+              <tr>
+                <th class="text-[10px] lg:text-[14px] mytext2">Car</th>
+                {% if rent.period == 'Day' %}
+                  <th class="text-[10px] lg:text-[14px] mytext2">Daily Rent</th>
+                  <th class="text-[10px] lg:text-[14px] mytext2">No. of days</th>
+                {% elif rent.period == 'Week' %}
+                  <th class="text-[10px] lg:text-[14px] mytext2">Weekly Rent</th>
+                  <th class="text-[10px] lg:text-[14px] mytext2">No. of weeks</th>
+                {% else %}
+                  <th class="text-[10px] lg:text-[14px] mytext2">Monthly Rent</th>
+                  <th class="text-[10px] lg:text-[14px] mytext2">No. of months</th>
+                {% endif %}
+                <th class="text-[10px] lg:text-[14px] mytext2">Rent</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- row 1 -->
+              <tr>
+                <td class="text-[10px] lg:text-[14px] mytext2">{{ rent.car.name }} ({{ rent.car.model }})</td>
+                {% if rent.period == 'Day' %}
+                  <td class="text-[10px] lg:text-[14px] mytext2">Rs. {{ rent.car.per_day_rent|intcomma }}</td>
+                {% elif rent.period == 'Week' %}
+                  <td class="text-[10px] lg:text-[14px] mytext2">Rs. {{ rent.car.weekly_rent|intcomma }}</td>
+                {% else %}
+                  <td class="text-[10px] lg:text-[14px] mytext2">Rs. {{ rent.car.monthly_rent|intcomma }}</td>
+                {% endif %}
+                <td class="text-[10px] lg:text-[14px] mytext2">{{ rent.number_of_period|intcomma }}</td>
+                <td class="text-[10px] lg:text-[14px] mytext2">Rs. {{ rent.rent|intcomma }}</td>
+              </tr>
+              <!-- row 2 -->
+              <tr>
+                <td class="text-[10px] lg:text-[14px] mytext2"></td>
+                <td class="text-[10px] lg:text-[14px] mytext2"></td>
+                <td class="text-[10px] lg:text-[14px] mytext2"></td>
+                <td class="text-[10px] lg:text-[14px] mytext2">
+                  + Rs. {{ rent.car.security_charges|intcomma }} <br /><i>(security)</i>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <hr />
+        <div class="grid grid-cols-3">
+          <div class="col-span-2 p-4">
+            <h3 class="mytext2 font-bold">Contact:</h3>
+            <p class="mytext2 text-[11px] lg:text-sm">
+              <i class="fa-solid fa-envelope"></i> DaisyRoom@gmail.com
+            </p>
+            <p class="mytext2 text-[11px] lg:text-sm">
+              <i class="fa-solid fa-phone"></i> 0306-4078601
+            </p>
+            <h1 class="font-bold mt-2 text-[#570df8] text-xl mytext2">DaisyRoom</h1>
+          </div>
+          <div class="bg-[#570df8] grid p-4 content-center">
+            <h1 class="font-bold mytext2 text-xl text-white text-center">Total Rent:</h1><br />
+            <span class="font-medium text-white text-center">Rs.{{ rent.total_rent|intcomma }}</span>
+          </div>
+        </div>
+      </div>
+      

@@ -1,0 +1,362 @@
+[
+    {
+        "model": "cars.brand",
+        "pk": 1,
+        "fields": {
+            "name": "Toyota",
+            "logo": "Brands/logo/Toyota_logo.jpg",
+            "description": "Globally renowned for reliability, fuel efficiency, and longevity. Consistently tops the charts in terms of resale value and offers a diverse range of vehicles, from economical sedans to rugged SUVs."
+        }
+    },
+    {
+        "model": "cars.brand",
+        "pk": 2,
+        "fields": {
+            "name": "Audi",
+            "logo": "Brands/logo/Audi_logo.jpg",
+            "description": "German prestige brand known for luxury, cutting-edge technology, and refined driving dynamics. Renowned for quattro all-wheel drive and a focus on safety and performance. Often associated with sleek design and innovative features, but can be pricier than some competitors."
+        }
+    },
+    {
+        "model": "cars.brand",
+        "pk": 3,
+        "fields": {
+            "name": "BMW",
+            "logo": "Brands/logo/BMW_logo.jpg",
+            "description": "Ultimate Driving Machine, indeed! Renowned for exhilarating performance, sharp handling, and luxurious interiors. Strong emphasis on driver engagement and pushing the boundaries of technology. Often considered a sporty alternative to traditional luxury brands, but may compromise on rear-seat space in some models."
+        }
+    },
+    {
+        "model": "cars.brand",
+        "pk": 4,
+        "fields": {
+            "name": "Honda",
+            "logo": "Brands/logo/Honda_logo.jpg",
+            "description": "The reliable and practical choice! Known for consistently delivering fuel-efficient, safe, and affordable vehicles. Strong reputation for long-lasting engines and well-built cars. While not always the flashiest option, offers a wide range of vehicles across segments, from popular sedans like the Civic to adventurous SUVs like the CR-V."
+        }
+    },
+    {
+        "model": "cars.brand",
+        "pk": 5,
+        "fields": {
+            "name": "Lamborghini",
+            "logo": "Brands/logo/Lamborghini_logo.jpg",
+            "description": "The raging bull of the automotive world. Uncompromising Italian perfection, epitomized by breathtaking design, spine-tingling performance, and an unapologetically audacious spirit. Every Lamborghini is a head-turner, a symphony of speed and drama, handcrafted for connoisseurs of automotive adrenaline. Be prepared for envious stares, thunderous exhaust notes, and a driving experience unlike any other. Just remember, the price tag and fuel bills might be as fiery as the brand itself!"
+        }
+    },
+    {
+        "model": "cars.brand",
+        "pk": 6,
+        "fields": {
+            "name": "Mercedes Benz",
+            "logo": "Brands/logo/Mercedes_Logo.jpg",
+            "description": "The iconic three-pointed star shines brightly in the luxury car galaxy. Renowned for unparalleled comfort, cutting-edge technology, and an unwavering dedication to safety. Offers a diverse range of vehicles, from elegant sedans like the S-Class to exhilarating AMG performance models. Prepare for spacious interiors, advanced driver assistance systems, and a brand synonymous with prestige and innovation. However, the premium price tag and potential maintenance costs might require a heftier wallet."
+        }
+    },
+    {
+        "model": "cars.brand",
+        "pk": 7,
+        "fields": {
+            "name": "Rolls Royce",
+            "logo": "Brands/logo/Roll_Royce.jpg",
+            "description": "Step onto the red carpet of the automotive world. The pinnacle of luxury, exceeding expectations with unparalleled craftsmanship, bespoke elegance, and unparalleled performance. Owning a Rolls-Royce isn't just about driving, it's about experiencing automotive artistry. Picture hand-stitched leather interiors, whisper-quiet engines, and a presence that demands respect on every road. Be prepared for individualized luxury tailored to your desires, stratospheric price tags, and a level of exclusivity reserved for the elite. But if owning a piece of automotive royalty is your dream, Rolls-Royce awaits."
+        }
+    },
+    {
+        "model": "cars.brand",
+        "pk": 8,
+        "fields": {
+            "name": "Hyundai",
+            "logo": "Brands/logo/hyundai_logo.png",
+            "description": "The value-driven champion! In recent years, Hyundai has transformed from a budget brand to a serious contender, offering stylish, feature-packed vehicles at competitive prices. Known for its generous warranties, impressive tech integration, and growing portfolio of eco-friendly options, Hyundai has become a popular choice for budget-conscious buyers seeking quality and innovation. While not always the top of the luxury ladder, Hyundai delivers excellent bang for your buck and continuously pushes the boundaries of design and technology."
+        }
+    },
+    {
+        "model": "cars.brand",
+        "pk": 9,
+        "fields": {
+            "name": "Ford",
+            "logo": "Brands/logo/ford_logo.jpg",
+            "description": "The Blue Oval represents a long and storied history in the automotive world. From the revolutionary assembly line days of the Model T to the powerful F-Series trucks and the ever-evolving Mustang, Ford has always been a pioneer in both technology and design. While some models might lack the luxury bells and whistles of some competitors, they make up for it with practicality, affordability, and a reputation for being dependable workhorses. Ford also offers a strong presence in the truck and SUV segments, catering to those who need muscle and functionality. So, if you're looking for a vehicle that's as American as apple pie, with a focus on value and dependability, Ford is definitely worth considering."
+        }
+    },
+    {
+        "model": "cars.brand",
+        "pk": 10,
+        "fields": {
+            "name": "Nissan",
+            "logo": "Brands/logo/nissan_logo.jpg",
+            "description": "The Japanese automaker known for its \"daring to drive\" spirit. They deliver value-packed, reliable cars across the spectrum, from zippy city compacts to rugged SUVs. Nissan shines in innovation, pioneering electric vehicles with the iconic Leaf and continuously pushing boundaries in tech and features. While some interiors might lack high-end luxury, they make up for it with spirited handling and practical options for every lifestyle. So, if you seek both excitement and a dependable ride, buckle up with Nissan!"
+        }
+    },
+    {
+        "model": "cars.category",
+        "pk": 1,
+        "fields": {
+            "name": "SUV",
+            "logo": "Categories/logo/SUV.jpg",
+            "description": "More than just size, they're versatile explorers. Pack adventures into spacious cabins, conquer traffic with elevated views, and choose your thrill - city streets or dusty trails. Whether family trips or solo getaways, find your perfect fit and hit the road with style and confidence."
+        }
+    },
+    {
+        "model": "cars.category",
+        "pk": 2,
+        "fields": {
+            "name": "Sedan",
+            "logo": "Categories/logo/Sedan.jpg",
+            "description": "Sleek lines hug the pavement, engines purr, and the road unfolds ahead. Sedans - your refined companions for daily journeys. Navigate cityscapes with effortless agility, or carve through country roads with confident handling. Spacious enough for the essentials, fuel-efficient for the budget, and tech-savvy for the connected driver. Whether it's the office commute or a weekend getaway, sedans offer style, efficiency, and a touch of escape, all wrapped in a comfortable cabin. Find your perfect fit and hit the road in effortless elegance."
+        }
+    },
+    {
+        "model": "cars.category",
+        "pk": 3,
+        "fields": {
+            "name": "Hatchback",
+            "logo": "Categories/logo/hatchback.jpg",
+            "description": "Your nimble city companions, packing practicality and fun in equal measure. Zip through traffic with ease, fold down the seats for weekend projects, and fuel your adventures with eco-friendly engines. Tech-savvy and stylish, these versatile all-rounders offer space when you need it, sleekness when you don't. Whether it's the daily commute or a spontaneous getaway, find your perfect fit and hit the road with confidence and a touch of urban chic."
+        }
+    },
+    {
+        "model": "cars.category",
+        "pk": 4,
+        "fields": {
+            "name": "Hybrid",
+            "logo": "Categories/logo/Hybrid.jpg",
+            "description": "Walk softly, but carry a big electric punch. These eco-warriors sip fuel while unleashing surprising bursts of power. Navigate city streets whisper-quietly, conquer the open road with combined gas-electric might, and watch your wallet smile at the pump. Hybrids offer smart tech seamlessly blending fuel sources, all while feeling good about a kinder ride for the planet. Fuel efficiency, hidden thrills, and a green statement - all wrapped in one. Find your hybrid and hit the road with a conscience and a smile."
+        }
+    },
+    {
+        "model": "cars.category",
+        "pk": 5,
+        "fields": {
+            "name": "Coupe",
+            "logo": "Categories/logo/Coupe.jpg",
+            "description": "Sculpted silhouettes whispering \"performance.\" Two-door dances with the wind, hugging the road, turning heads wherever they go. Slip into the driver's seat, a cockpit built for pure pleasure, feel the engine purr its promise of thrills. Coupes offer head-turning style, driver-focused bliss, and a hidden beast waiting to be unleashed. From city streets to open highways, they're a statement on wheels, a blend of elegance and adrenaline just waiting for your command. Find your perfect coupe and hit the road, ready to turn heads and feel the rush of freedom."
+        }
+    },
+    {
+        "model": "cars.transmission",
+        "pk": 1,
+        "fields": {
+            "name": "Manual"
+        }
+    },
+    {
+        "model": "cars.transmission",
+        "pk": 2,
+        "fields": {
+            "name": "Automatic"
+        }
+    },
+    {
+        "model": "cars.fuel_type",
+        "pk": 1,
+        "fields": {
+            "name": "Petrol"
+        }
+    },
+    {
+        "model": "cars.fuel_type",
+        "pk": 2,
+        "fields": {
+            "name": "Diesel"
+        }
+    },
+    {
+        "model": "cars.fuel_type",
+        "pk": 3,
+        "fields": {
+            "name": "Electric"
+        }
+    },
+    {
+        "model": "cars.car",
+        "pk": 1,
+        "fields": {
+            "name": "Audi A7",
+            "model": "2023",
+            "year_of_manufacture": 2023,
+            "image": "Car/images/audi_a7_2023_1.jpg",
+            "brand": 2,
+            "color": "Black",
+            "category": 2,
+            "description": "<p>The 2023 Audi A7 is a blend of sleek sedan comfort and practical hatchback versatility. Its elegant design, powerful engine options, and cutting-edge technology make it a head-turner on the road and a joy to drive.</p>\r\n\r\n<p><a href=\"https://www.fletcherjones.com/inventory/new-2023-audi-a5-sportback-s-line-prestige-45-tfsi-quattro-all-wheel-drive-sedan-waueacf57pa058695/\" rel=\"noopener noreferrer\" target=\"_blank\"><img alt=\"Image of 2023 Audi A7 Sportback 45 TFSI quattro in Glacier White Metallic\" src=\"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUCtwHjMZKGAXxwMbQgFAsva6ENRQf5eXHr4UICDw8byY9hAHelgHpXKJEpjdo\" />Opens in a new window</a></p>\r\n\r\n<p>chevron_right</p>\r\n\r\n<p><a href=\"https://www.fletcherjones.com/inventory/new-2023-audi-a5-sportback-s-line-prestige-45-tfsi-quattro-all-wheel-drive-sedan-waueacf57pa058695/\" rel=\"noopener noreferrer\" target=\"_blank\"><img alt=\"\" src=\"https://encrypted-tbn1.gstatic.com/favicon-tbn?q=tbn:ANd9GcR5ioOnea8cMbw1EsylcpxAEbZWdkCcUO97socnkLsXhgxt7ttroctVQRT6P5xeI3tPFztI3-yihRQj3QeUjpVSkmsSvP-hmdy0QdEpn6ii\" />www.fletcherjones.com</a></p>\r\n\r\n<p>2023 Audi A7 Sportback 45 TFSI quattro in Glacier White Metallic</p>",
+            "per_day_rent": 32999,
+            "no_of_times_rented": 0,
+            "created_at": "2024-01-26T19:43:17.477Z"
+        }
+    },
+    {
+        "model": "cars.car",
+        "pk": 2,
+        "fields": {
+            "name": "Audi A3",
+            "model": "2023",
+            "year_of_manufacture": 2023,
+            "image": "Car/images/audi_a3_2023_1.jpg",
+            "brand": 2,
+            "color": "Black",
+            "category": 2,
+            "description": "<h1>Breathtakingly fascinating.The Audi A3 Sedan.</h1>\r\n\r\n<p>The sedan redefined: The Audi A3 sedan combines Coup&eacute; character with elegant charm. The low, flowing roof conveys pure dynamics and with its muscular, taut surface, the sedan shows off its self-confidence. The powerful, flared mudguards with pronounced wheel arches frame the wheels, which are available in up to 19 inches. One highlight is the Audi virtual cockpit, now available in the compact class. Discover innovation - in many facets.<img alt=\"563x317_AA3_161016.jpg\" src=\"https://www.audi.com.pk/content/dam/nemo/models/a3/a3-limousine/my-2017/563x317-editorial-teaser/563x317_AA3_161016.jpg?imwidth=563\" style=\"height:317px; width:563px\" /></p>",
+            "per_day_rent": 27999,
+            "no_of_times_rented": 0,
+            "created_at": "2024-01-26T19:49:14.296Z"
+        }
+    },
+    {
+        "model": "cars.carimages",
+        "pk": 1,
+        "fields": {
+            "car": 1,
+            "image": "Car/All_Images/{{car.name}}_{{car.id}}/audi_a7_2023_2.jpg",
+            "added_at": "2024-01-26T19:43:17.477Z"
+        }
+    },
+    {
+        "model": "cars.carimages",
+        "pk": 2,
+        "fields": {
+            "car": 1,
+            "image": "Car/All_Images/{{car.name}}_{{car.id}}/audi_a7_2023_3.jpg",
+            "added_at": "2024-01-26T19:43:17.493Z"
+        }
+    },
+    {
+        "model": "cars.carimages",
+        "pk": 3,
+        "fields": {
+            "car": 1,
+            "image": "Car/All_Images/{{car.name}}_{{car.id}}/audi_a7_2023_4.jpg",
+            "added_at": "2024-01-26T19:43:17.494Z"
+        }
+    },
+    {
+        "model": "cars.carimages",
+        "pk": 4,
+        "fields": {
+            "car": 1,
+            "image": "Car/All_Images/{{car.name}}_{{car.id}}/audi_a7_2023_5.jpg",
+            "added_at": "2024-01-26T19:43:17.494Z"
+        }
+    },
+    {
+        "model": "cars.carimages",
+        "pk": 5,
+        "fields": {
+            "car": 2,
+            "image": "Car/All_Images/{{car.name}}_{{car.id}}/audi_a3_2023_2.jpg",
+            "added_at": "2024-01-26T19:49:14.305Z"
+        }
+    },
+    {
+        "model": "cars.carimages",
+        "pk": 6,
+        "fields": {
+            "car": 2,
+            "image": "Car/All_Images/{{car.name}}_{{car.id}}/audi_a3_2023_3.jpg",
+            "added_at": "2024-01-26T19:49:14.313Z"
+        }
+    },
+    {
+        "model": "cars.carimages",
+        "pk": 7,
+        "fields": {
+            "car": 2,
+            "image": "Car/All_Images/{{car.name}}_{{car.id}}/audi_a3_2023_4.jpg",
+            "added_at": "2024-01-26T19:49:14.317Z"
+        }
+    },
+    {
+        "model": "cars.carimages",
+        "pk": 8,
+        "fields": {
+            "car": 2,
+            "image": "Car/All_Images/{{car.name}}_{{car.id}}/audi_a3_2023_5.jpg",
+            "added_at": "2024-01-26T19:49:14.330Z"
+        }
+    },
+    {
+        "model": "cars.specification",
+        "pk": 1,
+        "fields": {
+            "car": 1,
+            "max_speed_in_km_per_h": 250,
+            "engine_size": "3.00",
+            "seats": 5,
+            "condition": "10.00",
+            "transmission": 2,
+            "fuel_type": 1
+        }
+    },
+    {
+        "model": "cars.specification",
+        "pk": 2,
+        "fields": {
+            "car": 2,
+            "max_speed_in_km_per_h": 250,
+            "engine_size": "2.00",
+            "seats": 5,
+            "condition": "10.00",
+            "transmission": 2,
+            "fuel_type": 1
+        }
+    },
+    {
+        "model": "cars.features",
+        "pk": 1,
+        "fields": {
+            "car": 1,
+            "Air_Conditioner": true,
+            "Digital_Odometer": true,
+            "Heater": true,
+            "Leather_Seats": true,
+            "Panoramic_Moonroof": true,
+            "Tachometer": true,
+            "Touchscreen_Display": true,
+            "Antilock_Braking": true,
+            "Brake_Assist": true,
+            "Child_Safety_Locks": true,
+            "Driver_Air_Bag": true,
+            "Power_Door_Locks": true,
+            "Stability_Control": true,
+            "Traction_Control": true,
+            "Fog_Lights_Front": true,
+            "Rain_Sensing_Wiper": true,
+            "Rear_Spoiler": true,
+            "Windows_Electric": true,
+            "Android_Auto": true,
+            "Bluetooth": true,
+            "HomeLink": false,
+            "Power_Steering": true
+        }
+    },
+    {
+        "model": "cars.features",
+        "pk": 2,
+        "fields": {
+            "car": 2,
+            "Air_Conditioner": true,
+            "Digital_Odometer": true,
+            "Heater": true,
+            "Leather_Seats": false,
+            "Panoramic_Moonroof": false,
+            "Tachometer": true,
+            "Touchscreen_Display": true,
+            "Antilock_Braking": true,
+            "Brake_Assist": true,
+            "Child_Safety_Locks": true,
+            "Driver_Air_Bag": true,
+            "Power_Door_Locks": true,
+            "Stability_Control": true,
+            "Traction_Control": true,
+            "Fog_Lights_Front": true,
+            "Rain_Sensing_Wiper": true,
+            "Rear_Spoiler": true,
+            "Windows_Electric": true,
+            "Android_Auto": true,
+            "Bluetooth": true,
+            "HomeLink": false,
+            "Power_Steering": true
+        }
+    }
+]

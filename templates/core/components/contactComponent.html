@@ -1,0 +1,36 @@
+{% load static %}
+{% load humanize %}
+<script src="{% static 'js/tw-elements.js' %}"></script>
+<script src="{% static 'js/script.js' %}"></script>
+{% include "core/smallComponents/alerts.html" %}
+<section>
+    <div class="detail-section hero">
+      <div class=""></div>
+      <div class="grid p-4 hero-content text-center text-neutral-content">
+        <div class="">
+          <h1 class="detail-name main-heading font-bold mytext2">Contact</h1>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="my-20 lg:m-20">
+    <h1 class="text-center mytext2 mb-8 font-bold text-xl lg:text-3xl">Ask any query or report any bugs to us.</h1>
+    <div class="grid grid-cols-1 lg:grid-cols-2">
+      <div class="border-b-2 lg:border-r-2 lg:border-b-0 p-4 pb-8 lg:pb-4" id="contact-done">
+        {% if request.user.is_authenticated %}
+          <form class="grid gap-4 mb-0" hx-post="{% url 'contact_form' %}" hx-target="#contact-done" hx-trigger="submit">
+            {% csrf_token %}
+            <textarea class="textarea textarea-bordered h-[7rem]" placeholder="Your Message Here.." name="message"></textarea>
+            <button type="submit" class="btn bg-[#570df8] hover:bg-[#3706a0]">Send Mail</button>
+          </form>
+        {% else %}
+          <p class="mytext2 text-center m-8">Please <a href="{% url "account_login" %}?next={{request.path}}" class="text-[#570df8]"> Login</a> to send direct Mail.</p>
+        {% endif %}
+      </div>
+      <div class="grid gap-2 align-items-center p-4 pt-8 lg:pt-4">
+        <a href="" class="btn bg-[green]">Contact on Whatsapp</a>
+        <a href="" class="btn bg-[blue]">Contact on Facebook</a>
+        <a href="" class="btn bg-[pink]">Contact on Instagram</a>
+      </div>
+    </div>
+  </section>

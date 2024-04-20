@@ -1,0 +1,22 @@
+{% load static %}
+{% load cloudinary %}
+<div class="card m-4 shadow-xl hover:shadow-2xl transition-all">
+    <a hx-get="{% url "type_details" type.name %}" 
+    href=""
+    hx-push-url="{% url "type_details" type.name %}" 
+    onclick="scrollToTop('{{type.name}}')" 
+    hx-target="#core-change">
+    {% cloudinary type.logo quality='auto' class='type-image min-h-full lg:min-h-[340px]' %}
+    {% comment %} <img class="type-image min-h-full lg:min-h-[340px]" src="{{type.logo.url}}" alt="{{type.name}} logo"> {% endcomment %}
+  </a>
+    <div class="type-card-info">
+      <a class="py-2 px-6 list-type-banner d-inline-flex align-items-center" style="background: white;"
+          href="">
+          <div class="inner">
+            <h4 class="title" style="color: rgb(39, 39, 39);">
+              {{type.name}}
+            </h4>
+          </div>
+        </a>
+    </div>
+  </div>

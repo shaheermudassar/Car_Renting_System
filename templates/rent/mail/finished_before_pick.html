@@ -1,0 +1,16 @@
+{% load static %}
+
+<div style="display: grid; border-radius: 10px; justify-content: center; margin: 2rem; background-image: linear-gradient(150deg, #c62e0d, #570df8); align-content: center; min-height: 80vh; width: 100% - 4rem;">
+  <div style="padding: 2rem; width: 100%; backdrop-filter: blur(16px); border-radius: 12px; background-image: linear-gradient(150deg, #c62e0d, #570df8);">
+    <h1 style="font-family: sans-serif; text-align: center; font-family: sans-serif; color: white;">Hey {{ rent.user.profile.first_name }}</h1><br>
+    <p style="color: white;">
+      Since you didn't picked your rented car {{ rent.car.name }} {{ rent.car.model }} till last date, your rent have been declared Finished. <br>
+      <h5 style="font-family: sans-serif; color: white;">Remember!</h5><br>
+      There will be no refund on your rent since it wasn't picked by you. <br><br>Thanks for your concern.
+      <br>Your last date for returning was {{ last_date|date:'d, M, Y.' }}
+    </p>
+    <div style="width: 100%; display: grid; justify-content: center;">
+      <a style="text-decoration: none; border-radius: 6px; font-family: sans-serif; text-align: center; color: white; background-color: #570df8; padding-left: 1rem; padding-right: 1rem; padding-top: 0.5rem; padding-bottom: 0.5rem;" href="{% url 'dashboard' %}">View in Dashboard</a>
+    </div>
+  </div>
+</div>

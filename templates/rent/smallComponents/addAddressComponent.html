@@ -1,0 +1,24 @@
+{% load static %}
+    <div class="slide-in-right">
+        <h1 class="m-4 text-center mytext2 text-3xl font-bold">
+            Your Address
+        </h1>
+        <div class="m-4 rounded-xl shadow-2xl">
+            <form class="p-4" hx-post="{% url 'update_address_form' %}" hx-trigger="submit" hx-target="#rent-info-htmx">
+                {% csrf_token %}
+                <div class="grid grid-cols-1 lg:grid-cols-2">
+                    <div>
+                        <input type="text" placeholder="Country" name="country" {% if address.country %} value="{{address.country}}" {% endif %} class="m-4 input input-bordered w-[90%]" />
+                        <input type="text" placeholder="City" name="city" {% if address.city %} value="{{address.city}}" {% endif %} class="m-4 input input-bordered w-[90%]" />
+                <input type="text" placeholder="Town / Area" name="town_or_area" {% if address.town_or_area %} value="{{address.town_or_area}}" {% endif %} class="m-4 input input-bordered w-[90%]" />
+              </div>
+              <div>
+                <textarea class="m-4 textarea textarea-bordered w-[90%] lg:h-[85%]" name="address" placeholder="Address">{% if address.address %}{{address.address}}{% endif %}</textarea>
+              </div>
+            </div>
+            <div class="grid justify-center">
+                <button class="btn bg-[#570df8] px-20 hover:bg-[black]" type="submit">Next <i class="ml-2 fa-solid fa-arrow-right"></i></button>
+            </div>
+        </form>
+    </div>
+</div>

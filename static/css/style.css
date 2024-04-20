@@ -1,0 +1,493 @@
+*{
+  transition: all;
+}
+
+input{
+  color: black;
+}
+.mytext {
+  font-family: 'Nunito', sans-serif;
+}
+header {
+  position: fixed;
+  width: 100%;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  z-index: 100;
+  transition: 0.7s;
+}
+
+.nav-button{
+  color: white;
+}
+
+.logo {
+  font-size: 25px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  position: fixed;
+  left: 20px;
+}
+
+nav a {
+  position: relative;
+  font-size: 18px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  margin-left: 35px;
+  transition: color 0.3s;
+  /* Transition color separately */
+}
+
+.menu-a {
+  color: #000;
+}
+
+
+nav a::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: rgb(255, 255, 255);
+  transition: width 0.3s ease-in-out;
+  /* Transition width for the border */
+}
+
+nav ul li a::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #570df8;
+  transition: width 0.3s ease-in-out;
+  /* Transition width for the border */
+}
+
+nav a:hover::before,
+nav a.active::before,
+nav ul li a:hover::before {
+  width: 100%;
+}
+nav a:hover{
+  color: white;
+}
+
+header.scrolled {
+  background: #fff;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+header.scrolled nav a {
+  color: #000;
+}
+
+header.scrolled button {
+  color: #000;
+}
+
+header.scrolled .logo {
+  color: #000;
+}
+
+header.scrolled svg{
+  color: #000;
+}
+
+header.scrolled nav a::before {
+  background-color: #570df8;
+}
+
+header.scrolled nav a.active {
+  color: #570df8;
+}
+
+.white{
+  color: white;
+}
+
+.mytext2{
+  font-family: 'DM Sans', sans-serif;
+}
+
+.main-heading{
+  font-size: 70px;
+}
+.hero-section{
+  background-image: url('../images/main\ slider2.jpg'); 
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.detail-section{
+  background-image: url('../images/Detail-main.jpg'); 
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: auto;
+}
+.listing-section{
+  background-image: url('../images/listing-main-image.jpg'); 
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 50vh;
+}
+.brands-section{
+  background-image: url('../images/brands-main.png'); 
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 50vh;
+}
+.brand-section{ 
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 50vh;
+}
+.brand-section-detail{
+  min-width: 100%; 
+  height: 100%; 
+  backdrop-filter: blur(6px);
+}
+@media (max-width: 1000px){
+  .logo{
+    position: relative;
+    left: 0;
+  }
+  .main-heading{
+    font-size: 35px;
+  }
+  .hero-section{
+    background-image: url('../images/main\ slider\ mobile.jpg'); 
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .listing-section{
+    height: 40vh;
+  }
+  .brands-section{
+    height: 25vh;
+  }
+  .brand-section{
+    height: auto;
+  }
+  
+}
+.detail-name{
+  margin-top: 3rem;
+}
+
+:root { 
+  --bs-font-sans-serif: var(--boxcar-main-font), sans-serif; 
+} 
+
+@media (prefers-reduced-motion: no-preference){ 
+:root { 
+  scroll-behavior: smooth;
+} 
+}     
+
+
+
+.d-flex { 
+  display: flex !important;
+} 
+
+.flex-wrap { 
+  flex-wrap: wrap !important;
+} 
+
+*,:before,:after { 
+  box-sizing: border-box;
+} 
+
+* , .elementor ::after, .elementor ::before { 
+  box-sizing: border-box;
+} 
+
+.elementor *, .elementor ::after, .elementor ::before { 
+  box-sizing: border-box;
+} 
+
+a { 
+  color: var(--boxcar-link-color); 
+  text-decoration: none;
+} 
+
+a { 
+  outline: none !important; 
+  -webkit-transition: all 0.3s ease-in-out 0s; 
+  -o-transition: all 0.3s ease-in-out 0s; 
+  transition: all 0.3s ease-in-out 0s;
+} 
+
+.d-inline-flex { 
+  display: inline-flex !important;
+} 
+
+.align-items-center { 
+  align-items: center !important;
+} 
+
+.list-type-banner { 
+  -webkit-transition: all 0.3s ease-in-out 0s; 
+  -o-transition: all 0.3s ease-in-out 0s; 
+  transition: all 0.3s ease-in-out 0s; 
+  margin: 0 10px 10px 0; 
+  padding: 2px 12px; 
+  border-radius: 44px; 
+  background: rgba(255, 255, 255, 0.2); 
+  border: 1px solid #E9E9E9;
+} 
+
+@media (min-width: 1200px){ 
+.list-type-banner { 
+  padding: 4px 30px;
+} 
+}     
+
+.elementor a { 
+  box-shadow: none; 
+  text-decoration: none;
+} 
+
+.list-type-banner  { 
+  background-color: #FFFFFF2E; 
+  border-style: solid; 
+  border-width: 1px 1px 1px 1px; 
+  border-color: #00000000;
+} 
+
+
+
+.list-type-banner:hover { 
+  background: #F9FBFC;
+} 
+
+.list-type-banner:hover  { 
+  background-color: #FFFFFF4F;
+} 
+
+.list-type-banner:last-child { 
+  margin-right: 0;
+} 
+
+.list-type-banner .type-icon  { 
+  -webkit-transition: all 0.3s ease-in-out 0s; 
+  -o-transition: all 0.3s ease-in-out 0s; 
+  transition: all 0.3s ease-in-out 0s; 
+  color: var(--boxcar-link-color); 
+  line-height: 1; 
+  font-size: 26px; 
+  max-width: 26px;
+} 
+
+.type-icon  { 
+  color: #FFFFFF;
+} 
+
+.list-type-banner:hover .type-icon  { 
+  color: #FFFFFF;
+} 
+
+.list-type-banner .type-icon + .inner  { 
+  padding-left: 10px;
+} 
+
+svg { 
+  vertical-align: middle;
+} 
+
+.list-type-banner svg  { 
+  max-width: 100%;
+} 
+
+h4 { 
+  margin-top: 0; 
+  margin-bottom: 0.5rem; 
+  font-weight: 700; 
+  line-height: 1.2; 
+  color: var(--boxcar-heading-color);
+} 
+
+h4 { 
+  font-size: calc(1.26563rem + 0.1875vw);
+} 
+
+@media (min-width: 1200px){ 
+h4 { 
+  font-size: 1.40625rem;
+} 
+}     
+
+h4 { 
+  margin-top: 25px; 
+  margin-bottom: 25px;
+} 
+
+.list-type-banner .title  { 
+  -webkit-transition: all 0.3s ease-in-out 0s; 
+  -o-transition: all 0.3s ease-in-out 0s; 
+  transition: all 0.3s ease-in-out 0s; 
+  font-size: 15px; 
+  font-weight: 500; 
+  margin: 0;
+} 
+
+.title  { 
+  color: #FFFFFF;
+} 
+
+svg{
+  color: #fff;
+}
+
+.bg-main-color{
+  background: #570df8;
+}
+
+.text-main-color{
+  color: #570df8;
+}
+
+
+.brand-card-info {
+  display: grid;
+  margin: 1rem;
+  position: absolute;
+  top: 15;
+  left: 30;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 20px;
+}
+.type-card-info {
+  display: grid;
+  margin: 0 2rem;
+  position: absolute;
+  bottom: -16;
+  left: 50;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 20px;
+}
+.brand-image{
+  transition: 0.5s;
+  object-fit: cover;
+}
+.brand-image:hover{
+  transform: scale(1.15);
+  filter: brightness(0.7);
+}
+.type-image{
+  transition: 0.5s;
+  object-fit: cover;
+}
+.type-image:hover{
+  transform: scale(1.15);
+  filter: brightness(0.7);
+}
+.detail-image{
+  transition: 0.5s;
+  object-fit: cover;
+  transform: translate3d(0, 0, 1px);
+  height: 100%;
+  width: 100%;
+}
+.detail-image:hover{
+  filter: brightness(0.8);
+}
+
+.by-brand{
+  border-radius: 100%;
+  object-fit: cover;
+  transform: translate3d(0, 0, 1px);
+}
+
+.review-card{
+  display: block;
+}
+
+.svg-black{
+  color: #525252;
+}
+
+footer a, span, p, h1, h2, h3, h4, h5, h6 {
+  font-family: 'DM Sans', sans-serif;
+}
+
+a, span, p, h1, h2, h3, h4, h5, h6, li, td {
+  font-family: 'DM Sans', sans-serif;
+}
+
+.listing-cars .m-4{
+  margin: 0;
+}
+.text-shadow{
+  text-shadow: -1px -1px 1px #00000070, 1px -1px 1px #00000070, -1px 1px 1px #00000070, 1px 1px 1px #00000070;
+}
+.authentication-screen{
+  background-image: url('../images/car-4k-background.jpg'); 
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+}
+
+.profile-image-div{
+  width: 100%;
+  display: grid;
+  justify-content: center;
+  border-radius: 100%;
+}
+.input-div{
+  width: 100%;
+  display: grid;
+  justify-content: center;
+}
+
+.profile-image{
+  height: 200px;
+  width: 200px;
+  border-radius: 100%;
+}
+
+.license-image-div{
+  width: 100%;
+  display: grid;
+  justify-content: center;
+}
+
+.license-image{
+  width: 320px;
+  border-radius: 8px;
+}
+
+.img-3d{
+  transform: translate3d(0, 0, 1px);
+}
+
+.notification-loader {
+  width: 48px;
+  height: 48px;
+  border: 5px solid #570df8;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+  }
+
+  @keyframes rotation {
+  0% {
+      transform: rotate(0deg);
+  }
+  100% {
+      transform: rotate(360deg);
+  }
+  } 
+
+  

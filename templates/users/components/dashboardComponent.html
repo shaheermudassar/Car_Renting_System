@@ -1,0 +1,92 @@
+{% load static %}
+{% load humanize %}
+<style>
+  .table :where(tbody th, tbody td) {
+    background-color: transparent;
+  }
+</style>
+<div class="overflow-x-auto m-4 hover:shadow-lg shadow-lg rounded-xl glass">
+    <table class="table">
+      <!-- head -->
+      <thead>
+        <tr>
+          <th></th>
+          <th>Car</th>
+          <th>Brand</th>
+          <th>Color</th>
+          <th>Category</th>
+          <th>Rent</th>
+          <th>Status</th>
+          <th>Return Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- rows -->
+        {% for r in rents %}
+          <tr>
+            <th>
+              <a href="" hx-get="{% url 'rent_detail' r.rent.rid %}" hx-push-url="{% url 'rent_detail' r.rent.rid %}" hx-target="#users-change" class="btn btn-ghost btn-xs font-bold italic">details</a>
+            </th>
+            <td>
+              <div class="flex items-center gap-3">
+                <div class="avatar">
+                  <div class="mask mask-squircle w-12 h-12">
+                    <a href="{% url 'car_detail' r.rent.car.id %}"><img src="{{ r.rent.car.image.url }}" class="img-3d" alt="audi" /></a>
+                  </div>
+                </div>
+                <div>
+                  <a href="{% url 'car_detail' r.rent.car.id %}"><div class="font-bold">{{ r.rent.car.name }}</div></a>
+                  <div class="text-sm opacity-50">{{ r.rent.car.specifications.transmission }}</div>
+                </div>
+              </div>
+            </td>
+            <td>
+              <a href="{% url 'brand_details' r.rent.car.brand.name %}">{{ r.rent.car.brand.name }}</a>
+              <br />
+              {% if r.rent.car.per_day_rent > 40000 and r.rent.car.weekly_rent > 160000 and r.rent.car.monthly_rent > 400000 %}
+                <span class="badge badge-ghost badge-sm">Luxury</span>
+              {% else %}
+                <span class="badge badge-ghost badge-sm">Domestic</span>
+              {% endif %}
+            </td>
+            <td>{{ r.rent.car.color }}</td>
+            <td>
+              <a href="{% url 'type_details' r.rent.car.category.name %}">{{ r.rent.car.category.name }}</a>
+            </td>
+            <td>
+              Rs. {{ r.rent.total_rent|intcomma }} <span class="text-xs"><i>Total</i></span>
+            </td>
+            {% if r.return_status == 'Returned' %}
+              <td class="text-[limegreen]">{{ r.return_status }}</td>
+            {% elif r.return_status == 'Over Dued' %}
+              <td class="text-[red]">{{ r.return_status }}</td>
+            {% else %}
+              <td>{{ r.return_status }}</td>
+            {% endif %}
+            {% if r.over_due and r.return_status == 'Finished' %}
+              <td>
+                {{ r.last_date|date:'M d, Y' }} <span class="text-xs"><i>(finished)</i></span>
+              </td>
+            {% elif r.over_due and r.return_status != 'Returned' %}
+              <td class="text-[red]">
+                {{ r.last_date|date:'M d, Y' }} <span class="text-xs"><i>(over dued)</i></span>
+              </td>
+            {% else %}
+              <td>
+                {{ r.last_date|date:'M d, Y' }}
+                <span class="text-xs">
+                  <i>
+                    {% if r.return_status == 'Returned' %}
+                      (returned)
+                    {% elif r.return_status == 'Finished' %}
+                      (finished)
+                    {% endif %}
+                  </i>
+                </span>
+              </td>
+            {% endif %}
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>

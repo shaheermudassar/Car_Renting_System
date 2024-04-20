@@ -1,0 +1,10 @@
+{% load static %}
+{% if profile_miss %}
+  {% include 'rent/smallComponents/addProfileComponent.html' %}
+{% elif address_miss %}
+  {% include 'rent/smallComponents/addAddressComponent.html' %}
+{% elif license_miss %}
+  {% include 'rent/smallComponents/addLicenseComponent.html' %}
+{% else %}
+  {% include 'rent/smallComponents/rentComponent.html' %}
+{% endif %}

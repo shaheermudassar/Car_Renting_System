@@ -1,0 +1,181 @@
+{% load static %}
+<div class="grid grid-cols-2 lg:grid-cols-4">
+    <li class="flex my-2 align-items-center">
+      {% if car.features.Air_Conditioner %}
+      <img src="{% static 'images/check.png' %}" style="height: 20px;" class="mr-2" alt="">
+      {% else %}
+      <img src="{% static 'images/cross.png' %}" style="height: 20px;" class="mr-2" alt="">
+      {% endif %}
+      Air Conditioner
+    </li>
+    <li class="flex my-2 align-items-center">
+      {% if car.features.Digital_Odometer %}
+      <img src="{% static 'images/check.png' %}" style="height: 20px;" class="mr-2" alt="">
+      {% else %}
+      <img src="{% static 'images/cross.png' %}" style="height: 20px;" class="mr-2" alt="">
+      {% endif %}
+      Digital Odometer
+    </li>
+    <li class="flex my-2 align-items-center">
+      {% if car.features.Heater %}
+      <img src="{% static 'images/check.png' %}" style="height: 20px;" class="mr-2" alt="">
+      {% else %}
+      <img src="{% static 'images/cross.png' %}" style="height: 20px;" class="mr-2" alt="">
+      {% endif %}
+      Heater
+    </li>
+    <li class="flex my-2 align-items-center">
+      {% if car.features.Leather_Seats %}
+      <img src="{% static 'images/check.png' %}" style="height: 20px;" class="mr-2" alt="">
+      {% else %}
+      <img src="{% static 'images/cross.png' %}" style="height: 20px;" class="mr-2" alt="">
+      {% endif %}
+      Leather Seats
+    </li>
+  
+    <li class="flex my-2 align-items-center">
+      {% if car.features.Panoramic_Moonroof %}
+      <img src="{% static 'images/check.png' %}" style="height: 20px;" class="mr-2" alt="">
+      {% else %}
+      <img src="{% static 'images/cross.png' %}" style="height: 20px;" class="mr-2" alt="">
+      {% endif %}
+      Moonroof
+    </li>
+    <li class="flex my-2 align-items-center">
+      {% if car.features.Tachometer %}
+      <img src="{% static 'images/check.png' %}" style="height: 20px;" class="mr-2" alt="">
+      {% else %}
+      <img src="{% static 'images/cross.png' %}" style="height: 20px;" class="mr-2" alt="">
+      {% endif %}
+      Tachometer
+    </li>
+    <li class="flex my-2 align-items-center">
+      {% if car.features.Touchscreen_Display %}
+      <img src="{% static 'images/check.png' %}" style="height: 20px;" class="mr-2" alt="">
+      {% else %}
+      <img src="{% static 'images/cross.png' %}" style="height: 20px;" class="mr-2" alt="">
+      {% endif %}
+      Touch Display
+    </li>
+    <li class="flex my-2 align-items-center">
+      {% if car.features.Antilock_Braking %}
+      <img src="{% static 'images/check.png' %}" style="height: 20px;" class="mr-2" alt="">
+      {% else %}
+      <img src="{% static 'images/cross.png' %}" style="height: 20px;" class="mr-2" alt="">
+      {% endif %}
+      Antilock Braking
+    </li>
+  
+    <li class="flex my-2 align-items-center">
+      {% if car.features.Brake_Assist %}
+      <img src="{% static 'images/check.png' %}" style="height: 20px;" class="mr-2" alt="">
+      {% else %}
+      <img src="{% static 'images/cross.png' %}" style="height: 20px;" class="mr-2" alt="">
+      {% endif %}
+      Brake Assist
+    </li>
+    <li class="flex my-2 align-items-center">
+      {% if car.features.Child_Safety_Locks %}
+      <img src="{% static 'images/check.png' %}" style="height: 20px;" class="mr-2" alt="">
+      {% else %}
+      <img src="{% static 'images/cross.png' %}" style="height: 20px;" class="mr-2" alt="">
+      {% endif %}
+      Child Safety Locks
+    </li>
+    <li class="flex my-2 align-items-center">
+      {% if car.features.Driver_Air_Bag %}
+      <img src="{% static 'images/check.png' %}" style="height: 20px;" class="mr-2" alt="">
+      {% else %}
+      <img src="{% static 'images/cross.png' %}" style="height: 20px;" class="mr-2" alt="">
+      {% endif %}
+      Driver Air Bag
+    </li>            
+    <li class="flex my-2 align-items-center">
+      {% if car.features.Power_Door_Locks %}
+      <img src="{% static 'images/check.png' %}" style="height: 20px;" class="mr-2" alt="">
+      {% else %}
+      <img src="{% static 'images/cross.png' %}" style="height: 20px;" class="mr-2" alt="">
+      {% endif %}
+      Power Door Locks
+    </li>            
+    <li class="flex my-2 align-items-center">
+      {% if car.features.Stability_Control %}
+      <img src="{% static 'images/check.png' %}" style="height: 20px;" class="mr-2" alt="">
+      {% else %}
+      <img src="{% static 'images/cross.png' %}" style="height: 20px;" class="mr-2" alt="">
+      {% endif %}
+      Stability Control
+    </li>            
+    <li class="flex my-2 align-items-center">
+      {% if car.features.Traction_Control %}
+      <img src="{% static 'images/check.png' %}" style="height: 20px;" class="mr-2" alt="">
+      {% else %}
+      <img src="{% static 'images/cross.png' %}" style="height: 20px;" class="mr-2" alt="">
+      {% endif %}
+      Traction Control
+    </li>            
+    <li class="flex my-2 align-items-center">
+      {% if car.features.Fog_Lights_Front %}
+      <img src="{% static 'images/check.png' %}" style="height: 20px;" class="mr-2" alt="">
+      {% else %}
+      <img src="{% static 'images/cross.png' %}" style="height: 20px;" class="mr-2" alt="">
+      {% endif %}
+      Fog Lights Front
+    </li>            
+    <li class="flex my-2 align-items-center">
+      {% if car.features.Rain_Sensing_Wiper %}
+      <img src="{% static 'images/check.png' %}" style="height: 20px;" class="mr-2" alt="">
+      {% else %}
+      <img src="{% static 'images/cross.png' %}" style="height: 20px;" class="mr-2" alt="">
+      {% endif %}
+      Rain Sensing Wiper
+    </li>            
+    <li class="flex my-2 align-items-center">
+      {% if car.features.Rear_Spoiler %}
+      <img src="{% static 'images/check.png' %}" style="height: 20px;" class="mr-2" alt="">
+      {% else %}
+      <img src="{% static 'images/cross.png' %}" style="height: 20px;" class="mr-2" alt="">
+      {% endif %}
+      Rear Spoiler
+    </li>            
+    <li class="flex my-2 align-items-center">
+      {% if car.features.Windows_Electric %}
+      <img src="{% static 'images/check.png' %}" style="height: 20px;" class="mr-2" alt="">
+      {% else %}
+      <img src="{% static 'images/cross.png' %}" style="height: 20px;" class="mr-2" alt="">
+      {% endif %}
+      Windows Electric
+    </li>            
+    <li class="flex my-2 align-items-center">
+      {% if car.features.Android_Auto %}
+      <img src="{% static 'images/check.png' %}" style="height: 20px;" class="mr-2" alt="">
+      {% else %}
+      <img src="{% static 'images/cross.png' %}" style="height: 20px;" class="mr-2" alt="">
+      {% endif %}
+      Android Auto
+    </li>            
+    <li class="flex my-2 align-items-center">
+      {% if car.features.Bluetooth %}
+      <img src="{% static 'images/check.png' %}" style="height: 20px;" class="mr-2" alt="">
+      {% else %}
+      <img src="{% static 'images/cross.png' %}" style="height: 20px;" class="mr-2" alt="">
+      {% endif %}
+      Bluetooth
+    </li>            
+    <li class="flex my-2 align-items-center">
+      {% if car.features.HomeLink %}
+      <img src="{% static 'images/check.png' %}" style="height: 20px;" class="mr-2" alt="">
+      {% else %}
+      <img src="{% static 'images/cross.png' %}" style="height: 20px;" class="mr-2" alt="">
+      {% endif %}
+      HomeLink
+    </li>            
+    <li class="flex my-2 align-items-center">
+      {% if car.features.Power_Steering %}
+      <img src="{% static 'images/check.png' %}" style="height: 20px;" class="mr-2" alt="">
+      {% else %}
+      <img src="{% static 'images/cross.png' %}" style="height: 20px;" class="mr-2" alt="">
+      {% endif %}
+      Power Steering
+    </li>            
+</div>
