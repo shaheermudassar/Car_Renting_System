@@ -137,14 +137,14 @@ WSGI_APPLICATION = 'Car_Renting_System.wsgi.application'
 # }
 
 # internal database
-DATABASES = {
-    'default': dj_database_url.parse("postgres://daisyroom:ycpwnaJ0auuMwYhYohchY1GNA8igV8wg@dpg-co3foagl5elc73dcm990-a/daisyroom_18o3") 
-}
+# DATABASES = {
+#    'default': dj_database_url.parse("postgres://daisyroom:ycpwnaJ0auuMwYhYohchY1GNA8igV8wg@dpg-co3foagl5elc73dcm990-a/daisyroom_18o3") 
+# }
 
 # external database
-# DATABASES = {
-#     'default': dj_database_url.parse("postgres://daisyroom:ycpwnaJ0auuMwYhYohchY1GNA8igV8wg@dpg-co3foagl5elc73dcm990-a.singapore-postgres.render.com/daisyroom_18o3") 
-# }
+DATABASES = {
+    'default': dj_database_url.parse("postgres://daisyroom:ycpwnaJ0auuMwYhYohchY1GNA8igV8wg@dpg-co3foagl5elc73dcm990-a.singapore-postgres.render.com/daisyroom_18o3") 
+}
 # DATABASES = {
 
 #     'default': {
