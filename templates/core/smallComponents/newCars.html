@@ -1,9 +1,0 @@
-{% load static %}
-<script src="{% static 'js/script.js' %}"></script>
-<script src="{% static 'js/tw-elements.js' %}"></script>
-
-<div class="owl-carousel owl-carousel-car grid md:grid-cols-1 lg:grid-cols-4 gap-4">
-    {% for car in new_cars %}
-        {% include "core/smallComponents/productComponent.html" %}
-    {% endfor %}
-</div>
