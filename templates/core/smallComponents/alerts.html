@@ -1,37 +1,39 @@
-{% load static %}
+{% load static %}  <!-- Load static files like CSS and JavaScript -->
+
 <style>
     /* Add some initial styles to the element */
     #elementToHide {
       opacity: 1;
-      transition: opacity 1s ease-in-out;
+      transition: opacity 1s ease-in-out;  /* Apply a transition effect to the opacity property */ 
     }
-  </style>
+</style>
   
-  <script>
-  // Wait for the DOM to be ready
-  document.addEventListener("DOMContentLoaded", function () {
+<script>
+// Wait for the DOM to be ready
+document.addEventListener("DOMContentLoaded", function () {
     // Get the element to hide
     var elementToHide = document.getElementById("elementToHide");
-  
+
     // Set a timeout to hide the element after 5 seconds
     setTimeout(function () {
-      // Apply the fade-out effect
-      elementToHide.style.opacity = 0;
-      setTimeout(function () {
-        elementToHide.style.display = "none";
-      }, 1000)
-    }, 3000); // 5000 milliseconds = 5 seconds
-  });
-  
-  </script>
-  {% if messages %}
-      <div id="elementToHide" class="fixed w-[100%] h-[70vh] z-50 grid p-4 lg:p-8 align-items-center">
+        // Apply the fade-out effect
+        elementToHide.style.opacity = 0;
+        setTimeout(function () {
+            elementToHide.style.display = "none"; // <!-- Hide the element after fading out -->
+        }, 1000);  //<!-- Wait for 1 second after fading out -->
+    }, 3000); // <!-- 3000 milliseconds = 3 seconds -->
+});
+</script>
+
+{% if messages %}
+    <!-- Display alerts if there are messages -->
+    <div id="elementToHide" class="fixed w-[100%] h-[70vh] z-50 grid p-4 lg:p-8 align-items-center">
         <div class="bg-neutral-800 p-4 rounded">
-          <h1 class="text-center text-xl text-white mytext2 font-bold">
-            {% for message in messages %}
-            {{ message }}
-            {% endfor %}
-          </h1>
+            <h1 class="text-center text-xl text-white mytext2 font-bold">
+                {% for message in messages %}
+                    {{ message }}  <!-- Display each message in the messages list -->
+                {% endfor %}
+            </h1>
         </div>
-      </div>
-    {% endif %}
+    </div>
+{% endif %}

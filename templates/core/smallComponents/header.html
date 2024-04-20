@@ -43,17 +43,17 @@
                             hx-target="#core-change">All Cars</a>
                         </li>
                         <li class="menu-list">
-                            <a class="mytext menu-a text-2xl" style="color: black;" href="#" id="dropdownMenuButton4"
-                                data-te-dropdown-toggle-ref aria-expanded="false" data-te-ripple-init>Brands <i
-                                    class="fa-solid fa-chevron-down" style="font-size: 12px;"></i></a>
-                            <ul class="absolute  z-[1000] shadow-2xl float-left m-0 hidden min-w-max list-none overflow-hidden rounded-lg border-none bg-white bg-clip-padding text-left text-base shadow-lg [&[data-te-dropdown-show]]:block"
-                                aria-labelledby="dropdownMenuButton4" data-te-dropdown-menu-ref>
+                            <details>
+                              <summary class="mytext menu-a text-2xl" id="side-nav-brand"><a class="mytext menu-a text-2xl" style="color: black;">Brands <i
+                                class="fa-solid fa-chevron-down" style="font-size: 12px;"></i></a></summary>
+                              <ul>
                                 {% for brand in menu_brands %}
                                 <li class="my-4">
                                   <a 
                                   class="mx-8 mytext" 
                                   style="color: black;" 
                                   href=""
+                                  hx-on::before-request="closeSideNavBrand()"
                                   hx-get="{% url "brand_details" brand.name %}" 
                                   hx-push-url="{% url "brand_details" brand.name %}" 
                                   onclick="scrollToTop('{{brand.name}}')" 
@@ -61,26 +61,27 @@
                                   data-te-dropdown-item-ref>{{brand.name}}</a>
                                 </li>
                                 {% endfor %}
-                                
-                            </ul>
+                              </ul>
+                            </details>
                         </li>
                         <li class="menu-list">
-                            <a class="mytext menu-a text-2xl" style="color: black;" href="#" id="dropdownMenuButton5"
-                                data-te-dropdown-toggle-ref aria-expanded="false" data-te-ripple-init>Types <i
-                                    class="fa-solid fa-chevron-down" style="font-size: 12px;"></i></a>
-                            <ul class="absolute  z-[1000] shadow-2xl float-left m-0 hidden min-w-max list-none overflow-hidden rounded-lg border-none bg-white bg-clip-padding text-left text-base shadow-lg [&[data-te-dropdown-show]]:block"
-                                aria-labelledby="dropdownMenuButton5" data-te-dropdown-menu-ref>
+                            <details>
+                              <summary class="mytext menu-a text-2xl" id="side-nav-type"><a class="mytext menu-a text-2xl" style="color: black;">Types <i
+                                class="fa-solid fa-chevron-down" style="font-size: 12px;"></i></a></summary>
+                              <ul>
                                 {% for type in menu_types %}
                                 <li class="my-4">
                                   <a class="mx-8 mytext" style="color: black;"
                                   data-te-dropdown-item-ref
+                                  hx-on::before-request="closeSideNavType()"
                                   hx-get="{% url "type_details" type.name %}" 
                                   hx-push-url="{% url "type_details" type.name %}" 
                                   onclick="scrollToTop('{{type.name}}')" 
                                   hx-target="#core-change">{{type.name}}</a>
                                 </li>
                                 {% endfor %}
-                            </ul>
+                              </ul>
+                            </details>
                         </li>
                         {% if request.user.is_authenticated %}
                         <li class="menu-list">
@@ -113,25 +114,35 @@
         <nav class="navLinks">
             <a class="mytext" href="" hx-get="{% url "home" %}" hx-push-url="{% url "home" %}" onclick="scrollToTop('DaisyRoom')" hx-target="#core-change" class="active">Home</a>
             <a class="mytext" href="" hx-get="{% url "listing" %}" hx-push-url="{% url "listing" %}" onclick="scrollToTop('All Cars')" hx-target="#core-change">All Cars</a>
-            <div class="dropdown">
-                <a tabindex="0" role="button" class="mytext">Brands <i class="fa-solid fa-chevron-down"
-                    style="font-size: 12px;"></i></a>
-                <ul tabindex="0" class="dropdown-content p-4 z-[1] menu shadow bg-base-100 rounded w-48">
-                    {% for brand in menu_brands %}
-                    <li><a href="" hx-get="{% url "brand_details" brand.name %}" hx-push-url="{% url "brand_details" brand.name %}" onclick="scrollToTop('{{brand.name}}')" hx-target="#core-change" class="ml-0 mytext hover:bg-neutral-100 hover:text-black">{{brand.name}}</a></li>
-                    {% endfor %}
-                </ul>
-            </div>
             
-            <div class="dropdown">
-                <a tabindex="0" role="button" class="mytext">Types <i class="fa-solid fa-chevron-down"
-                    style="font-size: 12px;"></i></a>
+            
+              <style>
+                summary::marker{
+                    color: transparent;
+                }
+            </style>
+                  <details class="dropdown">
+                      <summary role="button" id="brand-main-menu" class="mytext text-white text-[18px]"><a>Brands <i class="fa-solid fa-chevron-down"
+                        style="font-size: 12px;"></i></a></summary>
+                        <ul tabindex="0" class="dropdown-content p-4 z-[1] menu shadow bg-base-100 rounded w-48">
+                            {% for brand in menu_brands %}
+                            <li><a href="" hx-on::before-request="closeMenuBrand()" hx-get="{% url "brand_details" brand.name %}" hx-push-url="{% url "brand_details" brand.name %}" onclick="scrollToTop('{{brand.name}}')" hx-target="#core-change" class="ml-0 mytext hover:bg-neutral-100 hover:text-black">{{brand.name}}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </details>
+
+            <details class="dropdown">
+                <summary role="button" id="type-main-menu" class="mytext text-white text-[18px]"><a>Types <i class="fa-solid fa-chevron-down"
+                    style="font-size: 12px;"></i></a></summary>
                 <ul tabindex="0" class="dropdown-content p-4 z-[1] menu shadow bg-base-100 rounded w-48">
+                    
                     {% for type in menu_types %}
-                    <li><a href="" hx-get="{% url "type_details" type.name %}" hx-push-url="{% url "type_details" type.name %}" onclick="scrollToTop('{{type.name}}')" hx-target="#core-change" class="ml-0 mytext hover:bg-neutral-100 hover:text-black">{{type.name}}</a></li>
+                    <li><a href="" hx-on::before-request="closeMenuType()" hx-get="{% url "type_details" type.name %}" hx-push-url="{% url "type_details" type.name %}" onclick="scrollToTop('{{type.name}}')" hx-target="#core-change" class="ml-0 mytext hover:bg-neutral-100 hover:text-black">{{type.name}}</a></li>
                     {% endfor %}
                 </ul>
-            </div>
+            </details>
+            
+            
             {% if request.user.is_authenticated %}
             <a class="mytext" href="" hx-get="{% url "full_dashboard" %}" hx-target="#full-change" hx-push-url="{% url "user" %}" onclick="scrollToTop('Dashboard')">Dashboard</a>
             {% else %}

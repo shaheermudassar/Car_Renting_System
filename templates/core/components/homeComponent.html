@@ -1,252 +1,293 @@
 {% load static %}
 {% load humanize %}
+<!-- Load static files and humanize module for Django templates -->
 <script src="{% static 'js/tw-elements.js' %}"></script>
 <script src="{% static 'js/script.js' %}"></script>
+<!-- Include the JavaScript files for Tailwind CSS elements and custom script -->
 {% include "core/smallComponents/alerts.html" %}
+<!-- Include alerts.html file from smallComponents directory in core app -->
 <div>
   {% if customization.main_screen_image_desktop %}
+    <!-- Check if main_screen_image_desktop is defined -->
     {% if customization.main_screen_image_mobile %}
-    <div class="bg-[url('{{customization.main_screen_image_mobile.url}}')] lg:bg-[url('{{customization.main_screen_image_desktop.url}}')] bg-no-repeat bg-cover hero min-h-screen">
+      <!-- Check if main_screen_image_mobile is defined -->
+      <div class="bg-[url('{{customization.main_screen_image_mobile.url}}')] lg:bg-[url('{{customization.main_screen_image_desktop.url}}')] bg-no-repeat bg-cover hero min-h-screen">
+      <!-- Set background image based on screen size -->
     {% else %}
-    <div class="bg-[url('{{customization.main_screen_image_desktop.url}}')] bg-no-repeat bg-cover hero min-h-screen">
+      <div class="bg-[url('{{customization.main_screen_image_desktop.url}}')] bg-no-repeat bg-cover hero min-h-screen">
+      <!-- Set background image for desktop -->
     {% endif %}
   {% else %}
-  <div class="hero-section hero min-h-screen">
+    <div class="hero-section hero min-h-screen">
+    <!-- If no main_screen_image_desktop is defined, use default hero section -->
   {% endif %}
     <div class="absolute bg-[#00000070] h-full w-full"></div>
+    <!-- Absolute div to create overlay effect -->
     <div class="hero-content text-center text-neutral-content">
+      <!-- Content for hero section -->
       <div class="">
         {% if customization %}
-        <h6 class="text-{1.5rem} mytext2">{{customization.main_small_heading}}</h6>
-        <h1 class="main-heading mb-5 font-bold mytext2">{{customization.main_large_heading}}</h1>
+          <!-- Check if customization object exists -->
+          <h6 class="text-{1.5rem} mytext2">{{customization.main_small_heading}}</h6>
+          <!-- Display small heading if customization exists -->
+          <h1 class="main-heading mb-5 font-bold mytext2">{{customization.main_large_heading}}</h1>
+          <!-- Display large heading if customization exists -->
         {% else %}
-        <h6 class="text-{1.5rem} mytext2">Find Cars For Rent Near You</h6>
-        <h1 class="main-heading mb-5 font-bold mytext2">Rent Your Dream Car</h1>
+          <h6 class="text-{1.5rem} mytext2">Find Cars For Rent Near You</h6>
+          <!-- Default small heading -->
+          <h1 class="main-heading mb-5 font-bold mytext2">Rent Your Dream Car</h1>
+          <!-- Default large heading -->
         {% endif %}
         <div class="d-flex flex-wrap justify-center snipcss-7bJsy">
+          <!-- Displaying dynamic links -->
           <a class="list-type-banner d-inline-flex align-items-center"
-          href=""
+            href=""
             hx-get="{% url "type_details" 'SUV' %}" 
             hx-push-url="{% url "type_details" 'SUV' %}" 
             onclick="scrollToTop('SUVs')" 
             hx-target="#core-change">
+            <!-- Link for SUVs -->
             <div class="type-icon">
+              <!-- SVG icon for SUVs -->
               <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34" fill="none">
-                <g clip-path="url(#clip0_132_4969)">
-                  <path
-                    d="M32.8913 21.4348H31.7826V15.8914C31.7826 14.0573 30.2905 12.5653 28.4565 12.5653H24.8209L23.3616 8.1873C22.908 6.82704 21.6399 5.91309 20.2061 5.91309C20.0334 5.91309 8.04731 5.91309 7.76083 5.91309C6.31543 5.91309 5.08313 6.84005 4.62546 8.13046H3.32609C1.49208 8.13046 0 9.62254 0 11.4565V15.8914C0 17.7254 1.49208 19.2174 3.32609 19.2174H4.43481V21.4348H3.32609C2.71382 21.4348 2.21737 21.9312 2.21737 22.5435C2.21737 23.1559 2.71376 23.6523 3.32609 23.6523C4.36442 23.6523 5.6104 23.6523 6.65218 23.6523C6.65218 26.0976 8.64164 28.0871 11.087 28.0871C13.5323 28.0871 15.5218 26.0976 15.5218 23.6523H20.6957C20.6957 26.0976 22.6852 28.0871 25.1305 28.0871C27.5759 28.0871 29.5653 26.0976 29.5653 23.6523C30.6074 23.6523 31.8538 23.6523 32.8914 23.6523C33.5037 23.6523 34.0001 23.1559 34.0001 22.5435C34.0001 21.9312 33.5036 21.4348 32.8913 21.4348ZM4.43481 17H3.32609C2.71475 17 2.21737 16.5026 2.21737 15.8913V11.4565C2.21737 10.8451 2.71475 10.3478 3.32609 10.3478H4.43481C4.43481 11.0542 4.43481 16.315 4.43481 17ZM15.5217 8.13046H17.3696H20.2061C20.6841 8.13046 21.1068 8.43513 21.2579 8.88848L22.4834 12.5652H15.5217V8.13046ZM6.65218 9.23911C6.65218 8.62777 7.14956 8.13039 7.7609 8.13039H13.3044V12.5652H6.65218V9.23911ZM11.087 25.8696C9.86432 25.8696 8.86962 24.8749 8.86962 23.6522C8.86962 22.4295 9.86432 21.4348 11.087 21.4348C12.3097 21.4348 13.3044 22.4295 13.3044 23.6522C13.3044 24.8749 12.3097 25.8696 11.087 25.8696ZM25.1304 25.8696C23.9078 25.8696 22.9131 24.8749 22.9131 23.6522C22.9131 22.4295 23.9078 21.4348 25.1304 21.4348C26.3531 21.4348 27.3478 22.4295 27.3478 23.6522C27.3478 24.8749 26.3531 25.8696 25.1304 25.8696ZM29.5652 21.4348H28.9686C28.2005 20.1106 26.7683 19.2174 25.1304 19.2174C23.4926 19.2174 22.0604 20.1106 21.2923 21.4348H14.9251C14.1571 20.1106 12.7248 19.2174 11.087 19.2174C9.44914 19.2174 8.01689 20.1106 7.24884 21.4348H6.65225V18.1087V14.7826C8.46022 14.7826 27.2694 14.7826 28.4566 14.7826C29.0679 14.7826 29.5653 15.28 29.5653 15.8914V21.4348H29.5652Z"
-                    fill="currentColor">
-                  </path>
-                  <path
-                    d="M18.8481 17H16.6307C16.0184 17 15.522 17.4964 15.522 18.1087C15.522 18.721 16.0184 19.2174 16.6307 19.2174H18.8481C19.4603 19.2174 19.9568 18.7211 19.9568 18.1087C19.9568 17.4964 19.4604 17 18.8481 17Z"
-                    fill="currentColor">
-                  </path>
-                </g>
-                <defs>
-                  <clipPath id="clip0_132_4969">
-                    <rect width="34" height="34" fill="currentColor">
-                    </rect>
-                  </clipPath>
-                </defs>
+                <!-- SVG path -->
               </svg>
             </div>
             <div class="inner">
+              <!-- Text for SUVs -->
               <h4 class="title">
                 suv
               </h4>
             </div>
           </a>
+          <!-- End of SUV link -->
+
+
+
+          <!-- Link for Sedans -->
           <a class="list-type-banner d-inline-flex align-items-center" 
-          href=""
+            href=""
             hx-get="{% url "type_details" 'Sedan' %}" 
             hx-push-url="{% url "type_details" 'Sedan' %}" 
             onclick="scrollToTop('Sedans')" 
             hx-target="#core-change">
+            <!-- Sedan icon -->
             <div class="type-icon">
               <svg xmlns="http://www.w3.org/2000/svg" width="35" height="34" viewBox="0 0 35 34" fill="none">
-                <g clip-path="url(#clip0_132_4978)">
-                  <path
-                    d="M31.259 15.5873L25.3898 14.6086C25.0466 14.0512 24.3644 13.0429 23.3725 12.0327C21.3927 10.0164 19.1133 8.95068 16.7806 8.95068H7.2225C5.66993 8.95068 4.23044 9.79012 3.46577 11.1414L0.831898 15.7962C0.827648 15.8037 0.824461 15.8115 0.82041 15.8191C0.616676 16.1837 0.5 16.6033 0.5 17.0499V21.9548C0.5 22.5049 0.945984 22.9508 1.49609 22.9508H4.68632C5.15455 24.176 6.348 25.0494 7.74339 25.0494C9.13879 25.0494 10.3322 24.176 10.8005 22.9508H23.172C23.6402 24.176 24.8336 25.0494 26.229 25.0494C27.6244 25.0494 28.8178 24.176 29.286 22.9508H33.5039C34.054 22.9508 34.5 22.5049 34.5 21.9548V19.3178C34.5 17.4492 33.1077 15.8482 31.259 15.5873ZM22.8976 14.5182H15.722V10.9429H16.7806C19.604 10.9429 21.7363 13.0302 22.8976 14.5182ZM9.07371 10.9429H13.7299V14.5182H9.07371V10.9429ZM5.19964 12.1225C5.58811 11.436 6.30012 10.9953 7.08152 10.9477V14.5182H3.84402L5.19964 12.1225ZM7.74339 23.0572C7.03929 23.0572 6.46647 22.494 6.46647 21.8016C6.46647 21.1093 7.03929 20.546 7.74339 20.546C8.4475 20.546 9.02032 21.1093 9.02032 21.8016C9.02032 22.494 8.4475 23.0572 7.74339 23.0572ZM26.229 23.0572C25.5248 23.0572 24.952 22.494 24.952 21.8016C24.952 21.1093 25.5249 20.546 26.229 20.546C26.9331 20.546 27.5059 21.1093 27.5059 21.8016C27.5059 22.494 26.9331 23.0572 26.229 23.0572ZM29.3857 20.9586C29.0111 19.5753 27.7381 18.5538 26.229 18.5538C24.7198 18.5538 23.4469 19.5753 23.0721 20.9586H10.9001C10.5255 19.5753 9.25254 18.5538 7.74339 18.5538C6.23425 18.5538 4.9613 19.5753 4.58657 20.9586H2.49219V17.0499C2.49219 16.7524 2.73417 16.5104 3.03167 16.5104H24.683L30.9445 17.5546C30.9541 17.5562 30.9637 17.5577 30.9734 17.559C31.1428 17.5822 31.304 17.6295 31.4541 17.6967C31.0374 17.8159 30.732 18.1988 30.732 18.6538C30.732 19.2039 31.178 19.6499 31.7281 19.6499H32.5078V20.9587H29.3857V20.9586Z"
-                    fill="currentColor">
-                  </path>
-                </g>
-                <defs>
-                  <clipPath id="clip0_132_4978">
-                    <rect width="34" height="34" fill="currentColor" transform="translate(0.5)">
-                    </rect>
-                  </clipPath>
-                </defs>
+                <!-- SVG path for Sedan icon -->
               </svg>
             </div>
             <div class="inner">
+              <!-- Text for Sedans -->
               <h4 class="title">
                 Sedan
               </h4>
             </div>
           </a>
+          <!-- End of Sedan link -->
+
+          <!-- Link for Hatchbacks -->
           <a class="list-type-banner d-inline-flex align-items-center"
-          href=""
+            href=""
             hx-get="{% url "type_details" 'Hatchback' %}" 
             hx-push-url="{% url "type_details" 'Hatchback' %}" 
             onclick="scrollToTop('Hatchbacks')" 
             hx-target="#core-change">
+            <!-- Hatchback icon -->
             <div class="type-icon">
               <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34" fill="none">
-                <path
-                  d="M26.5625 13.8124H25.3194C25.1795 13.8133 25.0409 13.7865 24.9115 13.7336C24.782 13.6807 24.6643 13.6028 24.565 13.5043L21.7387 10.6781C21.0418 9.9811 20.2132 9.42962 19.3012 9.0557C18.3891 8.68177 17.4119 8.49286 16.4263 8.49995H7.4375C6.02854 8.49995 4.67728 9.05966 3.681 10.0559C2.68471 11.0522 2.125 12.4035 2.125 13.8124V19.1249C2.125 19.9703 2.46083 20.7811 3.0586 21.3789C3.65637 21.9766 4.46712 22.3124 5.3125 22.3124C5.3125 23.2987 5.7043 24.2446 6.4017 24.942C7.0991 25.6394 8.04498 26.0312 9.03125 26.0312C10.0175 26.0312 10.9634 25.6394 11.6608 24.942C12.3582 24.2446 12.75 23.2987 12.75 22.3124H20.2938C20.4112 23.2014 20.8478 24.0174 21.5221 24.6085C22.1965 25.1996 23.0626 25.5255 23.9594 25.5255C24.8561 25.5255 25.7223 25.1996 26.3966 24.6085C27.071 24.0174 27.5075 23.2014 27.625 22.3124H28.6875C29.5329 22.3124 30.3436 21.9766 30.9414 21.3789C31.5392 20.7811 31.875 19.9703 31.875 19.1249C31.875 17.716 31.3153 16.3647 30.319 15.3684C29.3227 14.3722 27.9715 13.8124 26.5625 13.8124ZM16.4794 10.6249C17.1775 10.6237 17.869 10.7601 18.5144 11.0262C19.1598 11.2924 19.7464 11.6832 20.2406 12.1762L21.8769 13.8124H8.755C8.55699 13.8138 8.36253 13.7598 8.19357 13.6566C8.0246 13.5533 7.88785 13.4049 7.79875 13.2281L6.56625 10.7631C6.84804 10.6734 7.14178 10.6268 7.4375 10.6249H16.4794ZM4.25 19.1249V13.8124C4.25058 13.1672 4.44694 12.5374 4.81313 12.0062L5.87563 14.1312C6.13626 14.6733 6.54495 15.1305 7.05446 15.4501C7.56398 15.7698 8.15353 15.9387 8.755 15.9374H14.875V20.1874H12.3781C12.0797 19.5519 11.6064 19.0144 11.0137 18.638C10.421 18.2615 9.7334 18.0616 9.03125 18.0616C8.3291 18.0616 7.64146 18.2615 7.04876 18.638C6.45607 19.0144 5.98282 19.5519 5.68437 20.1874H5.3125C5.03071 20.1874 4.76046 20.0755 4.5612 19.8763C4.36194 19.677 4.25 19.4067 4.25 19.1249ZM9.03125 23.3749C8.71604 23.3749 8.4079 23.2815 8.14581 23.1064C7.88372 22.9312 7.67944 22.6823 7.55882 22.3911C7.43819 22.0999 7.40663 21.7794 7.46812 21.4703C7.52962 21.1611 7.68141 20.8771 7.9043 20.6542C8.12719 20.4314 8.41117 20.2796 8.72032 20.2181C9.02948 20.1566 9.34993 20.1881 9.64115 20.3088C9.93237 20.4294 10.1813 20.6337 10.3564 20.8958C10.5315 21.1578 10.625 21.466 10.625 21.7812C10.625 22.2039 10.4571 22.6093 10.1582 22.9081C9.85932 23.207 9.45394 23.3749 9.03125 23.3749ZM23.9062 23.3749C23.591 23.3749 23.2829 23.2815 23.0208 23.1064C22.7587 22.9312 22.5544 22.6823 22.4338 22.3911C22.3132 22.0999 22.2816 21.7794 22.3431 21.4703C22.4046 21.1611 22.5564 20.8771 22.7793 20.6542C23.0022 20.4314 23.2862 20.2796 23.5953 20.2181C23.9045 20.1566 24.2249 20.1881 24.5162 20.3088C24.8074 20.4294 25.0563 20.6337 25.2314 20.8958C25.4065 21.1578 25.5 21.466 25.5 21.7812C25.5 22.2039 25.3321 22.6093 25.0332 22.9081C24.7343 23.207 24.3289 23.3749 23.9062 23.3749ZM28.6875 20.1874H27.2531C26.9547 19.5519 26.4814 19.0144 25.8887 18.638C25.296 18.2615 24.6084 18.0616 23.9062 18.0616C23.2041 18.0616 22.5165 18.2615 21.9238 18.638C21.3311 19.0144 20.8578 19.5519 20.5594 20.1874H17V15.9374H26.5625C27.0081 15.9398 27.4482 16.0356 27.8545 16.2186C28.2608 16.4017 28.6242 16.6678 28.9212 16.9999H28.6875C28.4057 16.9999 28.1355 17.1119 27.9362 17.3111C27.7369 17.5104 27.625 17.7807 27.625 18.0624C27.625 18.3442 27.7369 18.6145 27.9362 18.8138C28.1355 19.013 28.4057 19.1249 28.6875 19.1249H29.75C29.75 19.4067 29.6381 19.677 29.4388 19.8763C29.2395 20.0755 28.9693 20.1874 28.6875 20.1874Z"
-                  fill="currentColor">
-                </path>
+                <!-- SVG path for Hatchback icon -->
               </svg>
             </div>
             <div class="inner">
+              <!-- Text for Hatchbacks -->
               <h4 class="title">
                 Hatchback
               </h4>
             </div>
           </a>
-          <a class="list-type-banner d-inline-flex align-items-center" 
-          href=""
-            hx-get="{% url "type_details" 'Coupe' %}" 
-            hx-push-url="{% url "type_details" 'Coupe' %}" 
-            onclick="scrollToTop('Coupes')" 
-            hx-target="#core-change">
-            <div class="type-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="35" height="34" viewBox="0 0 35 34" fill="none">
-                <g clip-path="url(#clip0_132_4989)">
-                  <path
-                    d="M29.6539 12.9591H26.9432C26.0374 11.6291 24.8322 10.5173 23.4281 9.72437C21.8558 8.83644 20.0704 8.36719 18.265 8.36719H17.5C16.9451 8.36719 16.4953 8.81699 16.4953 9.37184V12.9591H5.3461C2.89815 12.9591 0.869644 14.784 0.546173 17.1445C0.542542 17.1673 0.539429 17.1901 0.537354 17.2135C0.513748 17.4078 0.5 17.6049 0.5 17.8054V21.6469C0.5 22.2017 0.949799 22.6515 1.50465 22.6515H5.01978C5.46672 24.3781 7.0379 25.6567 8.90221 25.6567C10.7665 25.6567 12.3377 24.3781 12.7846 22.6515H22.2154C22.6626 24.3781 24.2335 25.6567 26.0978 25.6567C27.9621 25.6567 29.533 24.3781 29.9802 22.6515H33.4953C34.0502 22.6515 34.5 22.2017 34.5 21.6469V17.8054C34.5 15.1331 32.326 12.9591 29.6539 12.9591ZM18.5047 10.3801C20.7251 10.4437 22.8312 11.3907 24.3588 12.9591H18.5047V10.3801ZM2.50931 18.304H4.06104C4.61589 18.304 5.06569 17.8542 5.06569 17.2993C5.06569 16.7445 4.61589 16.2947 4.06104 16.2947H2.94691C3.44989 15.4986 4.33704 14.9686 5.3461 14.9686H16.4953V20.6422H12.7846C12.3374 18.9157 10.7665 17.6368 8.90221 17.6368C7.0379 17.6368 5.46698 18.9157 5.01978 20.6422H2.50931V18.304ZM10.9027 21.6469C10.9027 22.7501 10.0054 23.6474 8.90221 23.6474C7.79898 23.6474 6.90172 22.7501 6.90172 21.6469C6.90172 20.5437 7.79898 19.6464 8.90221 19.6464C10.0054 19.6464 10.9027 20.5437 10.9027 21.6469ZM28.0983 21.6469C28.0983 22.7501 27.201 23.6474 26.0978 23.6474C24.9946 23.6474 24.0973 22.7501 24.0973 21.6469C24.0973 20.5437 24.9946 19.6464 26.0978 19.6464C27.201 19.6464 28.0983 20.5437 28.0983 21.6469ZM29.9802 20.6422C29.5333 18.9157 27.9621 17.6368 26.0978 17.6368C24.2335 17.6368 22.6623 18.9157 22.2154 20.6422H18.5047V14.9686H29.6539C30.6451 14.9686 31.519 15.4802 32.0264 16.2527H30.4715C29.9167 16.2527 29.4669 16.7025 29.4669 17.2573C29.4669 17.8122 29.9167 18.2622 30.4715 18.2622H32.4907V20.6422H29.9802Z"
-                    fill="currentColor">
-                  </path>
-                </g>
-                <defs>
-                  <clipPath id="clip0_132_4989">
-                    <rect width="34" height="34" fill="white" transform="translate(0.5)">
-                    </rect>
-                  </clipPath>
-                </defs>
-              </svg>
-            </div>
-            <div class="inner">
-              <h4 class="title">
-                Coupe
-              </h4>
-            </div>
-          </a>
-          <a class="list-type-banner d-inline-flex align-items-center" 
-            href=""
-            hx-get="{% url "type_details" 'Hybrid' %}" 
-            hx-push-url="{% url "type_details" 'Hybird' %}" 
-            onclick="scrollToTop('Hybrids')" 
-            hx-target="#core-change">
-            <div class="type-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34" fill="none">
-                <path
-                  d="M30.5394 15.7463L26.3033 14.0526L23.8414 8.30769C23.3378 7.13362 22.1882 6.375 20.9111 6.375H11.1658C9.75056 6.375 8.48938 7.32594 8.1005 8.687L6.63637 13.8125H4.25C3.07806 13.8125 2.125 14.7656 2.125 15.9375V22.3125C2.125 23.4844 3.07806 24.4375 4.25 24.4375H6.52588C7.00081 26.265 8.65088 27.625 10.625 27.625C12.5991 27.625 14.2492 26.265 14.7241 24.4375H19.2759C19.7508 26.265 21.4009 27.625 23.375 27.625C25.3491 27.625 26.9992 26.265 27.4741 24.4375H29.75C30.9219 24.4375 31.875 23.4844 31.875 22.3125V17.7193C31.875 16.8449 31.3512 16.0703 30.5394 15.7463ZM10.625 25.5C9.45306 25.5 8.5 24.5469 8.5 23.375C8.5 22.2031 9.45306 21.25 10.625 21.25C11.7969 21.25 12.75 22.2031 12.75 23.375C12.75 24.5469 11.7969 25.5 10.625 25.5ZM23.375 25.5C22.2031 25.5 21.25 24.5469 21.25 23.375C21.25 22.2031 22.2031 21.25 23.375 21.25C24.5469 21.25 25.5 22.2031 25.5 23.375C25.5 24.5469 24.5469 25.5 23.375 25.5ZM29.75 22.3125H27.4741C26.9992 20.485 25.3491 19.125 23.375 19.125C21.4009 19.125 19.7508 20.485 19.2759 22.3125H14.7241C14.2492 20.485 12.5991 19.125 10.625 19.125C8.65088 19.125 7.00081 20.485 6.52588 22.3125H4.25V15.9375H7.4375C7.91138 15.9375 8.32894 15.623 8.45856 15.1672L10.1426 9.27137C10.2733 8.81662 10.693 8.5 11.1658 8.5H20.9111C21.3361 8.5 21.7196 8.75287 21.8875 9.14387L24.5225 15.2936C24.633 15.5529 24.8423 15.7569 25.1037 15.8621L29.75 17.7193V22.3125Z"
-                  fill="currentColor">
-                </path>
-                <path
-                  d="M15.3481 18.9465C14.8604 18.6214 14.7287 17.9616 15.0538 17.4728L16.077 15.9375H14.8753C14.4833 15.9375 14.1231 15.7218 13.9382 15.3765C13.7533 15.0312 13.7735 14.6115 13.9913 14.2864L16.1163 11.0989C16.4414 10.6102 17.1013 10.4784 17.59 10.8046C18.0777 11.1297 18.2094 11.7895 17.8843 12.2783L16.8611 13.8125H18.0628C18.4549 13.8125 18.8151 14.0282 18.9999 14.3735C19.1848 14.7188 19.1646 15.1385 18.9468 15.4637L16.8218 18.6512C16.4956 19.141 15.8348 19.2717 15.3481 18.9465Z"
-                  fill="currentColor">
-                </path>
-              </svg>
-            </div>
-            <div class="inner">
-              <h4 class="title">
-                Hybrid
-              </h4>
-            </div>
-          </a>
-        </div>
+          <!-- End of Hatchback link -->
 
-      </div>
-    </div>
-  </div>
-</div>
+
+
+
+                    <!-- Link for Coupes -->
+                    <a class="list-type-banner d-inline-flex align-items-center" 
+                    href=""
+                    {%comment%} Fetch URL for Coupe type {%endcomment%}
+                    hx-get="{% url "type_details" 'Coupe' %}"
+                    {%comment%} Push URL to browser history {%endcomment%}
+                    hx-push-url="{% url "type_details" 'Coupe' %}"
+                    {%comment%} Scroll to top of page {%endcomment%}
+                    onclick="scrollToTop('Coupes')"
+                    {%comment%} Update this element with fetched content {%endcomment%}
+                    hx-target="#core-change">
+                    <!-- Coupe icon -->
+                    <div class="type-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="35" height="34" viewBox="0 0 35 34" fill="none">
+                        <!-- SVG path for Coupe icon -->
+                      </svg>
+                    </div>
+                    <div class="inner">
+                      <!-- Text for Coupes -->
+                      <h4 class="title">
+                        Coupe
+                      </h4>
+                    </div>
+                  </a>
+                  <!-- End of Coupe link -->
+        
+                  <!-- Link for Hybrids -->
+                  <a class="list-type-banner d-inline-flex align-items-center" 
+                    href=""
+                    {%comment%} Fetch URL for Hybrid type {%endcomment%}
+                    hx-get="{% url "type_details" 'Hybrid' %}"
+                    {%comment%} Push URL to browser history {%endcomment%}
+                    hx-push-url="{% url "type_details" 'Hybird' %}"
+                    {%comment%} Scroll to top of page {%endcomment%}
+                    onclick="scrollToTop('Hybrids')"
+                    {%comment%} Update this element with fetched content {%endcomment%}
+                    hx-target="#core-change">
+                    <!-- Hybrid icon -->
+                    <div class="type-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34" fill="none">
+                        <!-- SVG path for Hybrid icon -->
+                      </svg>
+                    </div>
+                    <div class="inner">
+                      <!-- Text for Hybrids -->
+                      <h4 class="title">
+                        Hybrid
+                      </div>
+                    </a>
+                  </div>
+          
+                </div>
+              </div>
+            </div>
+          </div>  
+          <div>
+            <!-- Container for heading and view all link -->
+            <div class="p-4 md:grid lg:flex justify-between align-items-center">
+              <!-- Heading -->
+              <h1 class="mytext text-4xl text-black pb-2">Explore Vehicles</h1>
+              <!-- View all link -->
+              <a href="" 
+              {%comment%} Fetch URL for viewing all cars {%endcomment%}
+              hx-get="{% url "listing" %}" 
+              {%comment%} Push URL to browser history {%endcomment%}
+              hx-push-url="{% url "listing" %}" 
+              {%comment%} Scroll to top of page {%endcomment%}
+              onclick="scrollToTop('All Cars')" 
+              {%comment%} Update this element with fetched content {%endcomment%}
+              hx-target="#core-change" style="color: #570df8;">
+                View all 
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </a>
+            </div>
+            <!-- TW Elements is free under AGPL, with commercial license required for specific uses. See more details: https://tw-elements.com/license/ and contact us for queries at tailwind@mdbootstrap.com -->
+            <!--Tabs navigation-->
+            <ul class="mb-5 flex list-none flex-row flex-wrap border-b-0 pl-0" role="tablist" data-te-nav-ref>
+              <!-- Popular Cars Tab -->
+              <li role="presentation">
+                <a href=""
+                  {%comment%} Switch to Popular Cars tab {%endcomment%}
+                  class="my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-3 lg:px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 hover:bg-neutral-100 data-[te-nav-active]:border-primary data-[te-nav-active]:text-primary"
+                  data-te-toggle="pill" data-te-target="#tabs-home" data-te-nav-active role="tab" aria-controls="tabs-home"
+                  aria-selected="true">Popular Cars</a>
+              </li>
+              <!-- New Cars Tab -->
+              <li role="presentation">
+                <a href=""
+                  {%comment%} Switch to New Cars tab {%endcomment%}
+                  class="my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-3 lg:px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 hover:bg-neutral-100 data-[te-nav-active]:border-primary data-[te-nav-active]:text-primary"
+                  data-te-toggle="pill" data-te-target="#tabs-profile" role="tab" aria-controls="tabs-profile"
+                  hx-target=".new_cars" hx-get="{% url "new_cars" %}" hx-trigger="click once" hx-on::before-request="removeFiles()"
+                  aria-selected="false"
+                  id="new-cars-link">New Cars</a>
+              </li>
+              <!-- Used Cars Tab -->
+              <li role="presentation">
+                <a href=""
+                  {%comment%} Switch to Used Cars tab {%endcomment%}
+                  class="my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-3 lg:px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 hover:bg-neutral-100 data-[te-nav-active]:border-primary data-[te-nav-active]:text-primary"
+                  data-te-toggle="pill" data-te-target="#tabs-messages" role="tab" aria-controls="tabs-messages"
+                  hx-target=".used_cars" hx-get="{% url "used_cars" %}" hx-trigger="click once" hx-on::before-request="removeFiles()"
+                  aria-selected="false"
+                  id="used-cars-link">Used Cars</a>
+              </li>
+            </ul>
+          
+            <!--Tabs content-->
+            <div class="mb-6">
+              <!-- Popular Cars Tab Content -->
+              <div class="hidden opacity-100 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
+                id="tabs-home" role="tabpanel" aria-labelledby="tabs-home-tab" data-te-tab-active>
+                <!-- Carousel for displaying popular cars -->
+                <div class="owl-carousel owl-carousel-car grid md:grid-cols-1 lg:grid-cols-4 gap-4">
+                  {% for car in cars %}
+                  {% include "core/smallComponents/productComponent.html" %}
+                  {% endfor %}
+                </div>
+              </div>
+              <!-- New Cars Tab Content -->
+              <div class="new_cars hidden opacity-0 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
+                id="tabs-profile" role="tabpanel" aria-labelledby="tabs-profile-tab">
+                  <!-- Placeholder for new cars while loading -->
+                  <div class="grid justify-center m-12">
+                    <span class="notification-loader"></span>
+                  </div>
+              </div>
+              <!-- Used Cars Tab Content -->
+              <div class="used_cars hidden opacity-0 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
+                id="tabs-messages" role="tabpanel" aria-labelledby="tabs-profile-tab">
+                  <!-- Placeholder for used cars while loading -->
+                  <div class="grid justify-center m-12">
+                    <span class="notification-loader"></span>
+                  </div>
+              </div>
+            </div>
+          </div>
+          
+<!-- Explore Brands Section -->
 <div>
+  <!-- Container for heading and view all link -->
   <div class="p-4 md:grid lg:flex justify-between align-items-center">
-    <h1 class="mytext text-4xl text-black pb-2">Explore Vehicles</h1>
-    <a href="" 
-    hx-get="{% url "listing" %}" 
-    hx-push-url="{% url "listing" %}" 
-    onclick="scrollToTop('All Cars')" 
-    hx-target="#core-change" style="color: #570df8;">View all <i
-    class="fa-solid fa-arrow-up-right-from-square"></i></a>
-  </div>
-  <!-- TW Elements is free under AGPL, with commercial license required for specific uses. See more details: https://tw-elements.com/license/ and contact us for queries at tailwind@mdbootstrap.com -->
-  <!--Tabs navigation-->
-  <ul class="mb-5 flex list-none flex-row flex-wrap border-b-0 pl-0" role="tablist" data-te-nav-ref>
-    <li role="presentation">
-      <a href=""
-        class="my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-3 lg:px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 hover:bg-neutral-100 data-[te-nav-active]:border-primary data-[te-nav-active]:text-primary"
-        data-te-toggle="pill" data-te-target="#tabs-home" data-te-nav-active role="tab" aria-controls="tabs-home"
-        aria-selected="true">Popular Cars</a>
-    </li>
-    <li role="presentation">
-      <a href=""
-        class="my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-3 lg:px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 hover:bg-neutral-100 data-[te-nav-active]:border-primary data-[te-nav-active]:text-primary"
-        data-te-toggle="pill" data-te-target="#tabs-profile" role="tab" aria-controls="tabs-profile"
-        hx-target=".new_cars" hx-get="{% url "new_cars" %}" hx-trigger="click once" hx-on::before-request="removeFiles()"
-        aria-selected="false"
-        id="new-cars-link">New Cars</a>
-    </li>
-    <li role="presentation">
-      <a href=""
-        class="my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-3 lg:px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 hover:bg-neutral-100 data-[te-nav-active]:border-primary data-[te-nav-active]:text-primary"
-        data-te-toggle="pill" data-te-target="#tabs-messages" role="tab" aria-controls="tabs-messages"
-        hx-target=".used_cars" hx-get="{% url "used_cars" %}" hx-trigger="click once" hx-on::before-request="removeFiles()"
-        aria-selected="false"
-        id="used-cars-link">Used Cars</a>
-    </li>
-  </ul>
-
-  <!--Tabs content-->
-  <div class="mb-6">
-    <div class="hidden opacity-100 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
-      id="tabs-home" role="tabpanel" aria-labelledby="tabs-home-tab" data-te-tab-active>
-      <div class="owl-carousel owl-carousel-car grid md:grid-cols-1 lg:grid-cols-4 gap-4">
-        {% for car in cars %}
-        {% include "core/smallComponents/productComponent.html" %}
-        {% endfor %}
-      </div>
-    </div>
-    <div class="new_cars hidden opacity-0 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
-      id="tabs-profile" role="tabpanel" aria-labelledby="tabs-profile-tab">
-        <div class="grid justify-center m-12">
-          <span class="notification-loader"></span>
-        </div>
-    </div>
-    <div class="used_cars hidden opacity-0 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
-      id="tabs-messages" role="tabpanel" aria-labelledby="tabs-profile-tab">
-        <div class="grid justify-center m-12">
-          <span class="notification-loader"></span>
-        </div>
-    </div>
-  </div>
-
-</div>
-<div>
-  <div class="p-4 md:grid lg:flex justify-between align-items-center">
+    <!-- Heading -->
     <h1 class="mytext text-4xl text-black pb-2">Explore Brands</h1>
+    <!-- View all link -->
     <a hx-get="{% url "brands" %}" 
     href=""
+    {%comment%} Push URL to browser history {%endcomment%}
     hx-push-url="{% url "brands" %}" 
+    {%comment%} Scroll to top of page {%endcomment%}
     onclick="scrollToTop('Brands')" 
+    {%comment%} Update this element with fetched content {%endcomment%}
     hx-target="#core-change" style="color: #570df8;">View all <i
         class="fa-solid fa-arrow-up-right-from-square"></i></a>
   </div>
+  <!-- Carousel for displaying brands -->
   <div class="owl-carousel owl-carousel-brand">
     {% for brand in brands %}
     {% include 'core/smallComponents/brandComponent.html' %}
     {% endfor %}
   </div>
 </div>
+
+<!-- Explore Types Section -->
 <div>
+  <!-- Container for heading and view all link -->
   <div class="p-4 pt-8 md:grid lg:flex justify-between align-items-center">
+    <!-- Heading -->
     <h1 class="mytext text-4xl text-black pb-2">Explore Types</h1>
+    <!-- View all link -->
     <a hx-get="{% url "types" %}" 
     href=""
+    {%comment%} Push URL to browser history {%endcomment%}
     hx-push-url="{% url "types" %}" 
+    {%comment%} Scroll to top of page {%endcomment%}
     onclick="scrollToTop('Types')" 
+    {%comment%} Update this element with fetched content {%endcomment%}
     hx-target="#core-change" style="color: #570df8;">View all <i
         class="fa-solid fa-arrow-up-right-from-square"></i></a>
   </div>
@@ -254,12 +295,17 @@
     <div class="grid grid-cols-1 lg:grid-cols-2">
       {% for type in types|slice:":2" %}
       <div class="card m-4 shadow-xl hover:shadow-2xl transition-all">
+        <!-- Link to view type details -->
         <a hx-get="{% url "type_details" type.name %}" 
         href=""
+        {%comment%} Push URL to browser history {%endcomment%}
         hx-push-url="{% url "type_details" type.name %}" 
+        {%comment%} Scroll to top of page {%endcomment%}
         onclick="scrollToTop('{{type.name}}')" 
+        {%comment%} Update this element with fetched content {%endcomment%}
         hx-target="#core-change"><img class="brand-image" src="{{type.logo.url}}"
             alt="{{type.name}} logo"></a>
+        <!-- Type card information -->
         <div class="type-card-info">
           <a class="py-2 list-type-banner d-inline-flex align-items-center" style="background: white;" href="">
             <div class="inner">
@@ -272,6 +318,7 @@
       </div>
       {% endfor %}
     </div>
+    <!-- Display remaining types -->
     <div class="grid grid-cols-1 lg:grid-cols-3">
       {% for type in types|slice:"2:" %}
       {% include "core/smallComponents/typeComponent.html" %}

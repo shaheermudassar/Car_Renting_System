@@ -36,6 +36,15 @@
         
 </body>
 <script>
+    function closeMenuBrand() {
+        button = document.getElementById('brand-main-menu')
+        button.click()
+      }
+    function closeMenuType() {
+        button = document.getElementById('type-main-menu')
+        button.click()
+      }
+
     function scrollToTop(string) {
         const transition_text = document.getElementById('transition-text');
         transition_text.innerHTML = string;
@@ -81,7 +90,27 @@
         // Attach event listeners
         document.addEventListener('htmx:beforeRequest', beforeRequestHandler);
         document.addEventListener('htmx:afterOnLoad', afterSettleHandler);
-    
+    window.addEventListener('popstate', () => {
+        const loadingOverlay = document.getElementById('loading-overlay');
+        loadingOverlay.classList.add('hidden');
+        var header = document.querySelector('header');
+
+        // Set initial style based on the scroll position
+        if (window.scrollY > 10) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+
+        window.addEventListener('scroll', function () {
+          if (window.scrollY > 10) {
+            header.classList.add('scrolled');
+          } else {
+            header.classList.remove('scrolled');
+          }
+        });
+         // Hide loading overlay if navigating back
+    });
         // Call turnOffListeners after a timeout
         setTimeout(() => {
             document.removeEventListener('htmx:beforeRequest', beforeRequestHandler);

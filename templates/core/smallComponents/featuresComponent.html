@@ -1,13 +1,19 @@
-{% load static %}
+{% load static %} <!-- Load static files like CSS and JavaScript -->
+
 <div class="grid grid-cols-2 lg:grid-cols-4">
+    <!-- Check if the car has Air Conditioner feature -->
     <li class="flex my-2 align-items-center">
       {% if car.features.Air_Conditioner %}
-      <img src="{% static 'images/check.png' %}" style="height: 20px;" class="mr-2" alt="">
+        <!-- Display checkmark image if Air Conditioner feature is available -->
+        <img src="{% static 'images/check.png' %}" style="height: 20px;" class="mr-2" alt="">
       {% else %}
-      <img src="{% static 'images/cross.png' %}" style="height: 20px;" class="mr-2" alt="">
+        <!-- Display cross image if Air Conditioner feature is not available -->
+        <img src="{% static 'images/cross.png' %}" style="height: 20px;" class="mr-2" alt="">
       {% endif %}
       Air Conditioner
     </li>
+
+    <!-- Repeat similar structure for other features -->
     <li class="flex my-2 align-items-center">
       {% if car.features.Digital_Odometer %}
       <img src="{% static 'images/check.png' %}" style="height: 20px;" class="mr-2" alt="">

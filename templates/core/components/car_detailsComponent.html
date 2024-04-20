@@ -1,254 +1,244 @@
-{% load static %}
-{% load humanize %}
-<script src="{% static 'js/fslightbox.js' %}"></script>
-<script src="{% static 'js/tw-elements.js' %}"></script>
-<script src="{% static 'js/script.js' %}"></script>
-{% comment %} 
-<script async src="https://static.addtoany.com/menu/page.js"></script>
-{% endcomment %}
-{% include "core/smallComponents/alerts.html" %}
-  <div>
-    <div class="detail-section hero">
-      <div class=""></div>
-      <div class="grid p-0 lg:p-4 hero-content text-center text-neutral-content">
-        <div class="">
-          <h1 class="detail-name main-heading font-bold mytext2">{{ car.name }} {{ car.model }}</h1>
-        </div>
-        <div class="d-flex flex-wrap justify-center snipcss-7bJsy">
-          <a class="list-type-banner d-inline-flex align-items-center" href="#">
-            <img src="{% static 'images/calendar.png' %}" alt="" width="25px" class="mr-2" />
-            <div class="inner">
-              <h4 class="title font-bold" style="font-weight: 600;">{{ car.year_of_manufacture }}</h4>
-            </div>
-          </a>
-          <a class="list-type-banner d-inline-flex align-items-center" href="#">
-            <img src="{% static 'images/speed.png' %}" alt="" width="30px" class="mr-2" />
-            <div class="inner">
-              <h4 class="title font-bold" style="font-weight: 600;">{{ car.specifications.max_speed_in_km_per_h }} kmh<sup>-1</sup></h4>
-            </div>
-          </a>
-          <a class="list-type-banner d-inline-flex align-items-center" href="#">
-            <img src="{% static 'images/engine.png' %}" alt="" width="25px" class="mr-2" />
-            <div class="inner">
-              <h4 class="title font-bold" style="font-weight: 600;">{{ car.specifications.transmission }}</h4>
-            </div>
-          </a>
-        </div>
-        <div class="d-flex flex-wrap justify-center snipcss-7bJsy">
-          {% if request.user.is_authenticated %}
-          <form style="margin: 0 10px 0 0; padding: 0;" hx-target="#save_car_div" hx-indicator="#spinner" hx-trigger="submit" hx-post="{% url 'save_car_handler' %}">
-            <input type="hidden" name="car_id" value="{{ car.id }}" />
-            <div id="save_car_div">
-            {% if car_is_saved %}
-              <button type="submit" name="unsave" class="bg-white list-type-banner d-inline-flex align-items-center mytext2">
-                <img src="{% static 'images/hearted.png' %}" alt="" width="25px" class="mr-2" />
-                <div class="inner">
-                  <h4 class="title text-black font-bold py-2" style="font-weight: 600;">Saved</h4>
-                </div>
-              </button>
-            {% else %}
-              <button type="submit" name="save" class="bg-white list-type-banner d-inline-flex align-items-center mytext2">
-                <img src="{% static 'images/heart.png' %}" alt="" width="25px" class="mr-2" />
-                <div class="inner">
-                  <h4 class="title text-black font-bold py-2" style="font-weight: 600;">Save</h4>
-                </div>
-              </button>
-            {% endif %}
-            </div>
-          </form>
-          {% endif %}
-          <button type="button" class="bg-white list-type-banner d-inline-flex align-items-center"
+{% load static %} <!-- Load the static template tag library to manage static files -->
+{% load humanize %} <!-- Load the humanize template tag library for human-readable formatting -->
+<script src="{% static 'js/fslightbox.js' %}"></script> <!-- Include the fslightbox JavaScript file -->
+<script src="{% static 'js/tw-elements.js' %}"></script> <!-- Include the tw-elements JavaScript file -->
+<script src="{% static 'js/script.js' %}"></script> <!-- Include the script JavaScript file -->
+{% comment %} <!-- Comment block: this section is commented out -->
+<script async src="https://static.addtoany.com/menu/page.js"></script> <!-- Include the AddToAny JavaScript file asynchronously -->
+{% endcomment %} <!-- End of comment block -->
+{% include "core/smallComponents/alerts.html" %} <!-- Include the alerts.html template file from the core app -->
+  <div> <!-- Start a div container -->
+    <div class="detail-section hero"> <!-- Start a div container with class "detail-section hero" -->
+      <div class=""></div> <!-- Empty div -->
+      <div class="grid p-0 lg:p-4 hero-content text-center text-neutral-content"> <!-- Start a div container with classes "grid p-0 lg:p-4 hero-content text-center text-neutral-content" -->
+        <div class=""> <!-- Empty div -->
+          <h1 class="detail-name main-heading font-bold mytext2">{{ car.name }} {{ car.model }}</h1> <!-- Heading with class "detail-name main-heading font-bold mytext2" displaying car name and model -->
+        </div> <!-- End of div -->
+        <div class="d-flex flex-wrap justify-center snipcss-7bJsy"> <!-- Start a div container with classes "d-flex flex-wrap justify-center snipcss-7bJsy" -->
+          <a class="list-type-banner d-inline-flex align-items-center" href="#"> <!-- Anchor tag with classes "list-type-banner d-inline-flex align-items-center" and empty href attribute -->
+            <img src="{% static 'images/calendar.png' %}" alt="" width="25px" class="mr-2" /> <!-- Image tag with source from static directory and class "mr-2" -->
+            <div class="inner"> <!-- Start a div container with class "inner" -->
+              <h4 class="title font-bold" style="font-weight: 600;">{{ car.year_of_manufacture }}</h4> <!-- Heading displaying car year of manufacture -->
+            </div> <!-- End of div -->
+          </a> <!-- End of anchor tag -->
+          <!-- Similar anchor tags for displaying car specifications -->
+        </div> <!-- End of div -->
+        <div class="d-flex flex-wrap justify-center snipcss-7bJsy"> <!-- Start a div container with classes "d-flex flex-wrap justify-center snipcss-7bJsy" -->
+          {% if request.user.is_authenticated %} <!-- Check if the user is authenticated -->
+          <form style="margin: 0 10px 0 0; padding: 0;" hx-target="#save_car_div" hx-indicator="#spinner" hx-trigger="submit" hx-post="{% url 'save_car_handler' %}"> <!-- Start a form with specified attributes and actions -->
+            <input type="hidden" name="car_id" value="{{ car.id }}" /> <!-- Hidden input field containing car ID -->
+            <div id="save_car_div"> <!-- Start a div container with ID "save_car_div" -->
+            {% if car_is_saved %} <!-- Check if the car is saved -->
+              <button type="submit" name="unsave" class="bg-white list-type-banner d-inline-flex align-items-center mytext2"> <!-- Button for unsaving the car with specified classes -->
+                <img src="{% static 'images/hearted.png' %}" alt="" width="25px" class="mr-2" /> <!-- Image for unsaved heart icon -->
+                <div class="inner"> <!-- Start a div container with class "inner" -->
+                  <h4 class="title text-black font-bold py-2" style="font-weight: 600;">Saved</h4> <!-- Heading displaying "Saved" -->
+                </div> <!-- End of div -->
+              </button> <!-- End of button -->
+            {% else %} <!-- If car is not saved -->
+              <button type="submit" name="save" class="bg-white list-type-banner d-inline-flex align-items-center mytext2"> <!-- Button for saving the car with specified classes -->
+                <img src="{% static 'images/heart.png' %}" alt="" width="25px" class="mr-2" /> <!-- Image for unsaved heart icon -->
+                <div class="inner"> <!-- Start a div container with class "inner" -->
+                  <h4 class="title text-black font-bold py-2" style="font-weight: 600;">Save</h4> <!-- Heading displaying "Save" -->
+                </div> <!-- End of div -->
+              </button> <!-- End of button -->
+            {% endif %} <!-- End of if statement -->
+            </div> <!-- End of div -->
+          </form> <!-- End of form -->
+          {% endif %} <!-- End of if statement -->
+          <button type="button" class="bg-white list-type-banner d-inline-flex align-items-center" 
           data-te-toggle="modal" 
           data-te-target="#ShareModal" 
-          data-te-ripple-init data-te-ripple-color="light">
-            <img src="{% static 'images/share.png' %}" alt="" width="25px" class="mr-2" />
-            <div class="inner">
-              <h4 class="title text-black font-bold py-2 mytext2" style="font-weight: 600;">Share</h4>
-            </div>
-          </button>
-          
-        </div>
-      </div>
-    </div>
-  </div>
-  <div>
-    <style>
-      .fslightbox-source {
-        width: 90%; /* Set width to 100% of viewport width */
-        height: 90%;
-      }
-    </style>
-    <!-- TW Elements is free under AGPL, with commercial license required for specific uses. See more details: https://tw-elements.com/license/ and contact us for queries at tailwind@mdbootstrap.com -->
-    <div class="rounded-xl grid grid-cols-2 lg:grid-cols-4 gap-4 m-4">
-      <div class="card shadow-xl hover:shadow-2xl col-span-2 row-span-2 h-full w-full">
-        <a class="h-full" data-fslightbox="gallery" href="{{ car.image.url }}">
-          <img class="detail-image" src="{{ car.image.url }}" alt="{{ car.name }} {{ car.model }}" class="w-full cursor-zoom-in rounded-xl shadow-sm data-[te-lightbox-disabled]:cursor-auto" />
-        </a>
-      </div>
-      {% for c in car.images.all %}
-        <div class="card shadow-xl hover:shadow-2xl h-full w-full">
-          <a class="h-full" data-fslightbox="gallery" href="{{ c.image.url }}">
-            <img class="detail-image" src="{{ c.image.url }}" alt="{{ car.name }} {{ car.model }}" class="w-full cursor-zoom-in rounded shadow-sm data-[te-lightbox-disabled]:cursor-auto" />
-          </a>
-        </div>
-      {% endfor %}
-    </div>
-  </div>
-  <div>
-    <div class="flex justify-between align-items-center">
-      <div class="grid m-4">
-        <h1 class="mb-2 lg:mb-6 mytext text-3xl lg:text-5xl">
-          <strong id="per_price">Rs.{{ car.per_day_rent|intcomma }}</strong>
-          <small id="per_time" class="text-xl lg:text-2xl text-neutral-500">/day</small>
-        </h1>
-        {% if car.rented %}
-        <button type="button"
-        disabled 
-        style="background: #570df8; font-weight: 600;" 
+          data-te-ripple-init data-te-ripple-color="light"> 
+          <!-- Button with specified classes -->
+          <!-- Data attribute to toggle modal -->
+          <!-- Data attribute specifying target modal -->
+            <!-- Data attributes for initializing ripple effect and setting its color -->
+              <img src="{% static 'images/share.png' %}" alt="" width="25px" class="mr-2" /> <!-- Image for share icon -->
+              <div class="inner"> <!-- Start a div container with class "inner" -->
+                <h4 class="title text-black font-bold py-2 mytext2" style="font-weight: 600;">Share</h4> <!-- Heading displaying "Share" -->
+              </div> <!-- End of div -->
+            </button> <!-- End of button -->
+            
+          </div> <!-- End of div -->
+        </div> <!-- End of div -->
+      </div> <!-- End of div -->
+    </div> <!-- End of div -->
+  
+    <div> <!-- Start a div container -->
+      <style>
+        .fslightbox-source { <!-- CSS style for fslightbox source -->
+          width: 90%; /* Set width to 100% of viewport width */
+          height: 90%; <!-- Set height to 90% -->
+        }
+      </style>
+      <!-- TW Elements is free under AGPL, with commercial license required for specific uses. See more details: https://tw-elements.com/license/ and contact us for queries at tailwind@mdbootstrap.com -->
+      <div class="rounded-xl grid grid-cols-2 lg:grid-cols-4 gap-4 m-4"> <!-- Div container with specified classes for grid layout -->
+        <div class="card shadow-xl hover:shadow-2xl col-span-2 row-span-2 h-full w-full"> <!-- Div container with card class and specified shadow effect -->
+          <a class="h-full" data-fslightbox="gallery" href="{{ car.image.url }}"> <!-- Anchor tag with data attribute for fslightbox gallery and link to car image -->
+            <img class="detail-image" src="{{ car.image.url }}" alt="{{ car.name }} {{ car.model }}" class="w-full cursor-zoom-in rounded-xl shadow-sm data-[te-lightbox-disabled]:cursor-auto" /> <!-- Image tag with specified classes and attributes -->
+          </a> <!-- End of anchor tag -->
+        </div> <!-- End of div -->
+        {% for c in car.images.all %} <!-- Iterate over car images -->
+          <div class="card shadow-xl hover:shadow-2xl h-full w-full"> <!-- Div container with card class and specified shadow effect -->
+            <a class="h-full" data-fslightbox="gallery" href="{{ c.image.url }}"> <!-- Anchor tag with data attribute for fslightbox gallery and link to car image -->
+              <img class="detail-image" src="{{ c.image.url }}" alt="{{ car.name }} {{ car.model }}" class="w-full cursor-zoom-in rounded shadow-sm data-[te-lightbox-disabled]:cursor-auto" /> <!-- Image tag with specified classes and attributes -->
+            </a> <!-- End of anchor tag -->
+          </div> <!-- End of div -->
+        {% endfor %} <!-- End of for loop -->
+      </div> <!-- End of div -->
+    </div> <!-- End of div -->
+  
+  <div> <!-- Start a div container -->
+    <div class="flex justify-between align-items-center"> <!-- Div container with flex layout, justifying content between and aligning items center -->
+      <div class="grid m-4"> <!-- Div container with grid layout and margin 4 units -->
+        <h1 class="mb-2 lg:mb-6 mytext text-3xl lg:text-5xl"> <!-- Heading with specified classes for styling -->
+          <strong id="per_price">Rs.{{ car.per_day_rent|intcomma }}</strong> <!-- Displaying car per day rent -->
+          <small id="per_time" class="text-xl lg:text-2xl text-neutral-500">/day</small> <!-- Small text displaying "/day" -->
+        </h1> <!-- End of heading -->
+        {% if car.rented %} <!-- Check if car is rented -->
+        <button type="button"  {% comment %} <!-- Button type --> {% endcomment %}
+        disabled  {% comment %} <!-- Button is disabled --> {% endcomment %}
+        style="background: #570df8; font-weight: 600;" {% comment %} <!-- Inline style for background color and font weight --> {% endcomment %}
         class="inline-block rounded px-4 lg:px-6 pb-2 pt-2.5 text-sm lg:text-lg uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
-        >Already in Rent</button>
-        {% else %}
+        >Already in Rent</button> <!-- Button text -->
+        {% else %} <!-- If car is not rented -->
         <button type="button" 
-        data-te-ripple-init 
-        data-te-ripple-color="light" 
-        data-te-toggle="modal" 
-        data-te-target="#PriceModal"
-        style="background: #570df8; font-weight: 600;" 
+        data-te-ripple-init {% comment %} <!-- Data attribute for initializing ripple effect --> {% endcomment %}
+        data-te-ripple-color="light" {% comment %} <!-- Data attribute for ripple color --> {% endcomment %}
+        data-te-toggle="modal" {% comment %} <!-- Data attribute for toggling modal --> {% endcomment %}
+        data-te-target="#PriceModal" {% comment %} <!-- Data attribute specifying target modal --> {% endcomment %}
+        style="background: #570df8; font-weight: 600;" {% comment %} <!-- Inline style for background color and font weight --> {% endcomment %}
         class="inline-block rounded px-4 lg:px-6 pb-2 pt-2.5 text-sm lg:text-lg uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]">
-        Rent Car</button>
-        {% endif %}
+        Rent Car</button> <!-- Button text -->
+        {% endif %} <!-- End of if statement -->
+      </div> <!-- End of div -->
+      <div class="mr-4"> <!-- Div container with margin right 4 units -->
+        <a href="" hx-get="{% url "brand_details" car.brand.name %}" hx-push-url="{% url "brand_details" car.brand.name %}" onclick="scrollToTop('{{car.brand.name}}')" hx-target="#core-change"> <!-- Anchor tag with specified attributes and onclick event -->
+          <img class="by-brand h-[120px] w-[120px] lg:w-[150px] lg:h-[150px] shadow-xl hover:shadow-2xl" src="{{ car.brand.logo.url }}" alt="" /></a> <!-- Image tag with specified classes and source -->
+      </div> <!-- End of div -->
+    </div> <!-- End of div -->
+</div> <!-- End of div -->
+
+    <!-- This div represents the modal for renting -->
+<div data-te-modal-init class="fixed left-0 top-0 z-[1055] hidden h-full w-full overflow-y-auto overflow-x-hidden outline-none" id="PriceModal" tabindex="-1" aria-labelledby="PeiceModalTitle" aria-modal="true" role="dialog">
+  <!-- This div is a reference for the modal dialog -->
+  <div data-te-modal-dialog-ref class="m-4 pointer-events-none relative flex min-h-[calc(100%-1rem)] w-auto translate-y-[-50px] items-center opacity-0 transition-all duration-300 ease-in-out min-[576px]:mx-auto min-[576px]:mt-7 min-[576px]:min-h-[calc(100%-3.5rem)] min-[576px]:max-w-[500px]">
+    <!-- This div contains the content of the modal -->
+    <div class="p-4 pointer-events-auto relative flex w-full flex-col rounded-md border-none bg-white bg-clip-padding text-current shadow-lg outline-none">
+      <!-- This div contains the header of the modal -->
+      <div class="flex flex-shrink-0 items-center justify-between rounded-t-md">
+        <!-- Modal title -->
+        <h5 class="text-xl text-center m-4 font-bold mytext2 font-bold leading-normal text-neutral-800" id="exampleModalCenterTitle">You can choose rent for days, weeks or months.</h5>
       </div>
-      <div class="mr-4">
-        <a href="" hx-get="{% url "brand_details" car.brand.name %}" hx-push-url="{% url "brand_details" car.brand.name %}" onclick="scrollToTop('{{car.brand.name}}')" hx-target="#core-change">
-          <img class="by-brand h-[120px] w-[120px] lg:w-[150px] lg:h-[150px] shadow-xl hover:shadow-2xl" src="{{ car.brand.logo.url }}" alt="" /></a>
-      </div>
+      <!-- This select element allows users to choose the rent duration -->
+      <select data-te-select-init
+        data-te-select-placeholder="Select Rent"
+        id="priceSelect"
+        hx-get="{% url "total_rent" %}"
+        name="selected_value"
+        hx-trigger="change"
+        hx-target="#totalRent">
+        <!-- This optgroup groups options for renting days -->
+        <optgroup label="Rent For Days">
+          <!-- These option elements represent different rental durations and prices for renting days -->
+          <option value="1_day">1 Day - Rs. {{car.per_day_rent|intcomma}}</option>
+          <option value="2_day">2 Days - Rs. {% widthratio car.per_day_rent 1 2 as rent1 %}{{rent1|intcomma}}</option>
+          <option value="3_day">3 Days - Rs. {% widthratio car.per_day_rent 1 3 as rent2 %}{{rent2|intcomma}}</option>
+          <option value="4_day">4 Days - Rs. {% widthratio car.per_day_rent 1 4 as rent3 %}{{rent3|intcomma}}</option>
+          <option value="5_day">5 Days - Rs. {% widthratio car.per_day_rent 1 5 as rent4 %}{{rent4|intcomma}}</option>
+          <option value="6_day">6 Days - Rs. {% widthratio car.per_day_rent 1 6 as rent5 %}{{rent5|intcomma}}</option>
+        </optgroup>
+        <!-- This optgroup groups options for renting weeks -->
+        <optgroup label="Rent For Weeks">
+          <!-- These option elements represent different rental durations and prices for renting weeks -->
+          <option value="1_week">1 Week - Rs. {{car.weekly_rent|intcomma}}</option>
+          <option value="2_week">2 Weeks - Rs. {% widthratio car.weekly_rent 1 2 as rent6 %}{{rent6|intcomma}}</option>
+          <option value="3_week">3 Weeks - Rs. {% widthratio car.weekly_rent 1 3 as rent7 %}{{rent7|intcomma}}</option>
+        </optgroup>
+        <!-- This optgroup groups options for renting months -->
+        <optgroup label="Rent For Months">
+          <!-- These option elements represent different rental durations and prices for renting months -->
+          <option value="1_month">1 Month - Rs. {{car.monthly_rent|intcomma}}</option>
+          <option value="2_month">2 Month - Rs. {% widthratio car.monthly_rent 1 2 as rent8 %}{{rent8|intcomma}}</option>
+          <option value="3_month">3 Month - Rs. {% widthratio car.monthly_rent 1 3 as rent9 %}{{rent9|intcomma}}</option>
+          <option value="6_month">6 Month - Rs. {% widthratio car.monthly_rent 1 6 as rent10 %}{{rent10|intcomma}}</option>
+          <option value="12_month">12 Month - Rs. {% widthratio car.monthly_rent 1 12 as rent11 %}{{rent11|intcomma}}</option>
+        </optgroup>
+      </select>
+      <!-- This form element submits the selected rent duration -->
+      <form class="m-0" action="{% url "rent_request_form" %}" method="post">
+        <!-- CSRF token for form submission -->
+        {% csrf_token %}
+        <!-- Hidden input field to send the ID of the selected car -->
+        <input type="hidden" name="car_id" value="{{car.id}}">
+        <!-- This div will display the total rent -->
+        <div id="totalRent" class="grid justify-center"></div>
+      </form>
     </div>
-    <!-- renting modal -->
-    <div data-te-modal-init class="fixed left-0 top-0 z-[1055] hidden h-full w-full overflow-y-auto overflow-x-hidden outline-none" id="PriceModal" tabindex="-1" aria-labelledby="PeiceModalTitle" aria-modal="true" role="dialog">
-      <div data-te-modal-dialog-ref class="m-4 pointer-events-none relative flex min-h-[calc(100%-1rem)] w-auto translate-y-[-50px] items-center opacity-0 transition-all duration-300 ease-in-out min-[576px]:mx-auto min-[576px]:mt-7 min-[576px]:min-h-[calc(100%-3.5rem)] min-[576px]:max-w-[500px]">
-        <div class="p-4 pointer-events-auto relative flex w-full flex-col rounded-md border-none bg-white bg-clip-padding text-current shadow-lg outline-none">
-          <div class="flex flex-shrink-0 items-center justify-between rounded-t-md">
-            <!-- Modal title -->
-            <h5 class="text-xl text-center m-4 font-bold mytext2 font-bold leading-normal text-neutral-800" 
-            id="exampleModalCenterTitle">You can choose rent for days, weeks or months.</h5>
-          </div>
-          <select data-te-select-init
-            data-te-select-placeholder="Select Rent"
-            id="priceSelect"
-            hx-get="{% url "total_rent" %}"
-            name="selected_value"
-            hx-trigger="change"
-            hx-target="#totalRent">
-            <optgroup label="Rent For Days">
-              <option value="1_day">1 Day - Rs. {{car.per_day_rent|intcomma}}</option>
-              <option value="2_day">2 Days - Rs. {% widthratio car.per_day_rent 1 2 as rent1 %}{{rent1|intcomma}}</option>
-              <option value="3_day">3 Days - Rs. {% widthratio car.per_day_rent 1 3 as rent2 %}{{rent2|intcomma}}</option>
-              <option value="4_day">4 Days - Rs. {% widthratio car.per_day_rent 1 4 as rent3 %}{{rent3|intcomma}}</option>
-              <option value="5_day">5 Days - Rs. {% widthratio car.per_day_rent 1 5 as rent4 %}{{rent4|intcomma}}</option>
-              <option value="6_day">6 Days - Rs. {% widthratio car.per_day_rent 1 6 as rent5 %}{{rent5|intcomma}}</option>
-            </optgroup>
-            <optgroup label="Rent For Weeks">
-              <option value="1_week">1 Week - Rs. {{car.weekly_rent|intcomma}}</option>
-              <option value="2_week">2 Weeks - Rs. {% widthratio car.weekly_rent 1 2 as rent6 %}{{rent6|intcomma}}</option>
-              <option value="3_week">3 Weeks - Rs. {% widthratio car.weekly_rent 1 3 as rent7 %}{{rent7|intcomma}}</option>
-            </optgroup>
-            <optgroup label="Rent For Months">
-              <option value="1_month">1 Month - Rs. {{car.monthly_rent|intcomma}}</option>
-              <option value="2_month">2 Month - Rs. {% widthratio car.monthly_rent 1 2 as rent8 %}{{rent8|intcomma}}</option>
-              <option value="3_month">3 Month - Rs. {% widthratio car.monthly_rent 1 3 as rent9 %}{{rent9|intcomma}}</option>
-              <option value="6_month">6 Month - Rs. {% widthratio car.monthly_rent 1 6 as rent10 %}{{rent10|intcomma}}</option>
-              <option value="12_month">12 Month - Rs. {% widthratio car.monthly_rent 1 12 as rent11 %}{{rent11|intcomma}}</option>
-            </optgroup>
-            </select>
-            <form class="m-0" action="{% url "rent_request_form" %}" method="post">
-              {% csrf_token %}
-              <input type="hidden" name="car_id" value="{{car.id}}">
-              <div id="totalRent" class="grid justify-center">
+  </div>
+</div>
 
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
 
-  <div>
-    <ul class="mb-5 flex list-none flex-row flex-wrap border-b-0 pl-0" role="tablist" data-te-nav-ref>
-      <li role="presentation">
-        <a href="" class="my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 hover:bg-neutral-100 data-[te-nav-active]:border-primary data-[te-nav-active]:text-primary" data-te-toggle="pill" data-te-target="#tabs-home" data-te-nav-active role="tab" aria-controls="tabs-home" aria-selected="true">Specifications</a>
-      </li>
-      <li role="presentation">
-        <a href="" class="my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 hover:bg-neutral-100 data-[te-nav-active]:border-primary data-[te-nav-active]:text-primary" data-te-toggle="pill" data-te-target="#tabs-profile" role="tab" aria-controls="tabs-profile" aria-selected="false">Features</a>
-      </li>
-      <li role="presentation">
-        <a href="" class="my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 hover:bg-neutral-100 data-[te-nav-active]:border-primary data-[te-nav-active]:text-primary" data-te-toggle="pill" data-te-target="#tabs-messages" role="tab" aria-controls="tabs-messages" aria-selected="false">Description</a>
-      </li>
-    </ul>
+<div> <!-- Start of div container -->
+  <ul class="mb-5 flex list-none flex-row flex-wrap border-b-0 pl-0" role="tablist" data-te-nav-ref> <!-- Unordered list with specified classes and role attribute -->
+    <li role="presentation"> <!-- List item with role attribute -->
+      <a href="" class="my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 hover:bg-neutral-100 data-[te-nav-active]:border-primary data-[te-nav-active]:text-primary" data-te-toggle="pill" data-te-target="#tabs-home" data-te-nav-active role="tab" aria-controls="tabs-home" aria-selected="true">Specifications</a> <!-- Anchor tag with specified classes, data attributes, and role attribute -->
+    </li>
+    <li role="presentation"> <!-- List item with role attribute -->
+      <a href="" class="my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 hover:bg-neutral-100 data-[te-nav-active]:border-primary data-[te-nav-active]:text-primary" data-te-toggle="pill" data-te-target="#tabs-profile" role="tab" aria-controls="tabs-profile" aria-selected="false">Features</a> <!-- Anchor tag with specified classes, data attributes, and role attribute -->
+    </li>
+    <li role="presentation"> <!-- List item with role attribute -->
+      <a href="" class="my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 hover:bg-neutral-100 data-[te-nav-active]:border-primary data-[te-nav-active]:text-primary" data-te-toggle="pill" data-te-target="#tabs-messages" role="tab" aria-controls="tabs-messages" aria-selected="false">Description</a> <!-- Anchor tag with specified classes, data attributes, and role attribute -->
+    </li>
+  </ul> <!-- End of unordered list -->
+  <div class="grid grid-cols-1 lg:grid-cols-5 m-4 lg:gap-4"> <!-- Div container with grid layout and specified classes -->
+    <div class="col-span-3 mb-6"> <!-- Div container with specified classes and column span 3 -->
+      <div class="hidden opacity-100 transition-opacity duration-150 ease-linear data-[te-tab-active]:block" id="tabs-home" role="tabpanel" aria-labelledby="tabs-home-tab" data-te-tab-active> <!-- Div container with specified classes, data attributes, and role attribute -->
+        <h1 class="font-bold text-2xl mytext2 mb-6">Specifications</h1> <!-- Heading with specified classes -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 lg:gap-4"> <!-- Div container with grid layout and specified classes -->
+          <div> <!-- Start of div container -->
+            <ul> <!-- Start of unordered list -->
+              <li class="flex justify-between mb-4"> <!-- List item with specified classes -->
+                <div class="flex"> <!-- Start of flex container -->
+                  <img src="{% static 'images/meter.png' %}" width="30px" alt="" /> <!-- Image tag with specified source and width -->
+                  <p class="ml-2">Max Speed</p> <!-- Paragraph tag with specified class and margin -->
+                </div> <!-- End of flex container -->
+                <div style="width: 30%;"> <!-- Div container with inline style -->
+                  <p> <!-- Paragraph tag -->
+                    {{ car.specifications.max_speed_in_km_per_h }} kmh<sup>-1</sup> <!-- Displaying car specification -->
+                  </p> <!-- End of paragraph tag -->
+                </div> <!-- End of div container -->
+              </li> <!-- End of list item -->
+              <li class="flex justify-between mb-4"> <!-- List item with specified classes -->
+                <div class="flex"> <!-- Start of flex container -->
+                  <img src="{% static 'images/gas-station.png' %}" width="30px" alt="" /> <!-- Image tag with specified source and width -->
+                  <p class="ml-2">Fuel Type</p> <!-- Paragraph tag with specified class and margin -->
+                </div> <!-- End of flex container -->
+                <div style="width: 30%;"> <!-- Div container with inline style -->
+                  <p>{{ car.specifications.fuel_type }}</p> <!-- Displaying car specification -->
+                </div> <!-- End of div container -->
+              </li> <!-- End of list item -->
+              <li class="flex justify-between mb-4"> <!-- List item with specified classes -->
+                <div class="flex"> <!-- Start of flex container -->
+                  <img src="{% static 'images/date-calendar.png' %}" width="30px" alt="" /> <!-- Image tag with specified source and width -->
+                  <p class="ml-2">Year</p> <!-- Paragraph tag with specified class and margin -->
+                </div> <!-- End of flex container -->
+                <div style="width: 30%;"> <!-- Div container with inline style -->
+                  <p>{{ car.year_of_manufacture }}</p> <!-- Displaying car specification -->
+                </div> <!-- End of div container -->
+              </li> <!-- End of list item -->
+              <li class="flex justify-between mb-4"> <!-- List item with specified classes -->
+                <div class="flex"> <!-- Start of flex container -->
+                  <img src="{% static 'images/car-engine.png' %}" width="30px" alt="" /> <!-- Image tag with specified source and width -->
+                  <p class="ml-2">Transmission</p> <!-- Paragraph tag with specified class and margin -->
+                </div> <!-- End of flex container -->
+                <div style="width: 30%;"> <!-- Div container with inline style -->
+                  <p>{{ car.specifications.transmission }}</p> <!-- Displaying car specification -->
+                </div> <!-- End of div container -->
+              </li> <!-- End of list item -->
+            
 
-    <div class="grid grid-cols-1 lg:grid-cols-5 m-4 lg:gap-4">
-      <div class="col-span-3 mb-6">
-        <div class="hidden opacity-100 transition-opacity duration-150 ease-linear data-[te-tab-active]:block" id="tabs-home" role="tabpanel" aria-labelledby="tabs-home-tab" data-te-tab-active>
-          <h1 class="font-bold text-2xl mytext2 mb-6">Specifications</h1>
-          <div class="grid grid-cols-1 lg:grid-cols-2 lg:gap-4">
-            <div>
-              <ul>
-                <li class="flex justify-between mb-4">
-                  <div class="flex">
-                    <img src="{% static 'images/meter.png' %}" width="30px" alt="" />
-                    <p class="ml-2">Max Speed</p>
-                  </div>
-                  <div style="width: 30%;">
-                    <p>
-                      {{ car.specifications.max_speed_in_km_per_h }} kmh<sup>-1</sup>
-                    </p>
-                  </div>
-                </li>
-                <li class="flex justify-between mb-4">
-                  <div class="flex">
-                    <img src="{% static 'images/gas-station.png' %}" width="30px" alt="" />
-                    <p class="ml-2">Fuel Type</p>
-                  </div>
-                  <div style="width: 30%;">
-                    <p>{{ car.specifications.fuel_type }}</p>
-                  </div>
-                </li>
-                <li class="flex justify-between mb-4">
-                  <div class="flex">
-                    <img src="{% static 'images/date-calendar.png' %}" width="30px" alt="" />
-                    <p class="ml-2">Year</p>
-                  </div>
-                  <div style="width: 30%;">
-                    <p>{{ car.year_of_manufacture }}</p>
-                  </div>
-                </li>
-                <li class="flex justify-between mb-4">
-                  <div class="flex">
-                    <img src="{% static 'images/car-engine.png' %}" width="30px" alt="" />
-                    <p class="ml-2">Transmission</p>
-                  </div>
-                  <div style="width: 30%;">
-                    <p>{{ car.specifications.transmission }}</p>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <ul>
-                <li class="flex justify-between mb-4">
-                  <div class="flex">
-                    <img src="{% static 'images/terms-and-conditions.png' %}" width="30px" alt="" />
-                    <p class="ml-2">Condition</p>
-                  </div>
-                  <div style="width: 30%;">
-                    <p>
-                      {% if car.specifications.condition > 9 %}
-                        New
-                      {% else %}
-                        Used
-                      {% endif %}
-                    </p>
-                  </div>
-                </li>
                 <li class="flex justify-between mb-4">
                   <div class="flex">
                     <img src="{% static 'images/car-engine-size.png' %}" width="30px" alt="" />

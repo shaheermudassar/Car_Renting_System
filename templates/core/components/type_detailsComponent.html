@@ -1,22 +1,35 @@
-{% load static %}
-{% load humanize %}
+{% load static %}  <!-- Load static files like CSS and JavaScript -->
+{% load humanize %}  <!-- Load humanize template tag library for formatting numbers and dates -->
+
+<!-- Include necessary JavaScript files -->
 <script src="{% static 'js/script.js' %}"></script>
 <script src="{% static 'js/tw-elements.js' %}"></script>
+
+<!-- Include alerts component -->
 {% include "core/smallComponents/alerts.html" %}
+
+<!-- Hero section for displaying type details -->
 <section>
-    <div class="brand-section hero" style="background-image: url({{category.logo.url}});">
-      <div class="grid p-4 align-items-center gap-2 text-center text-neutral-content" style="background: #00000080; width: 100%; height: 100%;">
-        <h1 class="detail-name main-heading font-bold mytext2 text-6xl lg:text-8xl">{{category.name}}</h1>
-        <p class="text-[14px] lg:text-[18px]">{{category.description}}</p>
-      </div>
+  <div class="brand-section hero" style="background-image: url({{category.logo.url}});">
+    <!-- Overlay with grid layout for text content -->
+    <div class="grid p-4 align-items-center gap-2 text-center text-neutral-content" style="background: #00000080; width: 100%; height: 100%;">
+      <!-- Heading displaying type name -->
+      <h1 class="detail-name main-heading font-bold mytext2 text-6xl lg:text-8xl">{{category.name}}</h1>
+      <!-- Description of the type -->
+      <p class="text-[14px] lg:text-[18px]">{{category.description}}</p>
     </div>
-  </section>
-  <section>
-    <div class="mb-6">
-      <div class="listing-cars grid md:grid-cols-2 lg:grid-cols-4 gap-4 m-4">
-        {% for car in cars %}
-          {% include 'core/smallComponents/productComponent.html' %}
-        {% endfor %}
-      </div>
+  </div>
+</section>
+
+<!-- Section for displaying cars belonging to the type -->
+<section>
+  <div class="mb-6">
+    <!-- Grid layout for displaying cars -->
+    <div class="listing-cars grid md:grid-cols-2 lg:grid-cols-4 gap-4 m-4">
+      {% for car in cars %}
+        <!-- Include product component for each car -->
+        {% include 'core/smallComponents/productComponent.html' %}
+      {% endfor %}
     </div>
-  </section>
+  </div>
+</section>

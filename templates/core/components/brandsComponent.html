@@ -1,22 +1,57 @@
-{% load static %}
-{% load humanize %}
-<script src="{% static 'js/tw-elements.js' %}"></script>
-<script src="{% static 'js/script.js' %}"></script>
-{% include "core/smallComponents/alerts.html" %}
+{% load static %}  <!-- Load the static template tags for serving static files -->
+{% load humanize %}  <!-- Load the humanize template tags for human-readable representations of data -->
+<script src="{% static 'js/tw-elements.js' %}"></script>  <!-- Include the tw-elements.js JavaScript file -->
+<script src="{% static 'js/script.js' %}"></script>  <!-- Include the script.js JavaScript file -->
+{% include "core/smallComponents/alerts.html" %}  <!-- Include the alerts.html template for displaying alerts -->
+
 <section>
-    <div class="brands-section hero">
-      <div class=""></div>
-      <div class="grid hero-content text-center text-neutral-content">
-        <h1 class="detail-name main-heading font-bold mytext2 text-6xl lg:text-8xl">Brands</h1>
-      </div>
+    <!-- Start of brand section -->
+    <div class="brand-section hero" style="background-image: url({{brand.logo.url}});">
+        <!-- Hero section for brand with background image -->
+        <div class="grid p-4 align-items-center gap-2 text-center text-neutral-content" style="background: #00000080; width: 100%; height: 100%;">
+            <!-- Grid container for content with background -->
+            <h1 class="detail-name main-heading font-bold mytext2 text-6xl lg:text-8xl">{{brand.name}}</h1>
+            <!-- Display the brand name -->
+            <p class="text-[14px] lg:text-[18px]">{{brand.description}}</p>
+            <!-- Display the brand description -->
+        </div>
     </div>
-  </section>
-  <section>
+    <!-- End of brand section -->
+</section>
+
+<section>
+    <!-- Start of car listing section -->
     <div class="mb-6">
-      <div class="listing-cars grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 m-4">
-        {% for brand in brands %}
-          {% include 'core/smallComponents/brandComponent.html' %}
-        {% endfor %}
-      </div>
+        <!-- Margin bottom container -->
+        <div class="listing-cars grid md:grid-cols-2 lg:grid-cols-4 gap-4 m-4">
+            <!-- Grid container for listing cars -->
+            {% for car in cars %}
+                <!-- Start of looping through each car -->
+                {% include 'core/smallComponents/productComponent.html' %}
+                <!-- Including the productComponent.html template for each car -->
+            {% endfor %}
+            <!-- End of looping through each car -->
+        </div>
     </div>
-  </section>
+</section>
+<!-- End of car listing section -->
+
+
+{% comment %} Explanation of Tailwind CSS classes:
+
+  brand-section: Defines the layout for the brand section.
+  hero: Represents a hero section, typically with a large background image.
+  grid: Creates a grid layout for the content.
+  p-4: Adds padding of 4 units (1rem) to all sides of the element.
+  align-items-center: Aligns items vertically at the center.
+  gap-2: Sets the gap between grid items to 2 units (0.5rem).
+  text-center: Aligns text content horizontally at the center.
+  text-neutral-content: Sets the text color to a neutral content color defined by the theme.
+  text-[14px] lg:text-[18px]: Sets the font size to 14px on small screens and 18px on large screens.
+  listing-cars: Styles the container for listing cars.
+  md:grid-cols-2 lg:grid-cols-4: Defines the number of columns in the grid layout for medium and large screens.
+  gap-4: Sets the gap between grid items to 4 units (1rem).
+  m-4: Adds margin of 4 units (1rem) to all sides of the element.
+  mb-6: Adds margin-bottom of 6 units (1.5rem) to the element.
+
+{% endcomment %}

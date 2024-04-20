@@ -1,20 +1,33 @@
-{% load static %}
-{% load humanize %}
+{% load static %}  <!-- Load static files like CSS and JavaScript -->
+{% load humanize %}  <!-- Load humanize template tag library for formatting numbers and dates -->
+
+<!-- Include necessary JavaScript files -->
 <script src="{% static 'js/tw-elements.js' %}"></script>
 <script src="{% static 'js/script.js' %}"></script>
+
+<!-- Include alerts component -->
 {% include "core/smallComponents/alerts.html" %}
+
+<!-- Hero section for displaying the title -->
 <section>
     <div class="brands-section hero">
+      <!-- Empty div for background styling -->
       <div class=""></div>
+      <!-- Grid layout for hero content -->
       <div class="grid hero-content text-center text-neutral-content">
+        <!-- Heading displaying "Types" -->
         <h1 class="detail-name main-heading font-bold mytext2 text-6xl lg:text-8xl">Types</h1>
       </div>
     </div>
   </section>
-  <section>
+
+<!-- Section for displaying types -->
+<section>
     <div class="mb-6">
+      <!-- Grid layout for displaying types -->
       <div class="listing-cars grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 m-4">
         {% for type in types %}
+          <!-- Include type component for each type -->
           {% include 'core/smallComponents/typeComponent.html' %}
         {% endfor %}
       </div>

@@ -1,12 +1,19 @@
-{% load static %}
-{% load humanize %}
+{% load static %}  <!-- Load static files like CSS and JavaScript -->
+{% load humanize %}  <!-- Load humanize template filter to format numbers -->
+
 <div class="card m-4 shadow-xl hover:shadow-2xl transition-all">
+    <!-- Link to brand details page -->
     <a hx-get="{% url "brand_details" brand.name %}" 
     href=""
     hx-push-url="{% url "brand_details" brand.name %}" 
     onclick="scrollToTop('{{brand.name}}')" 
-    hx-target="#core-change"><img class="brand-image" src="{{brand.logo.url}}" alt="{{brand.name}} logo"></a>
+    hx-target="#core-change">
+        <!-- Brand logo -->
+        <img class="brand-image" src="{{brand.logo.url}}" alt="{{brand.name}} logo">
+    </a>
+    
     <div class="brand-card-info">
-      <h3 class="mytext2 text-xl">{{brand.cars.all|length|intcomma}} Cars</h3>
+        <!-- Display number of cars for the brand -->
+        <h3 class="mytext2 text-xl">{{brand.cars.all|length|intcomma}} Cars</h3>
     </div>
-  </div>
+</div>

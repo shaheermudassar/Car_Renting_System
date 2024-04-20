@@ -1,44 +1,63 @@
-{% load static %}
-{% load humanize %}
+{% load static %}  <!-- Load static files like CSS and JavaScript -->
+{% load humanize %}  <!-- Load humanize template tag library for formatting numbers and dates -->
+
+<!-- Include necessary JavaScript files -->
 <script src="{% static 'js/tw-elements.js' %}"></script>
 <script src="{% static 'js/script.js' %}"></script>
+
+<!-- Include alerts component -->
 {% include "core/smallComponents/alerts.html" %}
+
+<!-- Hero section with background image -->
 <div>
+  <!-- Check if desktop listing image exists -->
   {% if customization.listing_image_desktop %}
+    <!-- Check if mobile listing image exists -->
     {% if customization.listing_image_mobile %}
-    <div class="bg-[url('{{customization.listing_image_mobile.url}}')] lg:bg-[url('{{customization.listing_image_desktop.url}}')] bg-no-repeat bg-cover hero h-[40vh] lg:h-[50vh]">
+      <!-- Use mobile listing image as background on mobile, desktop image on desktop -->
+      <div class="bg-[url('{{customization.listing_image_mobile.url}}')] lg:bg-[url('{{customization.listing_image_desktop.url}}')] bg-no-repeat bg-cover hero h-[40vh] lg:h-[50vh]">
     {% else %}
-    <div class="bg-[url('{{customization.listing_image_desktop.url}}')] bg-no-repeat bg-cover hero h-[40vh] lg:h-[50vh]">
+      <!-- Use desktop listing image as background -->
+      <div class="bg-[url('{{customization.listing_image_desktop.url}}')] bg-no-repeat bg-cover hero h-[40vh] lg:h-[50vh]">
     {% endif %}
   {% else %}
-  <div class="listing-section hero">
+    <!-- Fallback to default hero section styling if no custom image provided -->
+    <div class="listing-section hero">
   {% endif %}
+    <!-- Overlay to darken background image -->
     <div class="absolute bg-[#00000070] w-full h-[40vh] lg:h-[50vh]"></div>
+    <!-- Hero content -->
     <div class="grid hero-content text-center text-neutral-content">
       <div class="p-3 grid justify-center align-items-center filter-bar bg-white rounded-xl lg:rounded-full">
+        <!-- Search form -->
+        {% comment %} Fetch listing data via AJAX when form is submitted  {% endcomment %}
         <form class="m-0"
-        hx-get="{% url 'listing' %}" 
-        hx-trigger="submit" 
-        onsubmit="scrollToTop('Filtering...')" 
-        hx-target="#core-change">
+              hx-get="{% url 'listing' %}"  
+              hx-trigger="submit" 
+              onsubmit="scrollToTop('Filtering...')"  
+              hx-target="#core-change">  
+              <!-- Scroll to top when form is submitted -->
+              <!-- Replace content of #core-change div with fetched data -->
           <div class="grid gap-3 grid-cols-2 lg:grid-cols-5">
-            {{ form_s.name_first }}
-            {{ form_s.color }}
-            {{ form_s.brand }}
-            {{ form_s.year_of_manufacture }}
-            <button class="col-span-2 lg:col-span-1 py-2 rounded-lg lg:rounded-l-[200rem] lg:rounded-r-full" style="background-color: #570df8;" type="submit" class="btn">Filter</button>
+            {{ form_s.name_first }}  <!-- Render form field for first name -->
+            {{ form_s.color }}  <!-- Render form field for color -->
+            {{ form_s.brand }}  <!-- Render form field for brand -->
+            {{ form_s.year_of_manufacture }}  <!-- Render form field for year of manufacture -->
+            <button class="col-span-2 lg:col-span-1 py-2 rounded-lg lg:rounded-l-[200rem] lg:rounded-r-full" style="background-color: #570df8;" type="submit" class="btn">Filter</button>  <!-- Submit button to trigger form submission -->
           </div>
         </form>
       </div>
     </div>
   </div>
 </div>
+
+<!-- Vehicle listing section -->
 <div>
   <div class="pb-0 p-4 md:grid lg:flex justify-between align-items-center">
     {% if search %}
-      <h1 class="mytext text-4xl text-black pb-2">Searches for {{ search }}</h1>
+      <h1 class="mytext text-4xl text-black pb-2">Searches for {{ search }}</h1>  <!-- Display search query if provided -->
     {% else %}
-      <h1 class="mytext text-4xl text-black pb-2">Explore Vehicles</h1>
+      <h1 class="mytext text-4xl text-black pb-2">Explore Vehicles</h1>  <!-- Default heading if no search query provided -->
     {% endif %}
   </div>
 
@@ -46,17 +65,21 @@
     <div class="listing-cars grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 m-4">
       {% if filtered_cars %}
         {% for car in filtered_cars %}
+          <!-- Include product component for each filtered car -->
           {% include 'core/smallComponents/productComponent.html' %}
         {% endfor %}
       {% else %}
+      <!-- Display message if no results found -->
       <div class="lg:col-span-4">
         <h1 class="text-4xl mytext text-center my-24 lg:my-10">No results found</h1>
       </div>
       {% endif %}
     </div>
+    <!-- Pagination links -->
     <div class="grid justify-center">
       <span class="step-links">
         {% if filtered_cars.has_previous %}
+          <!-- Display link to previous page if available -->
           <a class="btn" href="" 
           hx-get="?page={{ filtered_cars.previous_page_number }}" 
           hx-push-url="?page={{ filtered_cars.previous_page_number }}"
@@ -65,9 +88,11 @@
           >&laquo; previous</a>
         {% endif %}
 
+        <!-- Display current page number -->
         <span class="current btn btn-outline">Page {{ filtered_cars.number }} of {{ filtered_cars.paginator.num_pages }}.</span>
 
         {% if filtered_cars.has_next %}
+          <!-- Display link to next page if available -->
           <a class="btn" href="" 
           hx-get="?page={{ filtered_cars.next_page_number }}" 
           hx-push-url="?page={{ filtered_cars.next_page_number }}"
@@ -77,5 +102,4 @@
       </span>
     </div>
   </div>
-
 </div>

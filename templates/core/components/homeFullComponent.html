@@ -1,27 +1,36 @@
 {% load static %}
 {% load humanize %}
-<script>
-    
-      var header = document.querySelector('header');
-    
-      // Set initial style based on the scroll position
-      if (window.scrollY > 10) {
-        header.classList.add('scrolled');
-      } else {
-        header.classList.remove('scrolled');
-      }
-    
-      window.addEventListener('scroll', function () {
-        if (window.scrollY > 10) {
-          header.classList.add('scrolled');
-        } else {
-          header.classList.remove('scrolled');
-        }
-      });
 
-  </script>
+<!-- JavaScript for handling header scrolling -->
+<script>
+  // Get the header element
+  var header = document.querySelector('header');
+
+  // Set initial style based on the scroll position
+  if (window.scrollY > 10) {
+    header.classList.add('scrolled');
+  } else {
+    header.classList.remove('scrolled');
+  }
+
+  // Add event listener for scroll event
+  window.addEventListener('scroll', function () {
+    // Add or remove 'scrolled' class based on scroll position
+    if (window.scrollY > 10) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  });
+</script>
+
+<!-- Include header -->
 {% include 'core/smallComponents/header.html' %}
+
+<!-- Container for changing content -->
 <div id="core-change">
-    {% include "core/components/homeComponent.html" %}
-  </div>
+  {% include "core/components/homeComponent.html" %}
+</div>
+
+<!-- Include footer -->
 {% include 'core/smallComponents/footer.html' %}

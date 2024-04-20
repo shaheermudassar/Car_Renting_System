@@ -14,18 +14,21 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path, include
-from django.conf import settings
-from django.conf.urls.static import static
+# Importing required modules from Django
+from django.contrib import admin  # Module for Django admin interface
+from django.urls import path, include  # Module for defining URL patterns
+from django.conf import settings  # Module for accessing project settings
+from django.conf.urls.static import static  # Module for serving static files during development
 
+# URL patterns for the project
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('accounts/', include('allauth.urls')),
-    path('user/', include('users.urls')),
-    path('rent/', include('rent.urls')),
-    path('ckeditor/', include("ckeditor_uploader.urls")),
-    path('', include("core.urls")),
+    path('admin/', admin.site.urls),  # URL pattern for accessing Django admin interface
+    path('accounts/', include('allauth.urls')),  # URL pattern for user authentication
+    path('user/', include('users.urls')),  # URL pattern for user-related functionalities
+    path('rent/', include('rent.urls')),  # URL pattern for rent-related functionalities
+    path('ckeditor/', include("ckeditor_uploader.urls")),  # URL pattern for CKEditor file uploader
+    path('', include("core.urls")),  # URL pattern for core functionalities
 ]
 
+# Adding URL patterns for serving media files during development
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

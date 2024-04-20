@@ -9,6 +9,7 @@ Django==5.0.3
 django-allauth==0.61.1
 django-allauth-ui==0.2.2
 django-ckeditor==6.7.1
+django-cloudinary-storage==0.3.0
 django-filter==24.1
 django-htmx==1.17.3
 django-jazzmin==2.6.1

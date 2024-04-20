@@ -1,8 +1,11 @@
-{% extends 'core/base.html' %}
-{% load static %}
-{% load humanize %}
-{% block body_core %}
+{% extends 'core/base.html' %} <!-- Extending the base.html template -->
+
+{% load static %} <!-- Loading the static template tag library -->
+{% load humanize %} <!-- Loading the humanize template tag library -->
+
+{% block body_core %} <!-- Defining a block named body_core -->
   <div id="core-change">
-    {% include "core/components/contactComponent.html" %}
+    {% include "core/components/contactComponent.html" %} <!-- Including the contactComponent.html template -->
   </div>
-{% endblock %}
+{% endblock %} <!-- Ending the body_core block -->
+

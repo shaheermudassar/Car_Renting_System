@@ -10,11 +10,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
-from pathlib import Path
-import os
-import dj_database_url
+from pathlib import Path # already imported library for settings
+import os # importing os module for using some path functions
+import dj_database_url # this module will help linking external databses through links
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent # already specified the base directory for project
 
 
 # Quick-start development settings - unsuitable for production
@@ -26,66 +27,75 @@ SECRET_KEY = 'django-insecure-%f3z_ue)bvn^40%2s$aklvq!gktn!6f(h-w311^jx$%s37j%x2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
-# CSRF_COOKIE_SECURE = False 
-# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-# Application definition
+ALLOWED_HOSTS = ['*'] # all the domains and host on which this project can run, '*' means that it can run on all domains
 
+# bellow are all the installed apps for this project:
 INSTALLED_APPS = [
-    "jazzmin",
+    "jazzmin", # for admin panel theme
+    # bellow are the already existing apps for the django project:
     "django.contrib.humanize",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'widget_tweaks',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.google',
-    "allauth_ui",
-    'core',
-    'userauths',
-    'users',
-    'cars',
-    'rent',
-    'ckeditor',
-    'django_filters',
-    "django_htmx",
+    # these are the apps added duting development:
+
+    # third party apps:
+    'cloudinary_storage', # for providing modules to handle the storage of media files in cloudinary.com
+    'django.contrib.staticfiles', # profviding modules for handiling static files.
+    'cloudinary', # provides further modules for cloudinary to be used in python frameworks.
+    'widget_tweaks', # usedd in django forms customization.
+    'allauth', # the best library to provude ready made authentication modules.
+    'allauth.account', # handles accounts for allauth poackage,
+    'allauth.socialaccount', # handles social links for allauth package.
+    'allauth.socialaccount.providers.google', # provides handling of google authentication in allauth.
+    "allauth_ui", # for customizing the allauth templates with tailwind css.
+    'ckeditor', # for using ckeditor Rich Text Editor to get the most useful textbox.
+    'django_filters', # gives easy modules to handler filtering and searching in django.
+    "django_htmx", # provides some middlewares and functions to handle htmx request.
+
+    # main apps
+    'core', # the main app where the user will interact
+    'userauths', # this app handles authentications
+    'users', # this app handles user accounts and dashboard
+    'cars', # this app have models, views and other functions for cars
+    'rent', # this app have models, views and other functions for rents
 ]
 
 MIDDLEWARE = [
+    # these middlewares are already provided by django:
     'django.middleware.security.SecurityMiddleware',
-    "whitenoise.middleware.WhiteNoiseMiddleware",
+    # "whitenoise.middleware.WhiteNoiseMiddleware", # will be used in production environtment only to locat static files
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    "allauth.account.middleware.AccountMiddleware",
-    "django_htmx.middleware.HtmxMiddleware",
+
+    # third party middlewares:
+    "allauth.account.middleware.AccountMiddleware", # allauth middleware.
+    "django_htmx.middleware.HtmxMiddleware", # htmx middleware.
 ]
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/' # specifies at which url the user will be redirected after successful login.
 
-SITE_ID = 1
+SITE_ID = 1 # used for many things like google authentication, cloudinary etc for detection of web application.
 
-AUTH_USER_MODEL = 'userauths.User'
+AUTH_USER_MODEL = 'userauths.User' # specifies which model will be used as default user model.
 
-ROOT_URLCONF = 'Car_Renting_System.urls'
+ROOT_URLCONF = 'Car_Renting_System.urls' # the main url file for url links.
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ["templates"],
+        'DIRS': ["templates"], # specifies the base directory to search for HTML templates
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
-                'core.context_processors.default',
-                'users.context_processors.default',
+                'core.context_processors.default', # specifying the contect processors function of core app
+                'users.context_processors.default', # specifying the contect processors function of users app
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
@@ -97,13 +107,13 @@ TEMPLATES = [
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.AuthenticationBackend',
+    'allauth.account.auth_backends.AuthenticationBackend', # specifying that authentication will be handled by allauth package.
 ]
 
-WSGI_APPLICATION = 'Car_Renting_System.wsgi.application'
+WSGI_APPLICATION = 'Car_Renting_System.wsgi.application' # tells name of project on WSGI (Synchronous type)
 
-
-# Database
+# these all are the databases used in different environments:
+# Database of sqlite for starting
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 # DATABASES = {
@@ -112,6 +122,9 @@ WSGI_APPLICATION = 'Car_Renting_System.wsgi.application'
 #         'NAME': BASE_DIR / 'db_new.sqlite3',
 #     }
 # }
+
+
+# Database of postgresql in development server
 
 # DATABASES = {
 
@@ -133,9 +146,20 @@ WSGI_APPLICATION = 'Car_Renting_System.wsgi.application'
 
 # }
 
+# Database provided by render.com with internal server link just used in production environment:
+
+# internal database
+# DATABASES = {
+#     'default': dj_database_url.parse("postgres://avnadmin:AVNS_aae2b_Q6skUVHWGBJo2@daisyroom-daisyroom.a.aivencloud.com:26643/defaultdb?sslmode=require") 
+# }
+
+# external database provided by render.com to be used anywhere but will be slow
 DATABASES = {
-    'default': dj_database_url.parse("postgres://avnadmin:AVNS_aae2b_Q6skUVHWGBJo2@daisyroom-daisyroom.a.aivencloud.com:26643/defaultdb?sslmode=require") 
+    'default': dj_database_url.parse("postgres://daisyroom:ycpwnaJ0auuMwYhYohchY1GNA8igV8wg@dpg-co3foagl5elc73dcm990-a.singapore-postgres.render.com/daisyroom_18o3") 
 }
+
+# Database with environment variables:
+
 # DATABASES = {
 
 #     'default': {
@@ -178,9 +202,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en-us' # default language of project
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'UTC' # Time zone used in project
 
 USE_I18N = True
 
@@ -190,34 +214,35 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = 'static/' # static url directory
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # joins the static files with the static directory
 
 STATICFILES_DIRS=[
-    os.path.join(BASE_DIR,'static')
+    os.path.join(BASE_DIR,'static') # joins the static directory with staticfiles directory
 ]
 
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+# STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage" # used in production
+MEDIA_URL = '/DaisyRoom/' # base directory for media files
 
-MEDIA_URL = '/media/'
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'DaisyRoom') # joins content of base directory with media directory in development env.
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = 'userauths.User'
+AUTH_USER_MODEL = 'userauths.User' # specifies default Authentication model to userauths User model.
 
-CKEDITOR_UPLOAD_PATH = 'uploads/contents/'
+CKEDITOR_UPLOAD_PATH = 'DaisyRoom/uploads/contents/' # contetn of ck editor path on media files
 
+
+# configurations for ckeditor textbox:
 CKEDITOR_CONFIGS = {
     'default': {
         'skin': 'moono',
         'codeSnippet_theme': 'monokai',
-        'toolbar': 'all',
+        'toolbar': 'all', # need all features
         'extraPlugins': ','.join(
             [
                 'codesnippet',
@@ -225,27 +250,31 @@ CKEDITOR_CONFIGS = {
                 'dialog',
             ]
         ),
-        'height': 300,
-        'width': '120%',
+        'height': 300, # specifies its height
+        'width': '120%', # specifies its width
     }
 }
 
-ACCOUNT_AUTHENTICATION_METHOD = "username_email"
-ACCOUNT_EMAIL_REQUIRED = True 
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+# Email configurations:
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' 
-EMAIL_HOST = 'smtp.gmail.com' 
-EMAIL_PORT = 587 
-EMAIL_HOST_USER = 'shaheer.mudassar13@gmail.com'  
-EMAIL_HOST_PASSWORD = "zxgttnzevzbflmdw" 
-EMAIL_USE_TLS = True 
-DEFAULT_FROM_EMAIL = 'DaisyRoom<noreply@daisyroom.com>'
+ACCOUNT_AUTHENTICATION_METHOD = "username_email" # this is provided by allauth telling that both username and email can be used for authentication.
+ACCOUNT_EMAIL_REQUIRED = True # specifies that email verification should be enabled.
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory' # makes sure not to activate account if the email is not verified.
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' # using django email system
+EMAIL_HOST = 'smtp.gmail.com' # SMTP of google is used as HOST 
+EMAIL_PORT = 587 # Port number of google host
+EMAIL_HOST_USER = 'shaheer.mudassar13@gmail.com' # email will be delivered with this account  
+EMAIL_HOST_PASSWORD = "zxgttnzevzbflmdw" # password provided by google
+EMAIL_USE_TLS = True # enables TLS service
+DEFAULT_FROM_EMAIL = 'DaisyRoom<noreply@daisyroom.com>' # the name shown on email
 
 # Google Authentication
 # client_id = 717710135674-metvdkoncj0uvekh65rlarct12r82re2.apps.googleusercontent.com
 # client_secret = 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
 
+
+# specifies what data should be gathered form google account of user
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
         'SCOPE': [
@@ -260,6 +289,8 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
+
+# jazzmin admin panel settings
 JAZZMIN_SETTINGS = {
     "site_title": "DaisyRoom Admin",
     "login_logo": None,
@@ -277,3 +308,11 @@ JAZZMIN_SETTINGS = {
         }]
     },
 }
+
+# clodinary settings:
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dy74qr0ho',
+    'API_KEY': '181326364429617',
+    'API_SECRET': 'rSqFkGorD1jJld8vqgzc80aHLeg'
+}
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage' # default storage for media files

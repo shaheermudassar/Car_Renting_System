@@ -1,7 +1,9 @@
-{% extends 'core/base.html' %}
-{% load static %}
-{% block body_core %}
+{% extends 'core/base.html' %} <!-- Extending the base.html template -->
+
+{% load static %} <!-- Loading the static template tag library -->
+
+{% block body_core %} <!-- Defining a block named body_core -->
   <div id="core-change">
-    {% include "core/components/brand_detailsComponent.html" %}
+    {% include "core/components/brand_detailsComponent.html" %} <!-- Including the brand_detailsComponent.html template -->
   </div>
-{% endblock body_core %}
+{% endblock body_core %} <!-- Ending the body_core block -->
